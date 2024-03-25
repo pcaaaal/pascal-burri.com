@@ -1,0 +1,28 @@
+div.gradient {
+    background: linear-gradient(to bottom right, #0D1821, #666A86);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+div.title {
+    width: 100%;
+    margin: -3em -3em 0 -3em;
+    padding: 3em;
+    color: white;
+
+}
+
+span.title h1{
+    font-size: 11em;
+    font-weight: 200;
+}
+span.title h2 {
+    font-size: 2em;
+    font-weight: 200;
+}
+
