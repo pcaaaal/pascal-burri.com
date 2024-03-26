@@ -1,11 +1,5 @@
 div.gradient {
 	background: linear-gradient(to bottom right, #0d1821, #666a86);
-	background-size: cover;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
 }
 
 div.title {
@@ -20,14 +14,14 @@ span.title h1 {
 	font-weight: 200;
 }
 span.title h2 {
+    margin-top: 1em;
 	font-size: 2em;
 	font-weight: 200;
 }
 
 span.down-arrow {
 	position: absolute;
-	bottom: 0.5em;
-	left: 50%;
+	bottom: 0.3em;
 	transform: translateX(-50%);
 	font-size: 2em;
 	color: white;
@@ -48,4 +42,65 @@ span.down-arrow {
 	60% {
 		transform: translateY(-15px);
 	}
+}
+
+
+@media (max-width: 1000px) {
+    span.title h1 {
+        font-size: 9em;
+    }
+
+    span.title h2 {
+        font-size: 2em; 
+    }
+}
+
+@media (max-width: 800px) {
+    span.title h1 {
+        font-size: 7em;
+    }
+
+    span.title h2 {
+
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 600px) {
+    span.title h1 {
+        font-size: 5em;
+    }
+
+    span.title h2 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 450px) {
+    span.title h1 {
+        font-size: 4.5em;
+    }
+
+    span.title h2 {
+        font-size: 1.3em;
+    }
+}
+
+
+@media (max-width: 400px) {
+    span.title h1 {
+        font-size: 4em;
+    }
+
+    span.title h2 {
+        font-size: 1.3em;
+    }
+
+    span.down-arrow {
+        font-size: 2em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
