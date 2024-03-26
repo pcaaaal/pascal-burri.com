@@ -1,0 +1,12 @@
+.about p {
+	font-size: 2em;
+	margin: 0 0 1em 0;
+	line-height: 1.4em;
+	font-weight: 100;
+}
+
+img.profile-picture {
+	width: 20em;
+	height: 25em;
+	margin: 0 0 1em 0;
+}
