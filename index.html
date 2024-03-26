@@ -20,9 +20,9 @@
 <header>
     <nav>
         <ul>
-            <li><a href="#" class="glitch-text">Home</a></li>
-            <li><a href="#" class="glitch-text">About</a></li>
-            <li><a href="#" class="glitch-text">Contact</a></li>
+            <li><a href="#"><span class="glitch-word">Home</span></a></li>
+            <li><a href="#"><span class="glitch-word">About</span></a></li>
+            <li><a href="#"><span class="glitch-word">Contact</span></a></li>
         </ul>
     </nav>
 </header>
@@ -35,6 +35,7 @@
         </span>
         <span class="title">
             <h2>I am a developer working at Swisscom</h2>
+            <span class="down-arrow">____</span>
         </span>
     </div>
 </div>
@@ -42,12 +43,6 @@
 <div class="introduction">
         <h1>Hello!</h1>
 </div>
-
 <script src="js/header.js"></script>
-<script>
-    document.querySelectorAll('.glitch-text').forEach(link => {
-        link.innerHTML = link.textContent.split('').map(letter => `<span class="glitch-letter">${letter}</span>`).join('');
-    });
-</script>
 </body>
 </html>

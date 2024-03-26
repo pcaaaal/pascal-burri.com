@@ -1,42 +1,79 @@
 header {
-    background-color: #f0f0f0;
-    height: 60px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translateY(-60px);
-    transition: transform 0.2s ease-in-out, opacity 0.3s ease-in-out;
+	background-color: #f0f0f0;
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	transform: translateY(-60px);
+	transition: transform 0.2s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 1em;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    font-family: Comfortaa, sans-serif;
+	list-style-type: none;
+	margin: 0;
+	padding: 1em;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 100%;
+	font-family: Comfortaa, sans-serif;
+    font-weight: 100;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: #000;
+	text-decoration: none;
+	color: #000;
 }
 
-span.glitch-letter {
-    animation: cray 0.5s infinite paused;
+
+@keyframes glitch {
+	0% {
+		font-weight: 100;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+	20% {
+		font-weight: 200;
+		font-style: italic;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	40% {
+		font-weight: 300;
+		font-style: normal;
+		text-decoration: line-through;
+		text-transform: lowercase;
+	}
+	60% {
+		font-weight: 400;
+		font-style: normal;
+		text-decoration: underline;
+		text-transform: capitalize;
+	}
+	80% {
+		font-weight: 500;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+    100% {
+		font-weight: 100;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: capitalize;
+	}
 }
 
-span.glitch-letter:hover {
-    animation-play-state: running;
-}
-
-@keyframes cray {
-    0% { font-weight: 100; font-style: normal; text-decoration: none; text-transform: none; }
-    20% { font-weight: 200; font-style: italic; text-decoration: none; text-transform: uppercase; }
-    40% { font-weight: 300; font-style: normal; text-decoration: line-through; text-transform: lowercase; }
-    60% { font-weight: 400; font-style: normal; text-decoration: underline; text-transform: capitalize; }
-    80% { font-weight: 500; font-style: normal; text-decoration: none; text-transform: none; }
+@keyframes underline {
+    0% {
+        text-decoration: none;
+    }
+    50% {
+        text-decoration: underline;
+    }
+    100% {
+        text-decoration: none;
+    }
 }
