@@ -1,5 +1,5 @@
 header {
-	background-color: #f0f0f0;
+	background-color: rgba(240, 240, 240, 1);
 	height: 60px;
 	width: 100%;
 	position: fixed;
@@ -17,8 +17,9 @@ nav ul {
 	justify-content: space-around;
 	align-items: center;
 	height: 100%;
-	font-family: Comfortaa, sans-serif;
-    font-weight: 100;
+	font-family: 'Source Code Pro', sans-serif;
+    font-weight: 300;
+	font-size: 1em;
 }
 
 nav ul li a {

@@ -1,13 +1,14 @@
 
-
-
+html {
+    scroll-behavior: smooth;
+}
 
 
 body {
-    font-family: Comfortaa, sans-serif;
+    font-family: 'Source Code Pro', sans-serif;
     font-weight: 1000;
     font-size: 20px;
-    padding: 3em;
+    /* padding: 3em; */
     margin: 0;
     background: #f0f0f0;
     color: #000000;
@@ -20,8 +21,12 @@ body {
     grid-template-rows: auto 1fr auto;
 }
 
+::webkit-scrollbar {
+    display: none;
+}
+
 h1 {
-    font-family: Lexend, sans-serif;
+    font-family: Oswald, sans-serif;
     font-size: 4em;
     Margin: 0 0 0 0;
     padding: 0 0 0 0;
@@ -29,7 +34,7 @@ h1 {
 }
 
 h2 {
-    font-family: Comfortaa, sans-serif;
+    font-family: 'Source Code Pro', sans-serif;
     font-size: 2em;
     Margin: 0 0 0 0;
     padding: 0 0 0 0;

@@ -1,10 +1,26 @@
-div.full-width-section {
+.full-width-section {
     width: 100%;
-    margin: -3em 0 0 -3em;
-    padding: 3em 3em 0 3em;
     display: grid;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+
+.split-container {
+    display: flex;
+}
+
+.split-container .left, .split-container .right {
+    flex: 1;
+}
+
+
+.padding-1 {
+    padding: 1em;
+}
+
+.padding-2 {
+    padding: 2em;
 }
