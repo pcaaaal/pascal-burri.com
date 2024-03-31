@@ -1,36 +1,42 @@
-
-.mountain-image-blur {
-    background-image: url(../assets/start-photo-blur.webp);
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    box-sizing: border-box;
+.home {
+	box-sizing: border-box;
+	background-color: rgba(0, 0, 0, 0.4);
+	height: 100vh;
 }
-.title {
-    padding-top: 5em;
-	width: 100%;
 
+.title {
+	display: flex;
+	padding-top: 6em;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	text-align: center;
 	color: white;
 }
 
 .title h1 {
+	padding: 0;
+	margin: 0;
 	font-size: 11em;
 	font-weight: 200;
 }
 .title h2 {
-    margin-top: 1em;
+	margin-top: 0em;
 	font-size: 2em;
 	font-weight: 200;
 }
 
 .down-arrow {
-    font-family: Comfortaa, sans-serif;
+	font-family: Comfortaa, sans-serif;
 	position: absolute;
 	bottom: 0.3em;
 	transform: translateX(-50%);
 	font-size: 2em;
 	color: white;
 	animation: bounce 2s infinite;
+	transition: opacity 0.5s ease-out;
 }
 
 @keyframes bounce {
@@ -49,63 +55,17 @@
 	}
 }
 
-
-@media (max-width: 1000px) {
-    .title h1 {
-        font-size: 9em;
-    }
-
-    .title h2 {
-        font-size: 2em; 
-    }
-}
-
-@media (max-width: 800px) {
-    .title h1 {
-        font-size: 7em;
-    }
-
-    .title h2 {
-
-        font-size: 2em;
-    }
-}
-
-@media (max-width: 600px) {
-    .title h1 {
-        font-size: 5em;
-    }
-
-    .title h2 {
-        font-size: 2em;
-    }
-}
-
-@media (max-width: 450px) {
-    .title h1 {
-        font-size: 4.5em;
-    }
-
-    .title h2 {
-        font-size: 1.3em;
-    }
-}
-
-
-@media (max-width: 400px) {
-    .title h1 {
-        font-size: 4em;
-    }
-
-    .title h2 {
-        font-size: 1.3em;
-    }
-
-    .down-arrow {
-        font-size: 2em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+@media screen and (max-width: 500px) {
+	.title h1 {
+		font-size: 5em;
+	}
+	.title h2 {
+		font-size: 2em;
+	}
+	.down-arrow {
+		align-items: center;
+	}
+	.i-am-text {
+		display: none; /* Hide the element */
+	}
 }

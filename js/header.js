@@ -14,32 +14,32 @@ document.addEventListener('mousemove', function(e) {
     if (distance < 100) {
         header.style.transform = 'translateY(0)';
     } else {
-        header.style.transform = 'translateY(-60px)';
+        header.style.transform = 'translateY(-80px)';
     }
 });
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.glitch-word').forEach(link => {
-        link.innerHTML = link.textContent.split('').map(letter => `<span class="glitch-letter">${letter}</span>`).join('');
-    });
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.querySelectorAll('.glitch-word').forEach(word => {
+            word.innerHTML = word.textContent.split('').map(letter => `<span class="glitch-letter">${letter}</span>`).join('');
 
-    document.querySelectorAll('.glitch-word').forEach(word => {
-        word.addEventListener('mouseenter', () => {
-            word.querySelectorAll('.glitch-letter').forEach(letter => {
-                let randomDelay = Math.random() * 0.5;
-                let randomDuration = Math.random() * 1;
-                letter.style.animation = `glitch ${randomDuration}s ${randomDelay}s both`;
+            link.addEventListener('mouseenter', () => {
+                word.querySelectorAll('.glitch-letter').forEach(letter => {
+                    let randomDelay = Math.random() * 0.5;
+                    let randomDuration = Math.random() * 1;
+                    letter.style.animation = `glitch ${randomDuration}s ${randomDelay}s both`;
 
-                letter.addEventListener('animationend', () => {
-                    letter.style.animation = `underline infinite 0.8s both`;
+                    letter.addEventListener('animationend', () => {
+                        letter.style.animation = `underline infinite 0.8s both`;
+                    });
                 });
             });
-        });
 
-        word.addEventListener('mouseleave', () => {
-            word.querySelectorAll('.glitch-letter').forEach(letter => {
-                letter.style.animation = 'none';
+            link.addEventListener('mouseleave', () => {
+                word.querySelectorAll('.glitch-letter').forEach(letter => {
+                    letter.style.animation = 'none';
+                });
             });
         });
     });

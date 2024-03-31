@@ -1,74 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/button.css">
-    <link rel="stylesheet" href="css/title.css">
-    <link rel="stylesheet" href="css/div.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/about.css">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Home</title>
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/button.css" />
+		<link rel="stylesheet" href="css/title.css" />
+		<link rel="stylesheet" href="css/div.css" />
+		<link rel="stylesheet" href="css/header.css" />
+		<link rel="stylesheet" href="css/about.css" />
+        <link rel="stylesheet" href="css/footer.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Oswald:wght@200..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-
-
-</head>
-<body>
-<header>
-    <nav>
-        <ul>
-            <li><a href="#Home"><span class="glitch-word">Home</span></a></li>
-            <li><a href="#About"><span class="glitch-word">About</span></a></li>
-            <li><a href="#Projects"><span class="glitch-word">Projects</span></a></li>
-            <li><a href="#Contact"><span class="glitch-word">Contact</span></a></li>
-        </ul>
-    </nav>
-</header>
-<div class="title mountain-image-blur" id="Home">
-    <div>
-        <span class="title">
-            <h1>PASCAL</h1>
-            <h1>BURRI</h1>
-        </span>
-        <span class="title">
-            <h2 class="i-am-text">I am a backend developer</h2>
-            <span class="down-arrow">____</span>
-        </span>
-    </div>
-</div>
-<div class="padding-2 container About"  id="About">
-    <h2 class="introduction 1">Let's Talk</h2>
-    <h2 class="introduction 2">About Me</h2>
-    <div class="split-container">
-        <div class="left">
-            <img src="assets/Mountains Photo.jpeg" alt="Picture of Pascal Burri" class="profile-picture">
-        </div>
-        <div class="right">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Oswald:wght@200..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li>
+						<a href="#Home"><span class="glitch-word">Home</span></a>
+					</li>
+					<li>
+						<a href="#About"><span class="glitch-word">About</span></a>
+					</li>
+					<li>
+						<a href="#Contact"><span class="glitch-word">Contact</span></a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="home" id="Home">
+			<div>
+				<span class="title">
+					<h2>Hey, I'm</h2>
+					<h1>PASCAL</h1>
+					<h1>BURRI</h1>
+					<h2 class="i-am-text">I am a backend developer</h2>
+				</span>
+				<span class="down-arrow" id="downArrow">____</span>
+			</div>
+		</div>
+		<div class="about" id="About">
+			<h2 class="introduction 1">Let's Talk</h2>
+			<h2 class="introduction 2">About Me</h2>
+			<div class="split-container">
+				<div class="left">
+					<img
+						src="assets/Mountains Photo.jpeg"
+						alt="Picture of Pascal Burri"
+						class="profile-picture"
+					/>
+				</div>
+				<div class="right">
+					<div class="split-container">
+						<div class="left">
+							<h3>Who am I?</h3>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+						</div>
+						<div class="right">
+							<h3>What do I do?</h3>
+							<p>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+								Eligendi quae eaque illum sapiente.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="footer" id="Contact">
+            <h2>Contact</h2>
             <div class="split-container">
                 <div class="left">
-                    <h3>Who am I?</h3>
-                    <p>
-                        I am a backend developer with a passion for creating software that is both efficient and user-friendly.
-                        I have a strong foundation in programming and software development, and I am always looking to expand my skills and knowledge.
-                    </p>
+                    <h3>Get in touch</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
                 </div>
                 <div class="right">
-                    <h3>What do I do?</h3>
-                    <p>
-                        I specialize in backend development, working with databases, servers, and APIs to create the functionality that powers web applications.
-                        I have experience with a variety of programming languages and frameworks, and I am always eager to learn new technologies.
-                    </p>
+
                 </div>
             </div>
         </div>
-    </div>
-
-</div>
-<script src="js/header.js"></script>
-<script src="js/start.js"></script>
-</body>
+		<script src="js/header.js"></script>
+		<script src="js/hero.js"></script>
+	</body>
 </html>
