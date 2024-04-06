@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {FunctionComponent} from 'react';
 
 const Header: FunctionComponent = () => {
@@ -8,10 +9,10 @@ const Header: FunctionComponent = () => {
 			</div>
 
 			<div className="tw-bg-black tw-gap-8 tw-flex tw-self-center">
-				<a href="/">Home</a>
-				<a href="/about">About</a>
-				<a href="/projects">Projects</a>
-				<a href="/contact">Contact</a>
+				<Link href="/">Home</Link>
+				<Link href="/about">About</Link>
+				<Link href="/projects">Projects</Link>
+				<Link href="/contact">Contact</Link>
 			</div>
 
 			<div>
