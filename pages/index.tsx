@@ -1,9 +1,11 @@
-import { Inter } from "next/font/google";
+import {FunctionComponent} from 'react';
 
-const inter = Inter({ subsets: ["latin"] });
+const Home: FunctionComponent = () => {
+	return (
+		<div className="">
+			<h1 className="tw-text-black">Héel</h1>
+		</div>
+	);
+};
 
-export default function Home() {
-  return (
-    <div className=""></div>
-  );
-}
+export default Home;

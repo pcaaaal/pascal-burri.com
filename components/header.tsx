@@ -1,14 +1,18 @@
 import Link from 'next/link';
-import {FunctionComponent} from 'react';
+import {Dispatch, FunctionComponent, SetStateAction} from 'react';
 
-const Header: FunctionComponent = () => {
+interface HeaderProps {
+	setDark: Dispatch<SetStateAction<boolean>>;
+}
+
+const Header: FunctionComponent<HeaderProps> = ({setDark}) => {
 	return (
 		<header className="tw-flex tw-h-20 tw-items-center tw-w-full tw-justify-between tw-p-3">
 			<div>
 				<p>logo here</p>
 			</div>
 
-			<div className="tw-bg-black tw-gap-8 tw-flex tw-self-center">
+			<div className="">
 				<Link href="/">Home</Link>
 				<Link href="/about">About</Link>
 				<Link href="/projects">Projects</Link>
@@ -16,7 +20,7 @@ const Header: FunctionComponent = () => {
 			</div>
 
 			<div>
-				<p>Dark Mode Here</p>
+				<button onClick={() => setDark((val) => !val)}>Dark mode</button>
 			</div>
 		</header>
 	);
