@@ -18,7 +18,7 @@ const Blob: FunctionComponent<PropsWithChildren> = ({children}) => {
 		return () => {
 			window.removeEventListener('mousemove', handleMouseMove);
 		};
-	}, []);
+	});
 
 	return (
 		<div className="tw-w-full tw-h-full dark:tw-bg-[#1D1D1F] tw-bg-[f8f9fa] tw-overflow-hidden">
