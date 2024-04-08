@@ -1,0 +1,41 @@
+.icon-rotate {
+	animation: icon-rotate 0.5s linear;
+}
+
+@keyframes icon-rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+		scale: 0.1 0.1;
+	}
+}
+
+
+@media (max-width: 767px){
+  .menu {
+    transition: opacity 0.5s, transform 0.5s;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .hide {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.menu-icon {
+	stroke: var(--icon-color);
+}
+
+.home-icon {
+	stroke: var(--icon-color);
+}
+
