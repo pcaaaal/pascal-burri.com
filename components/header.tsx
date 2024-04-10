@@ -19,7 +19,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	const [menu, setMenu] = useState(false);
 
 	return (
-		<header className="tw-flex tw-justify-between md:tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3">
+		<header className="tw-flex tw-justify-between md:tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3 tw-relative">
 			<div className="tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-aspect-square tw-h-20 md:tw-h-full">
 				<Link href="/">
 					<Image
