@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="173d5b38-ec4c-4052-940d-f6ecc88cdc59" name="Changes" comment="add attribution to home-picture">
+      <change afterPath="$PROJECT_DIR$/assets/personal-picture-placeholder.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/about.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/about.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/start-new-design" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2e81XflYYLylUScK2DE5nEymawx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Coding/Privat/Websites/pascal-burri-com",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Coding\Privat\Websites\pascal-burri-com\js" />
+      <recent name="D:\Coding\Privat\Websites\pascal-burri-com\css" />
+      <recent name="D:\Coding\Privat\Websites\pascal-burri-com\html" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="173d5b38-ec4c-4052-940d-f6ecc88cdc59" name="Changes" comment="" />
+      <created>1711271431393</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711271431393</updated>
+      <workItem from="1711271432614" duration="10204000" />
+      <workItem from="1711379172162" duration="10794000" />
+      <workItem from="1711914348084" duration="669000" />
+      <workItem from="1711981268983" duration="2024000" />
+    </task>
+    <task id="LOCAL-00001" summary="change gitignore">
+      <option name="closed" value="true" />
+      <created>1711271596989</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711271596989</updated>
+    </task>
+    <task id="LOCAL-00002" summary="change nextjs config">
+      <option name="closed" value="true" />
+      <created>1711271937992</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711271937992</updated>
+    </task>
+    <task id="LOCAL-00003" summary="change nextjs config">
+      <option name="closed" value="true" />
+      <created>1711274970516</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711274970516</updated>
+    </task>
+    <task id="LOCAL-00004" summary="change nextjs config">
+      <option name="closed" value="true" />
+      <created>1711275085135</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711275085135</updated>
+    </task>
+    <task id="LOCAL-00005" summary="change nextjs config">
+      <option name="closed" value="true" />
+      <created>1711275193492</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711275193492</updated>
+    </task>
+    <task id="LOCAL-00006" summary="change nextjs config">
+      <option name="closed" value="true" />
+      <created>1711275306171</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711275306171</updated>
+    </task>
+    <task id="LOCAL-00007" summary="change nextjs config">
+      <option name="closed" value="true" />
+      <created>1711275683297</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711275683297</updated>
+    </task>
+    <task id="LOCAL-00008" summary="change nextjs config">
+      <option name="closed" value="true" />
+      <created>1711293052193</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711293052193</updated>
+    </task>
+    <task id="LOCAL-00009" summary="delete nextjs and add html">
+      <option name="closed" value="true" />
+      <created>1711293621444</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711293621444</updated>
+    </task>
+    <task id="LOCAL-00010" summary="start implement start div and header">
+      <option name="closed" value="true" />
+      <created>1711402607598</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711402607598</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add attribution to home-picture">
+      <option name="closed" value="true" />
+      <created>1711915011166</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711915011166</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="change gitignore" />
+    <MESSAGE value="change nextjs config" />
+    <MESSAGE value="delete nextjs and add html" />
+    <MESSAGE value="start implement start div and header" />
+    <MESSAGE value="add attribution to home-picture" />
+    <option name="LAST_COMMIT_MESSAGE" value="add attribution to home-picture" />
+  </component>
+</project>

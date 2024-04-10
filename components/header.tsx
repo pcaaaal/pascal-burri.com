@@ -1,37 +1,45 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Dispatch, FunctionComponent, SetStateAction, useState } from 'react';
+import {Dispatch, FunctionComponent, SetStateAction, useState} from 'react';
 
-import darkIcon from '../public/dark.svg';
-import lightIcon from '../public/light.svg';
-import menuIcon from '../public/menu.svg';
-import logo from '../public/logo.svg';
+import moonIcon from '../public/moon.svg';
+import sunIcon from '../public/sun.svg';
+import logoDarkIcon from '../public/logo-dark.svg';
+import menuDarkIcon from '../public/menu-dark.svg';
+import logoLightIcon from '../public/logo-light.svg';
+import menuLightIcon from '../public/menu-light.svg';
 
 interface HeaderProps {
 	setDark: Dispatch<SetStateAction<boolean>>;
 	dark: boolean;
 }
 
-const Header: FunctionComponent<HeaderProps> = ({ setDark, dark }) => {
+const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	const [iconRotate, setIconRotate] = useState(false);
 	const [menu, setMenu] = useState(false);
 
 	return (
-		<header className="dark:tw-text-white tw-font-mono tw-flex md:tw-h-20 md:tw-items-center tw-justify-between tw-px-8 tw-py-3 tw-text-black tw-w-full">
-			<div className="tw-bg-[rgba(100,100,100,0.1)] tw-flex tw-items-center tw-justify-center tw-p-3  md:tw-h-full tw-rounded-2xl">
+		<header className="tw-flex tw-justify-between md:tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white">
+			<div className="tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-aspect-square tw-h-20 md:tw-h-full">
 				<Link href="/">
-					<Image src={logo} alt="logo" className="logo-icon tw-h-full tw-w-full" />
+					<Image
+						src={!dark ? logoDarkIcon : logoLightIcon}
+						alt="logo"
+						className="logo-icon"
+					/>
 				</Link>
 			</div>
 
-			<div className={`hide md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center menu tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-gap-8 tw-grid tw-p-3 tw-rounded-2xl ${menu ? 'show' : ''}`}>
+			<div
+				className={`hide md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center menu tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-gap-8 tw-grid tw-p-3 tw-rounded-2xl ${menu ? 'show' : ''} tw-text-3xl`}
+			>
 				<Link href="/">Home</Link>
 				<Link href="/about">About</Link>
 				<Link href="/projects">Projects</Link>
 				<Link href="/contact">Contact</Link>
 			</div>
-			<div className="tw-flex tw-gap-3 tw-h-16">
-				<div className="tw-bg-[rgba(100,100,100,0.1)] tw-flex tw-h-full tw-items-center tw-justify-center tw-p-3 tw-rounded-2xl tw-w-16">
+			<div className="tw-flex tw-gap-3 tw-h-full">
+				<div className="tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-as tw-aspect-square tw-h-20 md:tw-h-full">
 					<button
 						onClick={() => {
 							setIconRotate(true);
@@ -42,15 +50,19 @@ const Header: FunctionComponent<HeaderProps> = ({ setDark, dark }) => {
 						}}
 					>
 						<Image
-							src={!dark ? darkIcon : lightIcon}
+							src={!dark ? moonIcon : sunIcon}
 							alt="toggle darkmode"
-							className={`icon-rotate themeIcon ${iconRotate ? '' : ''}`}
+							className={`themeIcon ${iconRotate ? 'icon-rotate' : ''}`}
 						/>
 					</button>
 				</div>
-				<div className="tw-bg-[rgba(100,100,100,0.1)] tw-flex tw-h-full tw-items-center tw-justify-center tw-md-hidden tw-p-3 tw-rounded-2xl tw-w-16">
+				<div className="tw-flex tw-justify-center tw-items-center md:tw-hidden tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-aspect-square tw-h-20 md:tw-h-full">
 					<button onClick={() => setMenu((val) => !val)}>
-						<Image src={menuIcon} alt="menu" className="menu-icon" />
+						<Image
+							src={!dark ? menuDarkIcon : menuLightIcon}
+							alt="menu"
+							className="menu-icon"
+						/>
 					</button>
 				</div>
 			</div>
