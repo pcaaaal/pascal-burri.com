@@ -1,4 +1,5 @@
 import '@/styles/blob.css';
+import '@/styles/blob.css';
 import '@/styles/globals.css';
 import '@/styles/header.css';
 import type {AppProps} from 'next/app';
