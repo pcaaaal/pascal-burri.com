@@ -19,7 +19,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	const [menu, setMenu] = useState(false);
 
 	return (
-		<header className="tw-flex tw-justify-between md:tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white">
+		<header className="tw-flex tw-justify-between md:tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3">
 			<div className="tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-aspect-square tw-h-20 md:tw-h-full">
 				<Link href="/">
 					<Image
@@ -31,7 +31,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 			</div>
 
 			<div
-				className={`hide md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center menu tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-gap-8 tw-grid tw-p-3 tw-rounded-2xl ${menu ? 'show' : ''} tw-text-3xl`}
+				className={`md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center menu tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-gap-8 tw-grid tw-p-3 tw-rounded-2xl ${menu ? 'show' : ''} tw-text-3xl tw-w-full`}
 			>
 				<Link href="/">Home</Link>
 				<Link href="/about">About</Link>
