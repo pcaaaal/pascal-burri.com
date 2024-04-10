@@ -1,11 +1,14 @@
 @keyframes blob-rotate {
 	from {
 		transform: rotate(0deg);
+		scale: 2 1;
 	}
 
 	50% {
+		scale: 1 2;
 	}
 	to {
 		transform: rotate(360deg);
+		scale: 2 1;
 	}
 }
