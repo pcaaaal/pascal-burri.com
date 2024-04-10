@@ -18,8 +18,8 @@ const Blob: FunctionComponent<PropsWithChildren> = ({children}) => {
 
 		window.addEventListener('mousemove', handleMouseMove);
 
-		setXMd(window.innerWidth / 3);
-		setYMd(window.innerHeight / 2);
+		setXMd(window.innerWidth / 4);
+		setYMd(window.innerHeight / 3);
 
 		return () => {
 			window.removeEventListener('mousemove', handleMouseMove);
