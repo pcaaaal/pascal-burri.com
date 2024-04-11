@@ -1,7 +1,7 @@
 import {FunctionComponent, PropsWithChildren, useEffect, useState} from 'react';
 import {animated, useSpring} from 'react-spring';
 
-const Blob: FunctionComponent<PropsWithChildren> = ({children}) => {
+const Bg: FunctionComponent<PropsWithChildren> = ({children}) => {
 	const [{x, y}, set] = useSpring(() => ({
 		x: 0,
 		y: 0,
@@ -39,7 +39,7 @@ const Blob: FunctionComponent<PropsWithChildren> = ({children}) => {
 						}}
 					></animated.div>
 					<animated.div
-						className="tw-bg-gradient-to-r tw-from-violet-500 tw-to-cyan-400 tw-h-[700px] dark:tw-bg-gradient-to-r dark:tw-from-violet-600 dark:tw-to-cyan-400 dark:tw-h-[600px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full md:tw-hidden"
+						className="tw-bg-gradient-to-r tw-from-violet-500 tw-to-cyan-400 tw-h-[700px] dark:tw-bg-gradient-to-r dark:tw-from-violet-600 dark:tw-to-cyan-400 dark:tw-h-[600px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full tw-hidden"
 						style={{
 							top: y.to((y) => `${yMd}px`),
 							left: x.to((x) => `${xMd}px`),
@@ -53,4 +53,4 @@ const Blob: FunctionComponent<PropsWithChildren> = ({children}) => {
 	);
 };
 
-export default Blob;
+export default Bg;

@@ -7,35 +7,78 @@
 		transform: rotate(0deg);
 	}
 	to {
-		transform: rotate(360deg);
-		scale: 0.1 0.1;
+		transform: rotate(180deg);
 	}
 }
 
-
 @media (max-width: 767px){
   .menu {
-    transition: opacity 0.5s, transform 0.5s;
+    animation: menu-hide 0.3s forwards;
     transform: translateY(-100%);
     opacity: 0;
   }
 
-  .show {
+  .show-menu {
+    animation: menu-show 0.3s forwards;
     transform: translateY(0);
     opacity: 1;
   }
 
-  .hide {
-    transform: translateY(-100%);
-    opacity: 0;
+  .header-icon {
+    animation: icon-show 0.3s forwards;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+
+  .hide-icon {
+    animation: icon-hide 0.3s forwards;
   }
 }
 
-.menu-icon {
-	stroke: var(--icon-color);
+@keyframes menu-show {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.home-icon {
-	stroke: var(--icon-color);
+@keyframes menu-hide {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
 }
 
+@keyframes icon-hide {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-200%);
+    opacity: 0;
+    display: none;
+  }
+  
+}
+
+@keyframes icon-show {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+}
