@@ -26,6 +26,10 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	const [menu, setMenu] = useState(false);
 	const [icon, setIcon] = useState(true);
 	const menuRef = useRef<HTMLDivElement>(null);
+	const [hoveredWordIndex, setHoveredWordIndex] = useState<number | null>(
+		null,
+	);
+	const [underlineIndices, setUnderlineIndices] = useState<number[]>([]);
 
 	useEffect(() => {
 		function handleClickOutside(event: MouseEvent) {
@@ -36,7 +40,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				if (menu) {
 					setMenu(false);
 					setTimeout(() => {
-					setIcon(true);
+						setIcon(true);
 					}, 300);
 				}
 			}
@@ -47,6 +51,58 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, [menuRef, menu]);
+
+	useEffect(() => {
+		function glitchEffect() {
+			const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			const words = document.querySelectorAll('.glitch-word');
+
+			words.forEach((word: Element) => {
+				const originalText = word.textContent;
+
+				word.addEventListener('mouseenter', function () {
+					let itterations = 0;
+
+					let interval = setInterval(() => {
+						word.textContent = (originalText ?? '')
+							.split('')
+							.map((char, i) => {
+								if (2 * i < itterations) {
+									return originalText?.charAt(i) ?? '';
+								}
+
+								return letters[
+									Math.floor(Math.random() * letters.length)
+								];
+							})
+							.join('');
+
+						if (itterations > 2 * (originalText?.length ?? 0)) {
+							clearInterval(interval);
+							word.textContent = originalText;
+						}
+						itterations++;
+					}, 50);
+
+					let underlineInterval = setInterval(() => {
+						setUnderlineIndices(
+							(originalText ?? '').split('').map((char, i) => {
+								return Math.random() < 0.75 ? i : -1;
+							}),
+						);
+					}, 250);
+				});
+
+				word.addEventListener('mouseleave', function () {
+					setHoveredWordIndex(null);
+					setUnderlineIndices([]);
+				});
+			});
+		}
+		glitchEffect();
+	}, []);
+
+	const menuItems = ['HOME', 'ABOUT', 'PROJECTS', 'CONTACT'];
 
 	return (
 		<header className="tw-flex tw-justify-between md:tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3 tw-relative">
@@ -66,10 +122,26 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				ref={menuRef}
 				className={`md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-gap-8 tw-grid tw-p-3 tw-rounded-2xl ${menu ? 'show-menu' : ''} menu tw-text-3xl tw-w-full`}
 			>
-				<Link href="/">Home</Link>
-				<Link href="/about">About</Link>
-				<Link href="/projects">Projects</Link>
-				<Link href="/contact">Contact</Link>
+				{menuItems.map((item, index) => (
+					<Link key={item} href={`/${item.toLowerCase()}`}>
+						<p
+							className={`glitch-word ${hoveredWordIndex === index ? 'tw-underline' : ''}`}
+						>
+							{item.split('').map((char, i) => (
+								<span
+									key={i}
+									className={`${
+										underlineIndices.includes(i)
+											? ''
+											: ''
+									}`}
+								>
+									{char}
+								</span>
+							))}
+						</p>
+					</Link>
+				))}
 			</div>
 			<div
 				className={`tw-flex tw-gap-3 tw-h-full ${icon ? '' : 'hide-icon'} header-icon`}
