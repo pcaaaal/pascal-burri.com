@@ -13,13 +13,13 @@
 
 @media (max-width: 767px){
   .menu {
-    animation: menu-hide 0.3s forwards;
+    animation: hide-menu 0.3s forwards;
     transform: translateY(-100%);
     opacity: 0;
   }
 
   .show-menu {
-    animation: menu-show 0.3s forwards;
+    animation: show-menu 0.3s forwards;
     transform: translateY(0);
     opacity: 1;
   }
@@ -36,7 +36,7 @@
   }
 }
 
-@keyframes menu-show {
+@keyframes show-menu {
   from {
     opacity: 0;
     transform: translateY(-100%);
@@ -47,7 +47,7 @@
   }
 }
 
-@keyframes menu-hide {
+@keyframes hide-menu {
   from {
     opacity: 1;
     transform: translateY(0);
@@ -55,7 +55,6 @@
   to {
     opacity: 0;
     transform: translateY(-100%);
-    display: none;
   }
 }
 
@@ -67,7 +66,6 @@
   to {
     transform: translateY(-200%);
     opacity: 0;
-    display: none;
   }
   
 }
