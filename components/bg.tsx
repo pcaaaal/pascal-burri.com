@@ -29,7 +29,7 @@ const Bg: FunctionComponent<PropsWithChildren> = ({children}) => {
 	return (
 		<div className="tw-w-full tw-h-full dark:tw-bg-[#1D1D1F] tw-bg-[ffffff] tw-overflow-hidden">
 			<div className=" tw-blur-[200px] tw-w-full tw-h-full">
-				<div className='tw-overflow-hidden tw-h-full tw-w-full'>
+				<div className='tw-overflow-hidden tw-h-full tw-w-full tw-overflow-x-hidden'>
 					<animated.div
 						className="tw-bg-gradient-to-r tw-from-violet-500 tw-to-cyan-400 tw-h-[700px] dark:tw-bg-gradient-to-r dark:tw-from-violet-600 dark:tw-to-cyan-400 dark:tw-h-[600px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full tw-hidden md:tw-flex"
 						style={{
