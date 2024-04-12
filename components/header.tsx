@@ -4,6 +4,7 @@ import {
 	Dispatch,
 	FunctionComponent,
 	SetStateAction,
+	use,
 	useEffect,
 	useRef,
 	useState,
@@ -26,6 +27,9 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	const [menu, setMenu] = useState(false);
 	const [icon, setIcon] = useState(true);
 	const menuRef = useRef<HTMLDivElement>(null);
+	const [menuIsHidden, setMenuIsHidden] = useState(true);
+	const [iconIsHidden, setIconIsHidden] = useState(false);
+	const [showMenu, setShowMenu] = useState(false);
 
 	useEffect(() => {
 		function handleClickOutside(event: MouseEvent) {
@@ -34,24 +38,40 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				!menuRef.current.contains(event.target as Node)
 			) {
 				if (menu) {
-					setMenu(false);
-					setTimeout(() => {
-					setIcon(true);
-					}, 300);
+					setShowMenu(false);
 				}
 			}
 		}
+
+		if (showMenu) {
+			setIcon(false);
+			setTimeout(() => {
+				setIconIsHidden(true);
+				setMenuIsHidden(false);
+				setMenu(true);
+			}, 300);
+		} else {
+			setMenu(false);
+			setTimeout(() => {
+				setMenuIsHidden(true);
+				setIconIsHidden(false);
+				setIcon(true);
+			}, 300);
+		}
+			
 
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [menuRef, menu]);
+	}, [menuRef, menu, showMenu]);
+
+
 
 	return (
 		<header className="tw-flex tw-justify-between md:tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3 tw-relative">
 			<div
-				className={`tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-aspect-square tw-h-20 md:tw-h-full ${icon ? '' : 'hide-icon'} header-icon`}
+				className={`tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-aspect-square tw-h-20 md:tw-h-full ${icon ? '' : 'hide-icon'} ${iconIsHidden ? 'tw-hidden' : ''} header-icon`}
 			>
 				<Link href="/">
 					<Image
@@ -64,7 +84,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 
 			<div
 				ref={menuRef}
-				className={`md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-gap-8 tw-grid tw-p-3 tw-rounded-2xl ${menu ? 'show-menu' : ''} menu tw-text-3xl tw-w-full`}
+				className={`md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-gap-8 tw-grid tw-p-3 tw-rounded-2xl ${menu ? 'show-menu' : ''} ${menuIsHidden ? 'tw-hidden' : ''} menu tw-text-3xl tw-w-full`}
 			>
 				<Link href="/">Home</Link>
 				<Link href="/about">About</Link>
@@ -72,7 +92,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				<Link href="/contact">Contact</Link>
 			</div>
 			<div
-				className={`tw-flex tw-gap-3 tw-h-full ${icon ? '' : 'hide-icon'} header-icon`}
+				className={`tw-flex tw-gap-3 tw-h-full ${icon ? '' : 'hide-icon'} ${iconIsHidden ? 'tw-hidden' : ''} header-icon`}
 			>
 				<div className="tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-as tw-aspect-square tw-h-20 md:tw-h-full">
 					<button
@@ -94,10 +114,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				<div className="tw-flex tw-justify-center tw-items-center md:tw-hidden tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-aspect-square tw-h-20 md:tw-h-full">
 					<button
 						onClick={() => {
-							setIcon(false);
-							setTimeout(() => {
-								setMenu(true);
-							}, 300);
+							setShowMenu(true);
 						}}
 					>
 						<Image
