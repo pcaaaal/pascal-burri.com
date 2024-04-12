@@ -18,7 +18,7 @@ const Bg: FunctionComponent<PropsWithChildren> = ({children}) => {
 
 		window.addEventListener('mousemove', handleMouseMove);
 
-		setXMd(window.innerWidth / 3);
+		setXMd(window.innerWidth / 2);
 		setYMd(window.innerHeight / 2);
 
 		return () => {
@@ -39,7 +39,7 @@ const Bg: FunctionComponent<PropsWithChildren> = ({children}) => {
 						}}
 					></animated.div>
 					<animated.div
-						className="tw-bg-gradient-to-r tw-from-violet-500 tw-to-cyan-400 tw-h-[700px] dark:tw-bg-gradient-to-r dark:tw-from-violet-600 dark:tw-to-cyan-400 dark:tw-h-[600px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full tw-hidden"
+						className="tw-bg-gradient-to-r tw-from-violet-500 tw-to-cyan-400 tw-h-[700px] dark:tw-bg-gradient-to-r dark:tw-from-violet-600 dark:tw-to-cyan-400 dark:tw-h-[600px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full md:tw-hidden"
 						style={{
 							top: y.to((y) => `${yMd}px`),
 							left: x.to((x) => `${xMd}px`),
