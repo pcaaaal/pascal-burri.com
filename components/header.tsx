@@ -26,10 +26,6 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	const [menu, setMenu] = useState(false);
 	const [icon, setIcon] = useState(true);
 	const menuRef = useRef<HTMLDivElement>(null);
-	const [hoveredWordIndex, setHoveredWordIndex] = useState<number | null>(
-		null,
-	);
-	const [underlineIndices, setUnderlineIndices] = useState<number[]>([]);
 
 	useEffect(() => {
 		function handleClickOutside(event: MouseEvent) {
@@ -83,19 +79,6 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 						}
 						itterations++;
 					}, 50);
-
-					let underlineInterval = setInterval(() => {
-						setUnderlineIndices(
-							(originalText ?? '').split('').map((char, i) => {
-								return Math.random() < 0.75 ? i : -1;
-							}),
-						);
-					}, 250);
-				});
-
-				word.addEventListener('mouseleave', function () {
-					setHoveredWordIndex(null);
-					setUnderlineIndices([]);
 				});
 			});
 		}
@@ -124,20 +107,9 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 			>
 				{menuItems.map((item, index) => (
 					<Link key={item} href={`/${item.toLowerCase()}`}>
-						<p
-							className={`glitch-word ${hoveredWordIndex === index ? 'tw-underline' : ''}`}
-						>
+						<p className={`glitch-word`}>
 							{item.split('').map((char, i) => (
-								<span
-									key={i}
-									className={`${
-										underlineIndices.includes(i)
-											? ''
-											: ''
-									}`}
-								>
-									{char}
-								</span>
+								<span key={i}>{char}</span>
 							))}
 						</p>
 					</Link>
