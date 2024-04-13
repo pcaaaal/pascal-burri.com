@@ -1,7 +1,7 @@
 import {FunctionComponent, PropsWithChildren, useEffect} from 'react';
 import {animated, useSpring} from 'react-spring';
 
-const Bg: FunctionComponent<PropsWithChildren> = ({children}) => {
+const Blob: FunctionComponent<PropsWithChildren> = ({children}) => {
 	const [{x, y}, set] = useSpring(() => ({
 		x: 0,
 		y: 0,
@@ -54,4 +54,4 @@ const Bg: FunctionComponent<PropsWithChildren> = ({children}) => {
 	);
 };
 
-export default Bg;
+export default Blob;
