@@ -4,8 +4,8 @@ import '@/styles/globals.css';
 import '@/styles/header.css';
 import type {AppProps} from 'next/app';
 import {useState} from 'react';
-import Header from '../components/Header';
-import Blob from '../components/Blob';
+import Blob from '../components/blo';
+import Header from '../components/hed';
 
 export default function App({Component, pageProps}: AppProps) {
 	const [dark, setDark] = useState(true);
