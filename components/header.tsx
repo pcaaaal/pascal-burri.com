@@ -4,7 +4,6 @@ import {
 	Dispatch,
 	FunctionComponent,
 	SetStateAction,
-	use,
 	useEffect,
 	useRef,
 	useState,
@@ -58,15 +57,12 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				setIcon(true);
 			}, 300);
 		}
-			
 
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, [menuRef, menu, showMenu]);
-
-
 
 	useEffect(() => {
 		function glitchEffect() {
@@ -108,25 +104,28 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	const menuItems = ['HOME', 'ABOUT', 'PROJECTS', 'CONTACT'];
 
 	return (
-		<header className="tw-flex tw-justify-between md:tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3 tw-relative">
+		<header className="tw-flex tw-justify-between tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3 tw-fixed tw-z-50">
 			<div
-				className={`tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-aspect-square tw-h-20 md:tw-h-full ${icon ? '' : 'hide-icon'} ${iconIsHidden ? 'tw-hidden' : ''} header-icon`}
+				className={`tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-[20px] tw-aspect-square tw-h-20 md:tw-h-full ${icon ? '' : 'hide-icon'} ${iconIsHidden ? 'tw-hidden' : ''} header-icon md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click`}
 			>
-				<Link href="/">
+				<Link href="#home">
 					<Image
 						src={!dark ? logoDarkIcon : logoLightIcon}
 						alt="logo"
-						className="logo-icon"
 					/>
 				</Link>
 			</div>
 
 			<div
 				ref={menuRef}
-				className={`md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-gap-8 tw-grid tw-p-3 tw-rounded-2xl ${menu ? 'show-menu' : ''} ${menuIsHidden ? 'tw-hidden' : ''} menu tw-text-3xl tw-w-full`}
+				className={`md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-grid tw-p-3 tw-rounded-[20px] ${menu ? 'show-menu' : ''} ${menuIsHidden ? 'tw-hidden' : ''} menu tw-text-3xl tw-w-full`}
 			>
 				{menuItems.map((item, index) => (
-					<Link key={item} href={`/${item.toLowerCase()}`}>
+					<Link
+						key={item}
+						href={`#${item.toLowerCase()}`}
+						className={`tw-rounded-[20px] tw-py-2 tw-px-3 md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click`}
+					>
 						<p className={`glitch-word`}>
 							{item.split('').map((char, i) => (
 								<span key={i}>{char}</span>
@@ -138,8 +137,9 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 			<div
 				className={`tw-flex tw-gap-3 tw-h-full ${icon ? '' : 'hide-icon'} ${iconIsHidden ? 'tw-hidden' : ''} header-icon`}
 			>
-				<div className="tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-as tw-aspect-square tw-h-20 md:tw-h-full">
+				<div className="tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-rounded-[20px] tw-as tw-aspect-square tw-h-20 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
 					<button
+						className="tw-p-3"
 						onClick={() => {
 							setIconRotate(true);
 							setTimeout(() => {
@@ -155,7 +155,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 						/>
 					</button>
 				</div>
-				<div className="tw-flex tw-justify-center tw-items-center md:tw-hidden tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-2xl tw-aspect-square tw-h-20 md:tw-h-full">
+				<div className="tw-flex tw-justify-center tw-items-center md:tw-hidden tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-[20px] tw-aspect-square tw-h-20 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
 					<button
 						onClick={() => {
 							setShowMenu(true);

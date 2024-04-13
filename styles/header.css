@@ -2,6 +2,25 @@
 	animation: icon-rotate 0.5s linear;
 }
 
+.icon-click:active {
+  animation: icon-click 0.1 forwards;
+}
+
+
+@keyframes icon-click {
+  from {
+    transform: scale(0.95);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
 @keyframes icon-rotate {
 	from {
 		transform: rotate(0deg);

@@ -1,11 +1,18 @@
 import {FunctionComponent} from 'react';
+import Home from '../components/sections/Home';
 
-const Home: FunctionComponent = () => {
+const Site: FunctionComponent = () => {
 	return (
-		<div className="tw-h-[100dvh]">
-			<h1 className="tw-text-black">Héel</h1>
+		<div className="tw-z-30 tw-relative">
+				<Home />
+			<div className="tw-h-[100vh] tw-grid tw-text-center" id="about">
+				<h1>ABOUT</h1>
+			</div>
+			<div className="tw-h-[100vh] tw-grid tw-text-center" id="projects">
+				<h1>PROJECTS</h1>
+			</div>
 		</div>
 	);
 };
 
-export default Home;
+export default Site;
