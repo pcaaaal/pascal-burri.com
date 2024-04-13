@@ -1,5 +1,5 @@
 import {FunctionComponent} from 'react';
-import Home from '../components/sections/Home';
+import Home from '../components/Home';
 
 const Site: FunctionComponent = () => {
 	return (
