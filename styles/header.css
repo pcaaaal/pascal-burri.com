@@ -30,6 +30,39 @@
 	}
 }
 
+
+@media (min-width: 768px) {
+  .header-hidden {
+    animation: header-hide 0.3s forwards;
+  }
+
+  .header-show {
+    animation: header-show 0.3s forwards;
+  }
+}
+
+@keyframes header-hide {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes header-show {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @media (max-width: 767px){
   .menu {
     animation: hide-menu 0.3s forwards;
