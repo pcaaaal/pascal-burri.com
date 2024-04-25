@@ -11,8 +11,6 @@ import {
 
 import darkIcon from '../public/dark.svg';
 import lightIcon from '../public/light.svg';
-import logoDarkIcon from '../public/logo-dark.svg';
-import logoLightIcon from '../public/logo-light.svg';
 import menuDarkIcon from '../public/menu-dark.svg';
 import menuLightIcon from '../public/menu-light.svg';
 
@@ -109,7 +107,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 			const updateScrollDirection = () => {
 				const scrollY = window.scrollY;
 				const direction = scrollY > lastScrollY ? "down" : "up";
-				if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
+				if (direction !== scrollDirection && (scrollY - lastScrollY > 3 || scrollY - lastScrollY < -3)) {
 					setScrollDirection(direction);
 				}
 				lastScrollY = scrollY > 0 ? scrollY : 0;
@@ -127,21 +125,11 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 
 	return (
 		<header className={`tw-flex tw-justify-between tw-items-center tw-p-4 tw-w-full md:tw-h-24 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3 tw-fixed tw-z-50 ${useScrollDirection() == 'down' ? 'header-hidden' : 'header-show'}`} >
-			<div
-				className={`tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-[20px] tw-aspect-square tw-h-20 md:tw-h-full ${icon ? '' : 'hide-icon'} ${iconIsHidden ? 'tw-hidden' : ''} header-icon md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click`}
-			>
-				<Link href="#home">
-					<Image
-						src={!dark ? logoDarkIcon : logoLightIcon}
-						alt="logo"
-					/>
-				</Link>
-			</div>
 
 			<div
 				ref={menuRef}
-				className={`md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-grid tw-p-3 tw-rounded-[20px] ${menu ? 'show-menu' : ''} ${menuIsHidden ? 'tw-hidden' : ''} menu tw-text-3xl tw-w-full`}
-			>
+				className={`md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] tw-grid tw-p-3 tw-rounded-[20px] ${menu ? 'show-menu' : ''} ${menuIsHidden ? 'tw-hidden' : ''} menu tw-text-3xl tw-w-full md:tw-w-auto md:tw-mr-auto md:tw-ml-auto`}
+				>
 				{menuItems.map((item, index) => (
 					<Link
 						key={item}
@@ -158,8 +146,21 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				))}
 			</div>
 			<div
-				className={`tw-flex tw-gap-3 tw-h-full ${icon ? '' : 'hide-icon'} ${iconIsHidden ? 'tw-hidden' : ''} header-icon`}
+				className={`tw-flex tw-gap-3 tw-h-full ${icon ? '' : 'hide-icon'} ${iconIsHidden ? 'tw-hidden' : ''} header-icon tw-justify-between tw-w-full md:tw-w-auto`}
 			>
+				<div className="tw-flex tw-justify-center tw-items-center md:tw-hidden tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-[20px] tw-aspect-square tw-h-20 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
+					<button
+						onClick={() => {
+							setShowMenu(true);
+						}}
+					>
+						<Image
+							src={!dark ? menuDarkIcon : menuLightIcon}
+							alt="menu"
+							className="menu-icon"
+						/>
+					</button>
+				</div>
 				<div className="tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] tw-rounded-[20px] tw-as tw-aspect-square tw-h-20 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
 					<button
 						className="tw-p-3"
@@ -175,19 +176,6 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 							src={!dark ? darkIcon : lightIcon}
 							alt="toggle darkmode"
 							className={`themeIcon ${iconRotate ? 'icon-rotate' : ''}`}
-						/>
-					</button>
-				</div>
-				<div className="tw-flex tw-justify-center tw-items-center md:tw-hidden tw-bg-[rgba(100,100,100,0.1)] tw-p-3 tw-rounded-[20px] tw-aspect-square tw-h-20 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
-					<button
-						onClick={() => {
-							setShowMenu(true);
-						}}
-					>
-						<Image
-							src={!dark ? menuDarkIcon : menuLightIcon}
-							alt="menu"
-							className="menu-icon"
 						/>
 					</button>
 				</div>
