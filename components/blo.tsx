@@ -22,8 +22,16 @@ const Blob: FunctionComponent<PropsWithChildren> = ({children}) => {
 
 		window.addEventListener('mousemove', handleMouseMove);
 
+		const handleScroll = () => {
+			set({y: window.scrollY + 300});
+			setMd({yMd: window.scrollY + 300});
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
 		return () => {
 			window.removeEventListener('mousemove', handleMouseMove);
+			window.removeEventListener('scroll', handleScroll);
 		};
 	}, [set, setMd]);
 

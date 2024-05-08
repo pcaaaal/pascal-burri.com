@@ -100,36 +100,42 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	}, []);
 
 	function useScrollDirection() {
-		const [scrollDirection, setScrollDirection] = useState<"down" | "up" | null>(null);	
+		const [scrollDirection, setScrollDirection] = useState<
+			'down' | 'up' | null
+		>(null);
 		useEffect(() => {
 			let lastScrollY = window.scrollY;
-	
+
 			const updateScrollDirection = () => {
 				const scrollY = window.scrollY;
-				const direction = scrollY > lastScrollY ? "down" : "up";
-				if (direction !== scrollDirection && (scrollY - lastScrollY > 3 || scrollY - lastScrollY < -3)) {
+				const direction = scrollY > lastScrollY ? 'down' : 'up';
+				if (
+					direction !== scrollDirection &&
+					(scrollY - lastScrollY > 3 || scrollY - lastScrollY < -3)
+				) {
 					setScrollDirection(direction);
 				}
 				lastScrollY = scrollY > 0 ? scrollY : 0;
 			};
-			window.addEventListener("scroll", updateScrollDirection); // add event listener
+			window.addEventListener('scroll', updateScrollDirection); // add event listener
 			return () => {
-				window.removeEventListener("scroll", updateScrollDirection); // clean up
-			}
+				window.removeEventListener('scroll', updateScrollDirection); // clean up
+			};
 		}, [scrollDirection]);
 		console.log(scrollDirection);
 		return scrollDirection;
-	};
+	}
 
 	const menuItems = ['Home', 'About', 'Projects', 'Contact'];
 
 	return (
-		<header className={`tw-flex tw-justify-between tw-items-center tw-p-4 tw-w-full md:tw-h-20 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3 tw-fixed tw-z-50 ${useScrollDirection() == 'down' ? 'header-hidden' : 'header-show'}`} >
-
+		<header
+			className={`tw-flex tw-justify-between tw-items-center tw-p-4 tw-w-full md:tw-h-20 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3 tw-fixed tw-z-50 ${useScrollDirection() == 'down' ? 'header-hidden' : 'header-show'}`}
+		>
 			<div
 				ref={menuRef}
 				className={`md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] tw-backdrop-blur-xl tw-grid tw-px-0 tw-py-1 tw-rounded-[20px] ${menu ? 'show-menu' : ''} ${menuIsHidden ? 'tw-hidden' : ''} menu tw-text-3xl tw-w-full md:tw-w-auto md:tw-mr-auto md:tw-ml-auto`}
-				>
+			>
 				{menuItems.map((item, index) => (
 					<Link
 						key={item}
@@ -150,7 +156,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 			>
 				<div className="tw-flex tw-justify-center tw-items-center md:tw-hidden tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] tw-p-3 tw-rounded-full tw-aspect-square tw-h-20 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
 					<button
-					className=''
+						className=""
 						onClick={() => {
 							setShowMenu(true);
 						}}
