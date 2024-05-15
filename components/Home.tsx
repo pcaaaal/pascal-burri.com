@@ -8,7 +8,7 @@ const Home: FunctionComponent = () => {
 					Pascal Burri
 				</h1>
 				<h2 className="md:tw-text-5xl tw-text-4xl tw-font-light">
-					Frontend Developer
+					Developer
 				</h2>
 			</div>
 		</div>
