@@ -7,14 +7,6 @@ import {useState} from 'react';
 import Blob from '../components/blo';
 import Header from '../components/hed';
 import Modal from '../components/modal';
-import {Inter} from '@next/font/google';
-import type {Metadata} from 'next';
-
-export const metadata: Metadata = {
-	title: 'Pascal Burri',
-	description:
-		'Hello, I am Pascal Burri, a developer from Switzerland. This is my portfolio.',
-};
 
 export default function App({Component, pageProps}: AppProps) {
 	const [dark, setDark] = useState(true);
