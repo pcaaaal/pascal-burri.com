@@ -1,6 +1,6 @@
 import {FunctionComponent} from 'react';
-import Home from '../components/Home';
-import Footer from '../components/Footer';
+import Home from '../components/Site/Home';
+import Footer from '../components/Site/Footer';
 import type {Metadata} from 'next';
 
 export const metadata: Metadata = {
