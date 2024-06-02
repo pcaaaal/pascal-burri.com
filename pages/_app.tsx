@@ -5,7 +5,7 @@ import '@/styles/header.css';
 import type {AppProps} from 'next/app';
 import {useState} from 'react';
 import Blob from '../components/blo';
-import Header from '../components/hed';
+import Header from '../components/Header';
 import Modal from '../components/modal';
 
 export default function App({Component, pageProps}: AppProps) {
