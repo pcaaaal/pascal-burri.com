@@ -9,10 +9,10 @@ import {
 	useState,
 } from 'react';
 
-import darkIcon from '../public/dark.svg';
-import lightIcon from '../public/light.svg';
-import menuDarkIcon from '../public/menu-dark.svg';
-import menuLightIcon from '../public/menu-light.svg';
+import darkIcon from '/public/dark.svg';
+import lightIcon from '/public/light.svg';
+import menuDarkIcon from '/public/menu-dark.svg';
+import menuLightIcon from '/public/menu-light.svg';
 
 interface HeaderProps {
 	setDark: Dispatch<SetStateAction<boolean>>;
