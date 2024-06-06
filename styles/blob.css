@@ -1,14 +1,12 @@
-@keyframes blob-rotate {
-	from {
-		transform: rotate(0deg);
-		scale: 2 1;
-	}
+.blob {
+	background-image: linear-gradient(
+		308deg,
+		#ff7448 25%,
+		#ff4848 54%,
+		#6248ff 78%
+	);
+}
 
-	50% {
-		scale: 1 2;
-	}
-	to {
-		transform: rotate(360deg);
-		scale: 2 1;
-	}
+.background {
+	background-image: url('/noise.png');
 }
