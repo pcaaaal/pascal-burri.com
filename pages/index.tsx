@@ -2,6 +2,8 @@ import {FunctionComponent} from 'react';
 import Home from '../components/Site/Home';
 import Footer from '../components/Site/Footer';
 import type {Metadata} from 'next';
+import About from '../components/Site/About';
+import Projects from '../components/Site/Projects';
 
 export const metadata: Metadata = {
 	title: 'Pascal Burri - Portfolio Website 龴ↀ◡ↀ龴',
@@ -11,13 +13,13 @@ export const metadata: Metadata = {
 
 const Site: FunctionComponent = () => {
 	return (
-		<div className="tw-z-30 tw-relative">
+		<div className="tw-relative">
 			<Home />
-			<div className="tw-h-[100vh] tw-grid tw-text-center" id="about">
-				<h1>ABOUT</h1>
+			<div className="" id="about">
+				<About />
 			</div>
-			<div className="tw-h-[100vh] tw-grid tw-text-center" id="projects">
-				<h1>PROJECTS</h1>
+			<div className="" id="projects">
+				<Projects />
 			</div>
 			<div className="tw-h-[100vh] tw-grid tw-text-center" id="contact">
 				<h1>CONTACT</h1>

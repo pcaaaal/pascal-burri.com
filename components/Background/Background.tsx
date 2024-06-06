@@ -1,25 +1,22 @@
-import {FunctionComponent, PropsWithChildren, useEffect, useState} from 'react';
-import {motion, useMotionValue, useSpring} from 'framer-motion';
-import Blob from './Blob';
-import Grain from './Grain';
+import {FunctionComponent, PropsWithChildren, useEffect} from 'react';
+import {animated, useSpring} from 'react-spring';
 
 const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
-	const cursorX = useMotionValue(-100);
-	const cursorY = useMotionValue(-100);
-
-	const springConfig = {damping: 30, stiffness: 50};
-	const x = useSpring(cursorX, springConfig);
-	const y = useSpring(cursorY, springConfig);
+	const [{x, y}, set] = useSpring(() => ({
+		x: 0,
+		y: 0,
+		config: {tension: 200, friction: 100},
+	}));
 
 	useEffect(() => {
 		const handleMouseMove = (e: MouseEvent) => {
-			cursorX.set(e.pageX - 300);
-			cursorY.set(e.pageY - 300);
+			set({x: e.pageX - 150, y: e.pageY - 150});
 		};
+
 		window.addEventListener('mousemove', handleMouseMove);
 
 		const handleScroll = () => {
-			cursorY.set(window.scrollY + 300);
+			set({y: window.scrollY + 150});
 		};
 
 		window.addEventListener('scroll', handleScroll);
@@ -28,27 +25,17 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 			window.removeEventListener('mousemove', handleMouseMove);
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, [cursorX, cursorY]);
+	}, [set]);
 
 	return (
-		<div className="tw-w-full tw-h-full dark:tw-bg-[#1D1D1F] tw-bg-[ffffff] tw-overflow-hidden">
-			<div className="tw-absolute tw-inset-0 tw-opacity-15">
-				<Grain />
-			</div>
-			<div className=" tw-blur-[250px] tw-w-full tw-h-full">
-				<div className="tw-overflow-hidden tw-h-full tw-w-full tw-overflow-x-hidden">
-					<motion.div
-						className="tw-absolute tw-z-0 tw-flex
-						"
-						style={{
-							translateX: x,
-							translateY: y,
-						}}
-					>
-						<Blob />
-					</motion.div>
-				</div>
-			</div>
+		<div className="tw-w-full tw-h-full dark:tw-bg-[#1D1D1F] tw-bg-[#f2f2f2] tw-overflow-hidden tw-overflow-x-hidden tw-overflow-y-hidden background">
+			<animated.div
+				className="blob tw-h-[300px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full tw-flex md:tw-flex tw-blur-3xl"
+				style={{
+					top: y.to((y) => `${y}px`),
+					left: x.to((x) => `${x}px`),
+				}}
+			></animated.div>
 			{children}
 		</div>
 	);

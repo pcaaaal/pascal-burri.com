@@ -1,28 +1,28 @@
 import React, {useEffect} from 'react';
 
 export default function Modal() {
-    const [showModal, setShowModal] = React.useState(true);
+	const [showModal, setShowModal] = React.useState(true);
 
-    useEffect(() => {
-        if (showModal) {
-            document.documentElement.classList.add('tw-overflow-hidden');
-            document.body.classList.add('tw-overflow-y-hidden');
-        } else {
-            document.documentElement.classList.remove('tw-overflow-hidden');
-            document.body.classList.remove('tw-overflow-y-hidden');
-        }
+	useEffect(() => {
+		if (showModal) {
+			document.documentElement.classList.add('tw-overflow-hidden');
+			document.body.classList.add('tw-overflow-y-hidden');
+		} else {
+			document.documentElement.classList.remove('tw-overflow-hidden');
+			document.body.classList.remove('tw-overflow-y-hidden');
+		}
 
-        return () => {
-            document.documentElement.classList.remove('tw-overflow-hidden');
-            document.body.classList.remove('tw-overflow-y-hidden');
-        };
-    }, [showModal]);
+		return () => {
+			document.documentElement.classList.remove('tw-overflow-hidden');
+			document.body.classList.remove('tw-overflow-y-hidden');
+		};
+	}, [showModal]);
 
 	return (
 		<>
 			{showModal ? (
 				<>
-					<div className="tw-justify-center tw-items-center tw-flex tw-overflow-x-hidden tw-overflow-y-auto tw-fixed tw-inset-0 tw-z-50 tw-outline-none tw-focus:outline-none tw-backdrop-blur-lg">
+					<div className="tw-justify-center tw-items-center tw-flex tw-overflow-x-hidden tw-overflow-y-auto tw-fixed tw-inset-0 tw-z-50 tw-outline-none tw-focus:outline-none tw-backdrop-blur-lg tw-p-4">
 						<div className="tw-relative tw-w-auto tw-my-6 tw-mx-auto tw-max-w-3xl">
 							{/*content*/}
 							<div className="tw-rounded-[25px] tw-relative tw-flex tw-flex-col tw-w-full dark:tw-bg-gradient-to-br dark:tw-from-[rgba(255,255,255,0.2)] dark:tw-to-[rgba(50,50,50,0.1)] tw-border-[rgba(255,255,255,0.2)] tw-border-2 tw-outline-none tw-focus:outline-none modal-shadow">

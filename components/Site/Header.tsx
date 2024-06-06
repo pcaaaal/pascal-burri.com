@@ -154,7 +154,6 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 
 	const menuItems = ['Home', 'About', 'Projects', 'Contact'];
 
-	console.log(showScroll);
 	return (
 		<div>
 			<header
