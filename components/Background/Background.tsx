@@ -17,18 +17,19 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 	}));
 
 	useEffect(() => {
-		const isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
+		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 		if (!isMobile) {
 			const handleMouseMove = (e: MouseEvent) => {
-				setLastY(e.pageY);
+				setLastY(e.pageY - 150);
 				set({x: e.pageX - 150, y: e.pageY - 150});
 			};
 
 			const handleScroll = () => {
-				const currentScrollY = window.scrollY;
-				setLastScrollY(currentScrollY);
-				set({y: lastY + (currentScrollY - lastScrollY)});
+				const scrollOffset = window.scrollY - lastScrollY;
+				set({y: lastY + scrollOffset});
+				setLastScrollY(window.scrollY);
+				setLastY(lastY + scrollOffset);
 			};
 
 			window.addEventListener('mousemove', handleMouseMove);
@@ -42,7 +43,7 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 	}, [lastScrollY, lastY, set]);
 
 	useEffect(() => {
-		const isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
+		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 		if (isMobile) {
 			const handleTouchScroll = () => {
