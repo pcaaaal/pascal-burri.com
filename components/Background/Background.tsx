@@ -1,7 +1,9 @@
-import {FunctionComponent, PropsWithChildren, useEffect} from 'react';
+import {FunctionComponent, PropsWithChildren, useEffect, useState} from 'react';
 import {animated, useSpring} from 'react-spring';
 
 const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
+	const [lastY, setLastY] = useState(0);
+	const [lastScrollY, setLastScrollY] = useState(0);
 	const [{x, y}, set] = useSpring(() => ({
 		x: 0,
 		y: 0,
@@ -10,13 +12,16 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 
 	useEffect(() => {
 		const handleMouseMove = (e: MouseEvent) => {
+			setLastY(e.pageY - 150);
 			set({x: e.pageX - 150, y: e.pageY - 150});
 		};
 
 		window.addEventListener('mousemove', handleMouseMove);
 
 		const handleScroll = () => {
-			set({y: window.scrollY + 150});
+			const scrollOffset = window.scrollY - lastScrollY;
+			set({y: lastY + scrollOffset});
+			setLastScrollY(window.scrollY);
 		};
 
 		window.addEventListener('scroll', handleScroll);
@@ -25,7 +30,7 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 			window.removeEventListener('mousemove', handleMouseMove);
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, [set]);
+	}, [lastY, set]);
 
 	return (
 		<div className="tw-w-full tw-h-full dark:tw-bg-[#1D1D1F] tw-bg-[#f2f2f2] tw-overflow-hidden tw-overflow-x-hidden tw-overflow-y-hidden background">
