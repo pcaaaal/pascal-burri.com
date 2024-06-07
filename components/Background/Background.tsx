@@ -1,4 +1,10 @@
-import {FunctionComponent, PropsWithChildren, useEffect, useState} from 'react';
+import {
+	FunctionComponent,
+	PropsWithChildren,
+	use,
+	useEffect,
+	useState,
+} from 'react';
 import {animated, useSpring} from 'react-spring';
 
 const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
@@ -11,34 +17,63 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 	}));
 
 	useEffect(() => {
-		const handleMouseMove = (e: MouseEvent) => {
-			setLastY(e.pageY - 150);
-			set({x: e.pageX - 150, y: e.pageY - 150});
-		};
+		const isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
 
-		window.addEventListener('mousemove', handleMouseMove);
+		if (!isMobile) {
+			const handleMouseMove = (e: MouseEvent) => {
+				setLastY(e.pageY);
+				set({x: e.pageX - 150, y: e.pageY - 150});
+			};
 
-		const handleScroll = () => {
-			const scrollOffset = window.scrollY - lastScrollY;
-			set({y: lastY + scrollOffset});
-			setLastScrollY(window.scrollY);
-		};
+			const handleScroll = () => {
+				const currentScrollY = window.scrollY;
+				setLastScrollY(currentScrollY);
+				set({y: lastY + (currentScrollY - lastScrollY)});
+			};
 
-		window.addEventListener('scroll', handleScroll);
+			window.addEventListener('mousemove', handleMouseMove);
+			window.addEventListener('scroll', handleScroll);
 
-		return () => {
-			window.removeEventListener('mousemove', handleMouseMove);
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, [lastY, set]);
+			return () => {
+				window.removeEventListener('mousemove', handleMouseMove);
+				window.removeEventListener('scroll', handleScroll);
+			};
+		}
+	}, [lastScrollY, lastY, set]);
+
+	useEffect(() => {
+		const isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
+
+		if (isMobile) {
+			const handleTouchScroll = () => {
+				set({y: window.scrollY});
+			};
+
+			window.addEventListener('scroll', handleTouchScroll);
+
+			return () => {
+				window.removeEventListener('scroll', handleTouchScroll);
+			};
+		}
+	}, [set]);
 
 	return (
 		<div className="tw-w-full tw-h-full dark:tw-bg-[#1D1D1F] tw-bg-[#f2f2f2] tw-overflow-hidden tw-overflow-x-hidden tw-overflow-y-hidden background">
 			<animated.div
-				className="blob tw-h-[300px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full tw-flex md:tw-flex tw-blur-3xl"
+				className="tw-hidden blob tw-h-[300px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full md:tw-flex tw-blur-3xl"
 				style={{
 					top: y.to((y) => `${y}px`),
 					left: x.to((x) => `${x}px`),
+				}}
+			></animated.div>
+			<animated.div
+				className="blob tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl"
+				style={{
+					top: y.to((MdY) => `${y}px`),
+					left:
+						typeof window !== 'undefined'
+							? window.innerWidth / 2 - 150
+							: 0,
 				}}
 			></animated.div>
 			{children}
