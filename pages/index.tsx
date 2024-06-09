@@ -4,6 +4,7 @@ import Footer from '../components/Site/Footer';
 import type {Metadata} from 'next';
 import About from '../components/Site/About';
 import Projects from '../components/Site/Projects';
+import Contact from '../components/Site/Contact';
 
 export const metadata: Metadata = {
 	title: 'Pascal Burri - Portfolio Website 龴ↀ◡ↀ龴',
@@ -21,8 +22,8 @@ const Site: FunctionComponent = () => {
 			<div className="" id="projects">
 				<Projects />
 			</div>
-			<div className="tw-h-[100vh] tw-grid tw-text-center" id="contact">
-				<h1>CONTACT</h1>
+			<div className="" id="contact">
+				<Contact />
 			</div>
 			<Footer />
 		</div>

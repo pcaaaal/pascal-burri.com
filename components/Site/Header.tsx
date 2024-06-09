@@ -13,6 +13,9 @@ import darkIcon from '/public/dark.svg';
 import lightIcon from '/public/light.svg';
 import menuDarkIcon from '/public/menu-dark.svg';
 import menuLightIcon from '/public/menu-light.svg';
+import moonIcon from '/public/moon.svg';
+import sunIcon from '/public/sun.svg';
+import {animated} from 'react-spring';
 
 interface HeaderProps {
 	setDark: Dispatch<SetStateAction<boolean>>;
@@ -166,7 +169,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 					{menuItems.map((item, index) => (
 						<Link
 							key={item}
-							href={`#${item.toLowerCase()}`}
+							href={`/#${item.toLowerCase()}`}
 							onClick={menu ? () => setShowMenu(false) : () => {}}
 							className={`tw-rounded-[20px] tw-py-2 tw-px-3 md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click`}
 						>
@@ -207,7 +210,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 							}}
 						>
 							<Image
-								src={!dark ? darkIcon : lightIcon}
+								src={!dark ? moonIcon : sunIcon}
 								alt="toggle darkmode"
 								className={`themeIcon ${iconRotate ? 'icon-rotate' : ''}`}
 							/>
@@ -216,14 +219,38 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				</div>
 			</header>
 
-			<div>
-				<button
-					className={`tw-fixed tw-bottom-2 tw-right-2 tw-p-2 tw-z-50 ${showScroll ? 'tw-block' : 'tw-hidden'}`}
-					onClick={scrollTop}
-				>
-					Scroll to top
-				</button>
-			</div>
+			<animated.div
+				className="tw-fixed tw-bottom-2 tw-right-2 tw-p-2 tw-z-50 tw-block"
+				style={
+					showScroll
+						? {
+								opacity: 1,
+								transition: 'opacity 0.5s',
+							}
+						: {
+								opacity: 0,
+								transition: 'opacity 0.5s',
+							}
+				}
+				onClick={scrollTop}
+			>
+				<div className="tw-p-2 tw-rounded-full dark:tw-bg-neutral-800 tw-bg-neutral-200 hover:tw-bg-neutral-300 tw-shadow-lg hover:dark:tw-bg-neutral-600 hover:tw-cursor-pointer">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className="tw-h-8 tw-w-8 tw-text-black dark:tw-text-white"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M5 10l7-7m0 0l7 7m-7-7v18"
+						/>
+					</svg>
+				</div>
+			</animated.div>
 		</div>
 	);
 };

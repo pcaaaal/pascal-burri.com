@@ -2,44 +2,52 @@ import Image from 'next/image';
 import ProjectCard from '../ProjectCard';
 import data from '../../data';
 import {motion} from 'framer-motion';
+import {useRouter} from 'next/navigation';
 
 export default function Projects() {
-	// Assuming each ProjectCard has a fixed width, for example, 300px
-	// and you want the scrolling to take 30 seconds to complete one cycle
-	const cardWidth = 1024; // Width of a single ProjectCard
-	const gap = 16; // Assuming there's a 16px gap between cards
-	const totalWidth = data.projects.length * (cardWidth + gap); // Total width of all cards plus gaps
-	const scrollDuration = 30; // Duration of the scroll animation in seconds
+	const router = useRouter();
+	const scrollDuration = 20;
+
+	const card = <div className=" tw-bg-red-600 tw-h-60 tw-w-96">Card</div>;
+
+	// Create an array of cards
+	const cards = data.projects.map((project) => (
+		<ProjectCard key={project.title} project={project} />
+	));
+
+	// Duplicate the cards
+	const allCards = [...cards, ...cards];
 
 	return (
-		<div style={{overflowX: 'hidden'}}>
-			<motion.div
-				className="tw-flex tw-overflow-x-scroll"
-				style={{
-					width: `${totalWidth}px`, // Set the total width to allow for horizontal scrolling
-				}}
-				animate={{
-					x: [-totalWidth, 0], // Animate from full width to 0 to create a scrolling effect
-				}}
-				transition={{
-					repeat: Infinity,
-					repeatType: 'loop',
-					duration: scrollDuration, // Set the duration of the animation
-					ease: 'linear', // Use a linear animation to ensure smooth scrolling
-				}}
-			>
-				{data.projects.map((project, index) => (
-					<div
-						key={index}
-						style={{
-							minWidth: `${cardWidth}px`,
-							marginRight: `${gap}px`,
-						}}
-					>
-						<ProjectCard project={project} />
-					</div>
-				))}
-			</motion.div>
+		<div>
+			<div className="tw-w-full">
+				<motion.div
+					className="tw-flex"
+					animate={{
+						x: ['0%', '-100%'],
+					}}
+					transition={{
+						repeat: Infinity,
+						duration: scrollDuration,
+						ease: 'linear',
+					}}
+				>
+					{allCards.map((card, index) => (
+						<div key={index} className="tw-mr-4">
+							{card}
+						</div>
+					))}
+				</motion.div>
+			</div>
+			<div className=" tw-text-center">
+				<button
+					type="submit"
+					className="tw-text-center tw-text-4xl tw-font-bold dark:tw-bg-neutral-100 tw-bg-neutral-900 tw-px-4 tw-py-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-my-4 tw-transition tw-duration-200 hover:tw-scale-105 active:tw-scale-95"
+					onClick={() => router.push('/projects')}
+				>
+					Alle Projekte
+				</button>
+			</div>
 		</div>
 	);
 }

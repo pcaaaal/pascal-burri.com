@@ -3,22 +3,21 @@
 }
 
 .icon-click:active {
-  animation: icon-click 0.1 forwards;
+	animation: icon-click 0.1 forwards;
 }
 
-
 @keyframes icon-click {
-  from {
-    transform: scale(0.95);
-  }
+	from {
+		transform: scale(0.95);
+	}
 
-  50% {
-    transform: scale(0.8);
-  }
+	50% {
+		transform: scale(0.8);
+	}
 
-  to {
-    transform: scale(1);
-  }
+	to {
+		transform: scale(1);
+	}
 }
 
 @keyframes icon-rotate {
@@ -26,110 +25,106 @@
 		transform: rotate(0deg);
 	}
 	to {
-		transform: rotate(180deg);
+		transform: rotate(360deg);
 	}
 }
 
-
 @media (min-width: 768px) {
-  .header-hidden {
-    animation: header-hide 0.3s forwards;
-  }
+	.header-hidden {
+		animation: header-hide 0.3s forwards;
+	}
 
-  .header-show {
-    animation: header-show 0.3s forwards;
-  }
+	.header-show {
+		animation: header-show 0.3s forwards;
+	}
 }
 
 @keyframes header-hide {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
+	from {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	to {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
 }
 
 @keyframes header-show {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+	from {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
 
-@media (max-width: 767px){
-  .menu {
-    animation: hide-menu 0.3s forwards;
-    transform: translateY(-100%);
-    opacity: 0;
-  }
+@media (max-width: 767px) {
+	.menu {
+		animation: hide-menu 0.3s forwards;
+		transform: translateY(-100%);
+		opacity: 0;
+	}
 
-  .show-menu {
-    animation: show-menu 0.3s forwards;
-    transform: translateY(0);
-    opacity: 1;
-  }
+	.show-menu {
+		animation: show-menu 0.3s forwards;
+		transform: translateY(0);
+		opacity: 1;
+	}
 
-  .header-icon {
-    animation: icon-show 0.3s forwards;
-    transform: translateY(0);
-    opacity: 1;
-  }
+	.header-icon {
+		animation: icon-show 0.3s forwards;
+		transform: translateY(0);
+		opacity: 1;
+	}
 
-
-  .hide-icon {
-    animation: icon-hide 0.3s forwards;
-  }
+	.hide-icon {
+		animation: icon-hide 0.3s forwards;
+	}
 }
 
 @keyframes show-menu {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes hide-menu {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
 }
 
 @keyframes icon-hide {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-200%);
-    opacity: 0;
-  }
-  
+	from {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	to {
+		transform: translateY(-200%);
+		opacity: 0;
+	}
 }
 
 @keyframes icon-show {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
+	from {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
