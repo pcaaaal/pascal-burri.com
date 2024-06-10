@@ -1,7 +1,7 @@
 import '@/styles/blob.css';
 import '@/styles/global.css';
-import '@/styles/globals.css';
 import '@/styles/header.css';
+import '@/styles/contact.css';
 import type {AppProps} from 'next/app';
 import {useState} from 'react';
 import Header from '../components/Site/Header';
