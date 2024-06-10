@@ -8,20 +8,20 @@ export default function Contact() {
 	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		if (form.current) {
-			emailjs
-				.sendForm('service_vi6jk3q', 'template_5uc28rk', form.current, {
-					publicKey: 'LpydiekDkIkldJ7eB',
-				})
-				.then(
-					() => {
-						console.log('SUCCESS!');
-					},
-					(error) => {
-						console.log('FAILED...', error);
-					},
-				);
-		}
+		// if (form.current) {
+		// 	emailjs
+		// 		.sendForm('service_vi6jk3q', 'template_5uc28rk', form.current, {
+		// 			publicKey: 'LpydiekDkIkldJ7eB',
+		// 		})
+		// 		.then(
+		// 			() => {
+		// 				console.log('SUCCESS!');
+		// 			},
+		// 			(error) => {
+		// 				console.log('FAILED...', error);
+		// 			},
+		// 		);
+		// }
 	};
 
 	return (
