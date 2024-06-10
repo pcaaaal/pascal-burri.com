@@ -1,27 +1,52 @@
 import React, {useRef} from 'react';
 import emailjs from '@emailjs/browser';
 import process from 'process';
+import toast from 'react-hot-toast';
 
 export default function Contact() {
 	const form = useRef<HTMLFormElement>(null);
 
+	const clearForm = () => {
+		if (form.current) {
+			form.current.reset();
+		}
+	};
+
 	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		// if (form.current) {
-		// 	emailjs
-		// 		.sendForm('service_vi6jk3q', 'template_5uc28rk', form.current, {
-		// 			publicKey: 'LpydiekDkIkldJ7eB',
-		// 		})
-		// 		.then(
-		// 			() => {
-		// 				console.log('SUCCESS!');
-		// 			},
-		// 			(error) => {
-		// 				console.log('FAILED...', error);
-		// 			},
-		// 		);
-		// }
+		if (form.current) {
+			// emailjs
+			// 	.sendForm('service_vi6jk3q NIGGER', 'template_5uc28rk', form.current, {
+			// 		publicKey: 'LpydiekDkIkldJ7eB',
+			// 	})
+			// 	.then(
+			// 		() => {
+			console.log('SUCCESS!');
+			toast.custom((t) => (
+				<div
+					className={`${
+						t.visible ? 'animate-enter' : 'animate-leave'
+					} tw-max-w-md tw-w-full tw-bg-neutral-800 dark:tw-bg-neutral-100 tw-rounded-lg tw-shadow-lg tw-grid tw-grid-cols-3 dark:tw-text-black tw-text-white`}
+				>
+					<div className="tw-w-full tw-p-4 tw-col-span-2">
+						Nachricht gesendet!
+					</div>
+					<div className="tw-w-full tw-p-4 tw-col-span-1 ">
+						<button onClick={() => toast.dismiss(t.id)}
+						>
+							Rückgängig
+						</button>
+					</div>
+				</div>
+			));
+			clearForm();
+			// 	},
+			// 	(error) => {
+			// 		console.log('FAILED...', error);
+			// 	},
+			// );
+		}
 	};
 
 	return (
