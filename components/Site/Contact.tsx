@@ -40,7 +40,7 @@ export default function Contact() {
 			setLoading(true);
 
 			// emailjs
-			// 	.sendForm('service_vi6jk3q NIGGER', 'template_5uc28rk', form.current, {
+			// 	.sendForm('service_vi6jk3q', 'template_5uc28rk', form.current, {
 			// 		publicKey: 'LpydiekDkIkldJ7eB',
 			// 	})
 			// 	.then(
