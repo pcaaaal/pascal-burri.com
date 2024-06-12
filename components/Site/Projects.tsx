@@ -36,13 +36,19 @@ export default function Projects() {
 
 	console.log(offset);
 
-	const startOffset = (cardWidth + 16) * cards.length;
+	useEffect(() => {
+		if (window) {
+			const = window.innerWidth;
+		}
+	}, []);
 
-	const pseudoCards = [...cards, ...cards, ...cards];
+	const startOffset = (cardWidth + 16) * cards.length - viewportWidth / 2;
+
+	const pseudoCards = [cards[cards.length - 1], ...cards, cards[0]];
 
 	useEffect(() => {
 		controls.start({
-			x: -offset * (cardWidth + 16)	- startOffset,
+			x: -offset * (cardWidth + 16) + startOffset,
 			transition: {duration: 0.5, ease: 'easeInOut'},
 		});
 	}, [offset, controls, cardWidth, startOffset]);
@@ -51,16 +57,19 @@ export default function Projects() {
 		if (offset >= cards.length + 2) {
 			setOffset(1);
 			controls.start({
-				x: -1 * (cardWidth + 16) - startOffset,
+				x: -1 * (cardWidth + 16),
 				transition: {duration: 0.5, ease: 'easeInOut'},
 			});
 		}
-	}, [offset, controls, cards.length, cardWidth, startOffset]);
+	}, [offset, controls, cards.length, cardWidth]);
 
 	return (
 		<div>
 			<div className="tw-w-full">
-				<motion.div className="tw-flex" animate={controls}>
+				<motion.div
+					className="tw-flex tw-justify-start"
+					animate={controls}
+				>
 					{pseudoCards.map((card, index) => (
 						<div key={index} className="tw-mr-4" ref={cardRef}>
 							{card}
