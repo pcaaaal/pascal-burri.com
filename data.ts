@@ -18,7 +18,7 @@ const data = {
 
 	projects: [
 		{
-			title: 'Markus Burri - Portfolio Website',
+			title: 'Card 1',
 			description: `Portfolio website for a pilot to showcase pictures and videos of his flights.`,
 			image: '/markus-burri-ch.png',
 			link: 'https://markus-burri-ch-new.vercel.app/',
@@ -26,7 +26,7 @@ const data = {
 			tags: ['Image Gallery', 'Responsive', 'Cloudinary'],
 		},
 		{
-			title: 'Markus Burri - Portfolio Website',
+			title: 'Card 2',
 			description:
 				'Portfolio website for a pilot to showcase pictures and videos of his flights.',
 			image: '/markus-burri-ch.png',
@@ -35,7 +35,7 @@ const data = {
 			tags: ['Image Gallery', 'Responsive', 'Cloudinary'],
 		},
 		{
-			title: 'Markus Burri - Portfolio Website',
+			title: 'Card 3',
 			description:
 				'Portfolio website for a pilot to showcase pictures and videos of his flights.',
 			image: '/markus-burri-ch.png',
