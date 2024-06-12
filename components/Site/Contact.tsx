@@ -1,6 +1,5 @@
 import React, {useRef, useState} from 'react';
 import emailjs from '@emailjs/browser';
-import process from 'process';
 import toast from 'react-hot-toast';
 
 export default function Contact() {
@@ -8,51 +7,121 @@ export default function Contact() {
 
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
+	const [formError, setFormError] = useState(false);
+	const [emailTriesError, setEmailTriesError] = useState(false);
 	const [success, setSuccess] = useState(false);
-	const [emailError, setEmailError] = useState('');
-	const [emptyError, setEmptyError] = useState('');
 
-	const validateEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const email = event.target.value;
+	const [nameError, setNameError] = useState('');
+	const [emailError, setEmailError] = useState('');
+	const [messageError, setMessageError] = useState('');
+
+	const [errorMessage, setMessage] = useState('');
+
+	const emailTries = 6;
+
+	const [emailRegexError, setEmailRegexError] = useState(false);
+
+	const emptyErrorMessage = 'Darf nicht leer sein.';
+	const emailErrorMessage = 'E-Mail Addresse nicht gültig.';
+
+	const validateEmail = (email: string) => {
 		const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 		if (!emailRegex.test(email)) {
-			setEmailError('Please enter a valid email address.');
+			return false;
 		} else {
-			setEmailError('');
+			return true;
 		}
 	};
 
-	const validateEmpty = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-	) => {
-		const value = event.target.value;
+	const validateEmpty = (value: string) => {
 		if (!value.trim()) {
-			setEmptyError('This field cannot be empty.');
+			return false;
 		} else {
-			setEmptyError('');
+			return true;
 		}
+	};
+
+	const handleValidation = () => {
+		const name = (form.current?.user_name.value || '').trim();
+		const email = (form.current?.user_email.value || '').trim();
+		const message = (form.current?.message.value || '').trim();
+
+		const isNameNotEmpty = validateEmpty(name);
+		const isEmailValid = validateEmail(email);
+		const isEmailNotEmpty = validateEmpty(email);
+		const isMessageNotEmpty = validateEmpty(message);
+
+		setNameError(isNameNotEmpty ? '' : emptyErrorMessage);
+		setEmailError(
+			isEmailNotEmpty
+				? isEmailValid
+					? ''
+					: emailErrorMessage
+				: emptyErrorMessage,
+		);
+
+		setEmailRegexError(!isEmailValid);
+
+		setMessageError(isMessageNotEmpty ? '' : emptyErrorMessage);
+
+		return isNameNotEmpty && isEmailValid && isMessageNotEmpty;
 	};
 
 	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		if (form.current) {
+		if (handleValidation()) {
 			setLoading(true);
+			setError(false);
+			setSuccess(false);
+			setFormError(false);
+			setEmailTriesError(false);
 
-			// emailjs
-			// 	.sendForm('service_vi6jk3q', 'template_5uc28rk', form.current, {
-			// 		publicKey: 'LpydiekDkIkldJ7eB',
-			// 	})
-			// 	.then(
-			// 		() => {
-			console.log('sended');
+			if (emailTries < 5) {
+				if (form.current) {
+					emailjs
+						.sendForm(
+							'service_vi6jk3qNIGG',
+							'template_5uc28rk NIGG',
+							form.current,
+							'LpydiekDkIkldJ7eB NIGG',
+						)
+						.then(
+							() => {
+								console.log('sended');
+								setLoading(false);
+								setSuccess(true);
+								setMessage(
+									'Vielen Dank für deine Nachricht. Ich melde mich so schnell wie möglich!',
+								);
+							},
+							(error) => {
+								console.log('FAILED...', error);
+								setLoading(false);
+								setEmailTriesError(true);
+								setMessage(
+									'Etwas ist schief gelaufen. Bitte versuche es später erneut.',
+								);
+							},
+						);
+				}
+			} else {
+				setSuccess(false);
+				setFormError(false);
+				setLoading(false);
+				setError(true);
+				setMessage(
+					'Du hast zu viele E-Mails gesendet. Bitte versuche es später erneut.',
+				);
+			}
+		} else {
 			setLoading(false);
-			setSuccess(true);
-			// 	},
-			// 	(error) => {
-			// 		console.log('FAILED...', error);
-			// 	},
-			// );
+			setFormError(true);
+			setMessage(
+				emailRegexError
+					? 'E-Mail Addresse nicht gültig.'
+					: 'Bitte füllen Sie alle Felder aus.',
+			);
 		}
 	};
 
@@ -85,19 +154,12 @@ export default function Contact() {
 							id="user_name"
 							name="user_name"
 							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || success || error ? ' tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-							placeholder="Max Mustermann"
+							placeholder={
+								nameError ? nameError : 'Max Mustermann'
+							}
 							disabled={loading || success || error}
-							required={false}
-							onSubmit={() => {
-								validateEmpty;
-							}}
 						/>
-						{emailError && (
-							<div className="tw-text-red-500">{emailError}</div>
-						)}
-						{emptyError && (
-							<div className="tw-text-red-500">{emptyError}</div>
-						)}
+
 						<label
 							htmlFor="user_email"
 							className="tw-text-lg tw-font-medium"
@@ -109,17 +171,13 @@ export default function Contact() {
 							id="user_email"
 							name="user_email"
 							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || success || error ? ' tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-							placeholder="max-mustermann@mail.com"
+							placeholder={
+								emailError
+									? emailError
+									: 'max-mustermann@mail.com'
+							}
 							disabled={loading || success || error}
-							required={false}
-							onSubmit={() => {
-								validateEmail;
-								validateEmpty;
-							}}
 						/>
-						{emptyError && (
-							<div className="tw-text-red-500">{emptyError}</div>
-						)}
 
 						<label
 							htmlFor="message"
@@ -131,24 +189,19 @@ export default function Contact() {
 							id="message"
 							name="message"
 							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || success || error ? ' tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-							placeholder="Hallo Pascal, ich benötige eine Webseite für..."
+							placeholder={messageError ? messageError : 'Hallo!'}
 							rows={4}
 							disabled={loading || success || error}
-							required={false}
-							onSubmit={() => {
-								validateEmpty;
-							}}
 						></textarea>
-						{emptyError && (
-							<div className="tw-text-red-500">{emptyError}</div>
-						)}
 
 						<div className="tw-text-left tw-w-full tw-h-full tw-row-span-1">
-							<div className="tw-px-4">
+							<div className="tw-px-4 tw-flex tw-flex-col tw-text-center">
 								<button
 									type="submit"
-									className={`tw-text-center tw-text-4xl tw-font-bold ${loading ? 'dark:tw-bg-neutral-300 tw-bg-neutral-800' : error ? ' tw-bg-red-700' : success ? ' tw-bg-green-500 tw-opacity-50' : 'dark:tw-bg-neutral-100 tw-bg-neutral-900'} tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${!(success || loading || error) ? 'hover:tw-scale-105 active:tw-scale-95' : ''}`}
-									disabled={loading || success || error}
+									className={`tw-text-center tw-text-4xl tw-font-bold ${loading ? 'dark:tw-bg-neutral-300 tw-bg-neutral-800' : error ? ' tw-bg-red-700' : emailTriesError ? 'tw-bg-red-700' : success ? ' tw-bg-green-500 tw-opacity-50' : formError ? 'tw-bg-orange-600 tw-opacity-75' : 'dark:tw-bg-neutral-100 tw-bg-neutral-900'} tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${!(success || loading || error) ? 'hover:tw-scale-105 active:tw-scale-95' : ''}`}
+									disabled={
+										loading || success || emailTriesError
+									}
 								>
 									{loading
 										? 'Loading...'
@@ -158,6 +211,9 @@ export default function Contact() {
 												? 'Success!'
 												: 'Senden'}
 								</button>
+								<span>
+									{formError || error ? errorMessage : ''}
+								</span>
 							</div>
 						</div>
 					</form>

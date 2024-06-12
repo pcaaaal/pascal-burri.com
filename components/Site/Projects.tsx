@@ -26,11 +26,7 @@ export default function Projects() {
 					animate={{
 						x: ['0%', '-100%'],
 					}}
-					transition={{
-						repeat: Infinity,
-						duration: scrollDuration,
-						ease: 'linear',
-					}}
+					transition={{}}
 				>
 					{allCards.map((card, index) => (
 						<div key={index} className="tw-mr-4">
