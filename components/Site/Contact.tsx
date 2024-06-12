@@ -21,8 +21,8 @@ export default function Contact() {
 
 	const [emailRegexError, setEmailRegexError] = useState(false);
 
-	const emptyErrorMessage = 'Darf nicht leer sein.';
-	const emailErrorMessage = 'E-Mail Addresse nicht gültig.';
+	const emptyErrorMessage = 'Feld darf nicht leer sein.';
+	const emailErrorMessage = 'E-Mail Addresse ist nicht gültig.';
 
 	const validateEmail = (email: string) => {
 		const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
@@ -77,14 +77,14 @@ export default function Contact() {
 			setFormError(false);
 			setEmailTriesError(false);
 
-			if (emailTries < 5) {
+			if (emailTries < 10) {
 				if (form.current) {
 					emailjs
 						.sendForm(
-							'service_vi6jk3qNIGG',
-							'template_5uc28rk NIGG',
+							'service_vi6jk3q NIGG',
+							'template_5uc28rk',
 							form.current,
-							'LpydiekDkIkldJ7eB NIGG',
+							'LpydiekDkIkldJ7eB',
 						)
 						.then(
 							() => {
@@ -100,7 +100,7 @@ export default function Contact() {
 								setLoading(false);
 								setEmailTriesError(true);
 								setMessage(
-									'Etwas ist schief gelaufen. Bitte versuche es später erneut.',
+									'Etwas ist schief gelaufen. Bitte versuche es später erneut oder kontaktiere mich über meine E-Mail Addresse.',
 								);
 							},
 						);
@@ -119,8 +119,8 @@ export default function Contact() {
 			setFormError(true);
 			setMessage(
 				emailRegexError
-					? 'E-Mail Addresse nicht gültig.'
-					: 'Bitte füllen Sie alle Felder aus.',
+					? 'E-Mail Addresse ist nicht gültig.'
+					: 'Bitte fülle alle Felder aus.',
 			);
 		}
 	};
@@ -189,7 +189,11 @@ export default function Contact() {
 							id="message"
 							name="message"
 							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || success || error ? ' tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-							placeholder={messageError ? messageError : 'Hallo!'}
+							placeholder={
+								messageError
+									? messageError
+									: 'Hallo Pascal, ich benötige eine Website für...'
+							}
 							rows={4}
 							disabled={loading || success || error}
 						></textarea>
