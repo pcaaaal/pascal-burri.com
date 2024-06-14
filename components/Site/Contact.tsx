@@ -1,6 +1,7 @@
 import React, {useRef, useState} from 'react';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
+import {truncate} from 'fs';
 
 export default function Contact() {
 	const form = useRef<HTMLFormElement>(null);
@@ -11,15 +12,18 @@ export default function Contact() {
 	const [emailTriesError, setEmailTriesError] = useState(false);
 	const [success, setSuccess] = useState(false);
 
+	const [formState, setFormState] = useState<
+		'loading' | 'success' | 'error' | 'formError' | 'userFault' | ''
+	>('');
+
 	const [nameError, setNameError] = useState('');
 	const [emailError, setEmailError] = useState('');
+	const [emailRegexError, setEmailRegexError] = useState('');
 	const [messageError, setMessageError] = useState('');
 
-	const [errorMessage, setMessage] = useState('');
+	const [Message, setMessage] = useState('');
 
-	const emailTries = 6;
-
-	const [emailRegexError, setEmailRegexError] = useState(false);
+	const emailTries = 5;
 
 	const emptyErrorMessage = 'Feld darf nicht leer sein.';
 	const emailErrorMessage = 'E-Mail Addresse ist nicht gültig.';
@@ -52,16 +56,8 @@ export default function Contact() {
 		const isMessageNotEmpty = validateEmpty(message);
 
 		setNameError(isNameNotEmpty ? '' : emptyErrorMessage);
-		setEmailError(
-			isEmailNotEmpty
-				? isEmailValid
-					? ''
-					: emailErrorMessage
-				: emptyErrorMessage,
-		);
-
-		setEmailRegexError(!isEmailValid);
-
+		setEmailError(isEmailNotEmpty ? '' : emptyErrorMessage);
+		setEmailRegexError(isEmailValid ? '' : emailErrorMessage);
 		setMessageError(isMessageNotEmpty ? '' : emptyErrorMessage);
 
 		return isNameNotEmpty && isEmailValid && isMessageNotEmpty;
@@ -76,6 +72,7 @@ export default function Contact() {
 			setSuccess(false);
 			setFormError(false);
 			setEmailTriesError(false);
+			setFormState('loading');
 
 			if (emailTries < 10) {
 				if (form.current) {
@@ -91,6 +88,7 @@ export default function Contact() {
 								console.log('sended');
 								setLoading(false);
 								setSuccess(true);
+								setFormState('success');
 								setMessage(
 									'Vielen Dank für deine Nachricht. Ich melde mich so schnell wie möglich!',
 								);
@@ -98,7 +96,8 @@ export default function Contact() {
 							(error) => {
 								console.log('FAILED...', error);
 								setLoading(false);
-								setEmailTriesError(true);
+								setError(true);
+								setFormState('error');
 								setMessage(
 									'Etwas ist schief gelaufen. Bitte versuche es später erneut oder kontaktiere mich über meine E-Mail Addresse.',
 								);
@@ -109,7 +108,9 @@ export default function Contact() {
 				setSuccess(false);
 				setFormError(false);
 				setLoading(false);
-				setError(true);
+				setError(false);
+				setEmailTriesError(true);
+				setFormState('userFault');
 				setMessage(
 					'Du hast zu viele E-Mails gesendet. Bitte versuche es später erneut.',
 				);
@@ -153,11 +154,21 @@ export default function Contact() {
 							type="text"
 							id="user_name"
 							name="user_name"
-							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || success || error ? ' tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${
+								formState === 'loading' ||
+								formState === 'success' ||
+								formState === 'userFault'
+									? ' tw-bg-neutral-300 dark:tw-bg-neutral-600'
+									: ''
+							}`}
 							placeholder={
 								nameError ? nameError : 'Max Mustermann'
 							}
-							disabled={loading || success || error}
+							disabled={
+								formState === 'loading' ||
+								formState === 'success' ||
+								formState === 'userFault'
+							}
 						/>
 
 						<label
@@ -170,13 +181,23 @@ export default function Contact() {
 							type="text"
 							id="user_email"
 							name="user_email"
-							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || success || error ? ' tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${
+								formState === 'loading' ||
+								formState === 'success' ||
+								formState === 'userFault'
+									? ' tw-bg-neutral-300 dark:tw-bg-neutral-600'
+									: ''
+							}`}
 							placeholder={
 								emailError
 									? emailError
 									: 'max-mustermann@mail.com'
 							}
-							disabled={loading || success || error}
+							disabled={
+								formState === 'loading' ||
+								formState === 'success' ||
+								formState === 'userFault'
+							}
 						/>
 
 						<label
@@ -188,36 +209,54 @@ export default function Contact() {
 						<textarea
 							id="message"
 							name="message"
-							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || success || error ? ' tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${
+								formState === 'loading' ||
+								formState === 'success' ||
+								formState === 'userFault'
+									? ' tw-bg-neutral-300 dark:tw-bg-neutral-600'
+									: ''
+							}`}
 							placeholder={
 								messageError
 									? messageError
 									: 'Hallo Pascal, ich benötige eine Website für...'
 							}
 							rows={4}
-							disabled={loading || success || error}
+							disabled={
+								formState === 'loading' ||
+								formState === 'success' ||
+								formState === 'userFault'
+							}
 						></textarea>
 
 						<div className="tw-text-left tw-w-full tw-h-full tw-row-span-1">
 							<div className="tw-px-4 tw-flex tw-flex-col tw-text-center">
 								<button
 									type="submit"
-									className={`tw-text-center tw-text-4xl tw-font-bold ${loading ? 'dark:tw-bg-neutral-300 tw-bg-neutral-800' : error ? ' tw-bg-red-700' : emailTriesError ? 'tw-bg-red-700' : success ? ' tw-bg-green-500 tw-opacity-50' : formError ? 'tw-bg-orange-600 tw-opacity-75' : 'dark:tw-bg-neutral-100 tw-bg-neutral-900'} tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${!(success || loading || error) ? 'hover:tw-scale-105 active:tw-scale-95' : ''}`}
+									className={`tw-text-center tw-text-4xl tw-font-bold ${formState === 'loading' ? 'dark:tw-bg-neutral-300 tw-bg-neutral-800' : formState === 'error' ? ' tw-bg-red-700' : formState === 'userFault' ? 'tw-bg-red-700' : formState === 'success' ? ' tw-bg-green-500 tw-opacity-50' : formState === 'formError' ? 'tw-bg-orange-600 tw-opacity-75' : 'dark:tw-bg-neutral-100 tw-bg-neutral-900'} tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${
+										!(
+											formState === 'loading' ||
+											formState === 'success' ||
+											formState === 'userFault'
+										)
+											? 'hover:tw-scale-105 active:tw-scale-95'
+											: ''
+									}`}
 									disabled={
 										loading || success || emailTriesError
 									}
 								>
-									{loading
+									{formState === 'loading'
 										? 'Loading...'
-										: error
-											? 'Error!'
-											: success
-												? 'Success!'
-												: 'Senden'}
+										: formState === 'error'
+											? 'Try Again!'
+											: formState === 'userFault'
+												? 'Error!'
+												: formState === 'success'
+													? 'Success!'
+													: 'Senden'}
 								</button>
-								<span>
-									{formError || error ? errorMessage : ''}
-								</span>
+								<span>{formError || error ? Message : ''}</span>
 							</div>
 						</div>
 					</form>
