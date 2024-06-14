@@ -1,49 +1,39 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
-import {truncate} from 'fs';
 
 export default function Contact() {
 	const form = useRef<HTMLFormElement>(null);
 
 	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(false);
-	const [formError, setFormError] = useState(false);
-	const [emailTriesError, setEmailTriesError] = useState(false);
-	const [success, setSuccess] = useState(false);
-
 	const [formState, setFormState] = useState<
 		'loading' | 'success' | 'error' | 'formError' | 'userFault' | ''
 	>('');
+	const [errors, setErrors] = useState({
+		name: '',
+		email: '',
+		emailRegex: '',
+		message: '',
+	});
+	const [buttonState, setButtonState] = useState(
+		'dark:tw-bg-neutral-100 tw-bg-neutral-900',
+	);
+	const [buttonText, setButtonText] = useState('Senden');
+	const [message, setMessage] = useState(
+		'Alle deine Daten sind nur für mich um dich zu kontaktieren.',
+	);
 
-	const [nameError, setNameError] = useState('');
-	const [emailError, setEmailError] = useState('');
-	const [emailRegexError, setEmailRegexError] = useState('');
-	const [messageError, setMessageError] = useState('');
-
-	const [Message, setMessage] = useState('');
-
-	const emailTries = 5;
+	let emailTries = 3;
 
 	const emptyErrorMessage = 'Feld darf nicht leer sein.';
 	const emailErrorMessage = 'E-Mail Addresse ist nicht gültig.';
 
 	const validateEmail = (email: string) => {
 		const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-		if (!emailRegex.test(email)) {
-			return false;
-		} else {
-			return true;
-		}
+		return emailRegex.test(email);
 	};
 
-	const validateEmpty = (value: string) => {
-		if (!value.trim()) {
-			return false;
-		} else {
-			return true;
-		}
-	};
+	const validateEmpty = (value: string) => value.trim() !== '';
 
 	const handleValidation = () => {
 		const name = (form.current?.user_name.value || '').trim();
@@ -55,74 +45,98 @@ export default function Contact() {
 		const isEmailNotEmpty = validateEmpty(email);
 		const isMessageNotEmpty = validateEmpty(message);
 
-		setNameError(isNameNotEmpty ? '' : emptyErrorMessage);
-		setEmailError(isEmailNotEmpty ? '' : emptyErrorMessage);
-		setEmailRegexError(isEmailValid ? '' : emailErrorMessage);
-		setMessageError(isMessageNotEmpty ? '' : emptyErrorMessage);
+		setErrors({
+			name: isNameNotEmpty ? '' : emptyErrorMessage,
+			email: isEmailNotEmpty ? '' : emptyErrorMessage,
+			emailRegex: isEmailValid ? '' : emailErrorMessage,
+			message: isMessageNotEmpty ? '' : emptyErrorMessage,
+		});
 
 		return isNameNotEmpty && isEmailValid && isMessageNotEmpty;
 	};
 
+	useEffect(() => {
+		const updateButtonState = () => {
+			switch (formState) {
+				case 'loading':
+					setButtonState('dark:tw-bg-neutral-300 tw-bg-neutral-800');
+					setButtonText('Lädt...');
+					break;
+				case 'success':
+					setButtonState('dark:tw-bg-green-600 tw-bg-green-500');
+					setButtonText('Gesendet!');
+					break;
+				case 'error':
+					setButtonState('dark:tw-bg-yellow-600 tw-bg-yellow-500');
+					setButtonText('Fehler!');
+					break;
+				case 'userFault':
+					setButtonState('tw-bg-red-700');
+					setButtonText('Error!');
+					break;
+				case 'formError':
+					setButtonState('dark:tw-bg-orange-700 tw-bg-orange-500');
+					setButtonText('Senden');
+					break;
+				default:
+					setButtonState('dark:tw-bg-neutral-100 tw-bg-neutral-900');
+					setButtonText('Senden');
+					break;
+			}
+		};
+
+		updateButtonState();
+	}, [formState]);
+
 	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
 		if (handleValidation()) {
-			setLoading(true);
-			setError(false);
-			setSuccess(false);
-			setFormError(false);
-			setEmailTriesError(false);
 			setFormState('loading');
+			setLoading(true);
 
-			if (emailTries < 10) {
+			if (emailTries < 5) {
 				if (form.current) {
 					emailjs
 						.sendForm(
-							'service_vi6jk3q NIGG',
+							'service_vi6jk3q NIG',
 							'template_5uc28rk',
 							form.current,
 							'LpydiekDkIkldJ7eB',
 						)
 						.then(
 							() => {
-								console.log('sended');
-								setLoading(false);
-								setSuccess(true);
 								setFormState('success');
 								setMessage(
 									'Vielen Dank für deine Nachricht. Ich melde mich so schnell wie möglich!',
 								);
+								setLoading(false);
 							},
 							(error) => {
-								console.log('FAILED...', error);
-								setLoading(false);
-								setError(true);
 								setFormState('error');
 								setMessage(
 									'Etwas ist schief gelaufen. Bitte versuche es später erneut oder kontaktiere mich über meine E-Mail Addresse.',
 								);
+								setLoading(false);
 							},
 						);
 				}
 			} else {
-				setSuccess(false);
-				setFormError(false);
-				setLoading(false);
-				setError(false);
-				setEmailTriesError(true);
 				setFormState('userFault');
 				setMessage(
 					'Du hast zu viele E-Mails gesendet. Bitte versuche es später erneut.',
 				);
+				setLoading(false);
 			}
 		} else {
-			setLoading(false);
-			setFormError(true);
-			setMessage(
-				emailRegexError
-					? 'E-Mail Addresse ist nicht gültig.'
-					: 'Bitte fülle alle Felder aus.',
-			);
+			setFormState('formError');
+			if (
+				!(errors.name || errors.message || errors.email) &&
+				errors.emailRegex
+			) {
+				setMessage('E-Mail Addresse ist nicht gültig.');
+			} else {
+				setMessage('Bitte fülle alle Felder aus.');
+			}
 		}
 	};
 
@@ -154,18 +168,10 @@ export default function Contact() {
 							type="text"
 							id="user_name"
 							name="user_name"
-							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${
-								formState === 'loading' ||
-								formState === 'success' ||
-								formState === 'userFault'
-									? ' tw-bg-neutral-300 dark:tw-bg-neutral-600'
-									: ''
-							}`}
-							placeholder={
-								nameError ? nameError : 'Max Mustermann'
-							}
+							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+							placeholder={errors.name || 'Max Mustermann'}
 							disabled={
-								formState === 'loading' ||
+								loading ||
 								formState === 'success' ||
 								formState === 'userFault'
 							}
@@ -181,20 +187,12 @@ export default function Contact() {
 							type="text"
 							id="user_email"
 							name="user_email"
-							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${
-								formState === 'loading' ||
-								formState === 'success' ||
-								formState === 'userFault'
-									? ' tw-bg-neutral-300 dark:tw-bg-neutral-600'
-									: ''
-							}`}
+							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
 							placeholder={
-								emailError
-									? emailError
-									: 'max-mustermann@mail.com'
+								errors.email || 'max-mustermann@mail.com'
 							}
 							disabled={
-								formState === 'loading' ||
+								loading ||
 								formState === 'success' ||
 								formState === 'userFault'
 							}
@@ -209,21 +207,14 @@ export default function Contact() {
 						<textarea
 							id="message"
 							name="message"
-							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${
-								formState === 'loading' ||
-								formState === 'success' ||
-								formState === 'userFault'
-									? ' tw-bg-neutral-300 dark:tw-bg-neutral-600'
-									: ''
-							}`}
+							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
 							placeholder={
-								messageError
-									? messageError
-									: 'Hallo Pascal, ich benötige eine Website für...'
+								errors.message ||
+								'Hallo Pascal, ich benötige eine Website für...'
 							}
 							rows={4}
 							disabled={
-								formState === 'loading' ||
+								loading ||
 								formState === 'success' ||
 								formState === 'userFault'
 							}
@@ -233,30 +224,16 @@ export default function Contact() {
 							<div className="tw-px-4 tw-flex tw-flex-col tw-text-center">
 								<button
 									type="submit"
-									className={`tw-text-center tw-text-4xl tw-font-bold ${formState === 'loading' ? 'dark:tw-bg-neutral-300 tw-bg-neutral-800' : formState === 'error' ? ' tw-bg-red-700' : formState === 'userFault' ? 'tw-bg-red-700' : formState === 'success' ? ' tw-bg-green-500 tw-opacity-50' : formState === 'formError' ? 'tw-bg-orange-600 tw-opacity-75' : 'dark:tw-bg-neutral-100 tw-bg-neutral-900'} tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${
-										!(
-											formState === 'loading' ||
-											formState === 'success' ||
-											formState === 'userFault'
-										)
-											? 'hover:tw-scale-105 active:tw-scale-95'
-											: ''
-									}`}
+									className={`tw-text-center tw-text-4xl tw-font-bold ${buttonState} tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${!loading && !(formState === 'success' || formState === 'userFault') ? 'hover:tw-scale-105 active:tw-scale-95' : ''}`}
 									disabled={
-										loading || success || emailTriesError
+										loading ||
+										formState === 'success' ||
+										formState === 'userFault'
 									}
 								>
-									{formState === 'loading'
-										? 'Loading...'
-										: formState === 'error'
-											? 'Try Again!'
-											: formState === 'userFault'
-												? 'Error!'
-												: formState === 'success'
-													? 'Success!'
-													: 'Senden'}
+									{buttonText}
 								</button>
-								<span>{formError || error ? Message : ''}</span>
+								<span>{message}</span>
 							</div>
 						</div>
 					</form>
