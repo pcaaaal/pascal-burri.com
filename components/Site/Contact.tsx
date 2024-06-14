@@ -130,7 +130,7 @@ export default function Contact() {
 				} else setFormState('userFault');
 				setLoading(false);
 				setMessage(
-					'Dieses Formular ist aktuell nicht verfügbar. Bitte kontaktiere mich über meine angegebene E-Mail addresse.',
+					'Dieses Formular ist aktuell nicht verfügbar. Bitte kontaktiere mich über meine angegebene E-Mail Addresse.',
 				);
 			} else {
 				setFormState('userFault');
@@ -154,7 +154,7 @@ export default function Contact() {
 
 	return (
 		<div className="tw-w-full tw-p-8 tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
-			<div className="dark:tw-bg-[rgba(48,48,48,0.5)] tw-bg-[rgba(229,229,229,0.5)] tw-backdrop-blur-lg tw-p-4 tw-rounded-lg tw-shadow-lg lg:tw-col-span-2 tw-grid tw-grid-rows-5">
+			<div className="dark:tw-bg-[rgba(48,48,48,0.5)] tw-bg-[rgba(229,229,229,0.5)] tw-backdrop-blur-lg tw-p-4 tw-rounded-lg tw-shadow-lg md:tw-col-span-2 tw-grid tw-grid-rows-5">
 				<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
 					Kontaktiere mich!
 				</h1>
@@ -174,8 +174,12 @@ export default function Contact() {
 								<h1 className=" tw-text-4xl tw-font-bold tw-mb-2">
 									Kontaktdaten
 								</h1>
-								<Link href={'mailto:info@pascal-burri.com'}>
-									<h1 className=" tw-text-3xl">
+								<Link
+									href={'mailto:info@pascal-burri.com'}
+									rel="noopener noreferrer"
+									target="_blank"
+								>
+									<h1 className=" tw-text-3xl tw-underline">
 										info@pascal-burri.com
 									</h1>
 								</Link>
@@ -185,6 +189,8 @@ export default function Contact() {
 									href={
 										'https://www.linkedin.com/in/pascal-burri-72b12329a/'
 									}
+									rel="noopener noreferrer"
+									target="_blank"
 								>
 									<Image
 										width={48}
@@ -193,7 +199,11 @@ export default function Contact() {
 										alt="linkedIn Icon"
 									/>
 								</Link>
-								<Link href={'https://github.com/pcaaaal'}>
+								<Link
+									href={'https://github.com/pcaaaal'}
+									rel="noopener noreferrer"
+									target="_blank"
+								>
 									<Image
 										width={48}
 										height={48}
@@ -204,13 +214,12 @@ export default function Contact() {
 							</div>
 						</div>
 					</div>
-					<div className="md:tw-col-span-1 md:tw-flex tw-hidden lg:tw-hidden xl:tw-flex">
+					<div className="md:tw-col-span-1 md:tw-flex tw-hidden lg:tw-hidden xl:tw-flex tw-relative">
 						<Image
-							className=" tw-z-10"
+							className=""
 							src={'/illustrations/envelope.png'}
 							alt="Envelope"
 							layout="fill"
-							objectPosition="right"
 							objectFit="contain"
 						/>
 					</div>
