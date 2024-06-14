@@ -184,7 +184,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				<div
 					className={`tw-flex tw-gap-3 tw-h-full ${icon ? '' : 'hide-icon'} ${iconIsHidden ? 'tw-hidden' : ''} header-icon tw-justify-between tw-w-full md:tw-w-auto`}
 				>
-					<div className="tw-flex tw-justify-center tw-items-center md:tw-hidden tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] tw-p-3 tw-rounded-full tw-aspect-square tw-h-12 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
+					<div className="tw-backdrop-blur-xl tw-flex tw-justify-center tw-itemsF-center md:tw-hidden tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] tw-p-3 tw-rounded-full tw-aspect-square tw-h-12 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
 						<button
 							className=""
 							onClick={() => {
@@ -198,7 +198,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 							/>
 						</button>
 					</div>
-					<div className="tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] tw-rounded-full tw-as tw-aspect-square tw-h-12 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
+					<div className="tw-backdrop-blur-xl tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] tw-rounded-full tw-as tw-aspect-square tw-h-12 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
 						<button
 							className="tw-p-2"
 							onClick={() => {
