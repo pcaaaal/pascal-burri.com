@@ -1,7 +1,11 @@
 import React, {useRef, useState, useEffect} from 'react';
 import emailjs from '@emailjs/browser';
-import toast from 'react-hot-toast';
 
+import Image from 'next/image';
+import Link from 'next/link';
+
+import gitHubIcon from '/public/icons/logo-github.svg';
+import linkedInIcon from '/public/icons/logo-linkedin.svg';
 export default function Contact() {
 	const form = useRef<HTMLFormElement>(null);
 
@@ -23,7 +27,9 @@ export default function Contact() {
 		'Alle deine Daten sind nur für mich um dich zu kontaktieren.',
 	);
 
-	let emailTries = 3;
+	const isTurnedOn = false;
+
+	let emailTries = 0;
 
 	const emptyErrorMessage = 'Feld darf nicht leer sein.';
 	const emailErrorMessage = 'E-Mail Addresse ist nicht gültig.';
@@ -94,32 +100,38 @@ export default function Contact() {
 			setFormState('loading');
 			setLoading(true);
 
-			if (emailTries < 5) {
-				if (form.current) {
-					emailjs
-						.sendForm(
-							'service_vi6jk3q NIG',
-							'template_5uc28rk',
-							form.current,
-							'LpydiekDkIkldJ7eB',
-						)
-						.then(
-							() => {
-								setFormState('success');
-								setMessage(
-									'Vielen Dank für deine Nachricht. Ich melde mich so schnell wie möglich!',
-								);
-								setLoading(false);
-							},
-							(error) => {
-								setFormState('error');
-								setMessage(
-									'Etwas ist schief gelaufen. Bitte versuche es später erneut oder kontaktiere mich über meine E-Mail Addresse.',
-								);
-								setLoading(false);
-							},
-						);
-				}
+			if (emailTries < 3) {
+				if (isTurnedOn) {
+					if (form.current) {
+						emailjs
+							.sendForm(
+								'service_vi6jk3q',
+								'template_5uc28rk',
+								form.current,
+								'LpydiekDkIkldJ7eB',
+							)
+							.then(
+								() => {
+									setFormState('success');
+									setMessage(
+										'Vielen Dank für deine Nachricht. Ich melde mich so schnell wie möglich!',
+									);
+									setLoading(false);
+								},
+								(error) => {
+									setFormState('error');
+									setMessage(
+										'Etwas ist schief gelaufen. Bitte versuche es später erneut oder kontaktiere mich über meine E-Mail Addresse.',
+									);
+									setLoading(false);
+								},
+							);
+					}
+				} else setFormState('userFault');
+				setLoading(false);
+				setMessage(
+					'Dieses Formular ist aktuell nicht verfügbar. Bitte kontaktiere mich über meine angegebene E-Mail addresse.',
+				);
 			} else {
 				setFormState('userFault');
 				setMessage(
@@ -143,13 +155,72 @@ export default function Contact() {
 	return (
 		<div className="tw-w-full tw-p-8 tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
 			<div className="dark:tw-bg-[rgba(48,48,48,0.5)] tw-bg-[rgba(229,229,229,0.5)] tw-backdrop-blur-lg tw-p-4 tw-rounded-lg tw-shadow-lg lg:tw-col-span-2 tw-grid tw-grid-rows-5">
-				Write me a message
+				<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
+					Kontaktiere mich!
+				</h1>
+				<div className="md:tw-grid-cols-2 tw-grid tw-row-span-4">
+					<div className=" tw-col-span-1 tw-grid tw-grid-rows-2">
+						<div className="tw-row-span-1">
+							<h1 className="tw-text-4xl tw-font-bold tw-mb-2">
+								Meine Angaben
+							</h1>
+							<h1 className="tw-text-3xl">Pascal Burri</h1>
+							<h1 className="tw-text-3xl">
+								Frontend und Backend Entwickler
+							</h1>
+						</div>
+						<div className="tw-row-span-1 tw-flex tw-flex-col tw-justify-between">
+							<div>
+								<h1 className=" tw-text-4xl tw-font-bold tw-mb-2">
+									Kontaktdaten
+								</h1>
+								<Link href={'mailto:info@pascal-burri.com'}>
+									<h1 className=" tw-text-3xl">
+										info@pascal-burri.com
+									</h1>
+								</Link>
+							</div>
+							<div className="tw-flex tw-gap-8">
+								<Link
+									href={
+										'https://www.linkedin.com/in/pascal-burri-72b12329a/'
+									}
+								>
+									<Image
+										width={48}
+										height={48}
+										src={linkedInIcon}
+										alt="linkedIn Icon"
+									/>
+								</Link>
+								<Link href={'https://github.com/pcaaaal'}>
+									<Image
+										width={48}
+										height={48}
+										src={gitHubIcon}
+										alt="GitHub Icon"
+									/>
+								</Link>
+							</div>
+						</div>
+					</div>
+					<div className="md:tw-col-span-1 md:tw-flex tw-hidden lg:tw-hidden xl:tw-flex">
+						<Image
+							className=" tw-z-10"
+							src={'/illustrations/envelope.png'}
+							alt="Envelope"
+							layout="fill"
+							objectPosition="right"
+							objectFit="contain"
+						/>
+					</div>
+				</div>
 			</div>
 
 			<div className="dark:tw-bg-[rgba(48,48,48,0.5)] tw-bg-[rgba(229,229,229,0.5)] tw-backdrop-blur-lg tw-p-4 tw-rounded-lg tw-shadow-lg lg:tw-col-span-1 tw-grid tw-grid-rows-5">
 				<div className="tw-row-span-1">
-					<h1 className="tw-text-6xl tw-font-bold tw-text-left">
-						Sag Hallo!
+					<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-text-left">
+						Formular
 					</h1>
 				</div>
 				<div className="tw-text-left tw-w-full tw-h-full tw-row-span-4">

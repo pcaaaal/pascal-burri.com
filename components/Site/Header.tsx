@@ -9,12 +9,10 @@ import {
 	useState,
 } from 'react';
 
-import darkIcon from '/public/dark.svg';
-import lightIcon from '/public/light.svg';
-import menuDarkIcon from '/public/menu-dark.svg';
-import menuLightIcon from '/public/menu-light.svg';
-import moonIcon from '/public/moon.svg';
-import sunIcon from '/public/sun.svg';
+import menuDarkIcon from '/public/icons/menu-dark.svg';
+import menuLightIcon from '/public/icons/menu-light.svg';
+import moonIcon from '/public/icons/moon.svg';
+import sunIcon from '/public/icons/sun.svg';
 import {animated} from 'react-spring';
 
 interface HeaderProps {
