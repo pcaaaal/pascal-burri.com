@@ -7,12 +7,16 @@ import Projects from '../components/Site/Projects';
 import Contact from '../components/Site/Contact';
 
 export const metadata: Metadata = {
-	title: 'Pascal Burri - Portfolio Website 龴ↀ◡ↀ龴',
+	title: 'Pascal Burri - Portfolio Website',
 	description:
 		'Hello, I am Pascal, a developer from Switzerland. This is my portfoliowebsite. This website is built with Next.js and TailwindCSS.',
 };
 
-const Site: FunctionComponent = () => {
+type darkProps = {
+	dark: boolean;
+};
+
+const Site: FunctionComponent<darkProps> = ({dark}) => {
 	return (
 		<div className="tw-relative">
 			<Home />
@@ -23,7 +27,7 @@ const Site: FunctionComponent = () => {
 				<Projects />
 			</div>
 			<div className="" id="contact">
-				<Contact />
+				<Contact dark={dark} />
 			</div>
 			<Footer />
 		</div>

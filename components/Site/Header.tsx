@@ -158,7 +158,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	return (
 		<div>
 			<header
-				className={`tw-flex tw-justify-between tw-items-center tw-p-4 tw-w-full md:tw-h-20 tw-font-mono tw-text-black dark:tw-text-white tw-gap-3 tw-fixed tw-z-50 ${useScrollDirection() == 'down' ? 'header-hidden' : 'header-show'}`}
+				className={`tw-flex tw-justify-between tw-items-center tw-p-4 tw-w-full md:tw-h-20 tw-font-mono tw-gap-3 tw-fixed tw-z-50 ${useScrollDirection() == 'down' ? 'header-hidden' : 'header-show'}`}
 			>
 				<div
 					ref={menuRef}
@@ -235,7 +235,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				<div className="tw-p-2 tw-rounded-full dark:tw-bg-neutral-800 tw-bg-neutral-200 hover:tw-bg-neutral-300 tw-shadow-lg hover:dark:tw-bg-neutral-600 hover:tw-cursor-pointer">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						className="tw-h-8 tw-w-8 tw-text-black dark:tw-text-white"
+						className="tw-h-8 tw-w-8"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"

@@ -40,7 +40,7 @@ export default function About() {
 								{data.skills.map((skill, index) => (
 									<div
 										key={index}
-										className="tw-inline-block dark:tw-bg-[#333] tw-bg-neutral-100 tw-text-black tw-shadow-lg dark:tw-text-white tw-p-2 tw-rounded-lg"
+										className="tw-inline-block dark:tw-bg-[#333] tw-bg-neutral-100 tw-shadow-lg tw-p-2 tw-rounded-lg"
 									>
 										{skill}
 									</div>
@@ -59,7 +59,7 @@ export default function About() {
 						{data.skills.map((skill, index) => (
 							<div
 								key={index}
-								className="tw-inline-block dark:tw-bg-[#333] tw-bg-neutral-100 tw-text-black tw-shadow-lg dark:tw-text-white tw-p-2 tw-rounded-lg"
+								className="tw-inline-block dark:tw-bg-[#333] tw-bg-neutral-100 tw-shadow-lg tw-p-2 tw-rounded-lg"
 							>
 								{skill}
 							</div>

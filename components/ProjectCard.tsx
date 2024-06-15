@@ -41,6 +41,20 @@ export default function ProjectCard({project}: {project: Project}) {
 									{project.description}
 								</p>
 							</div>
+							<div className="tw-row-auto">
+								<div className="tw-flex tw-flex-wrap tw-gap-2 tw-mb-4">
+									{project.languages.map(
+										(language, index) => (
+											<div
+												key={index}
+												className="tw-inline-block dark:tw-bg-[#333] tw-bg-neutral-100 tw-shadow-lg tw-p-2 tw-rounded-lg"
+											>
+												{language}
+											</div>
+										),
+									)}
+								</div>
+							</div>
 						</div>
 						<div
 							className="tw-col-span-2 tw-overflow-hidden tw-relative tw-h-full tw-rounded-lg tw-shadow-lg"

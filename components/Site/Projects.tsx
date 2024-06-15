@@ -36,7 +36,7 @@ export default function Projects() {
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						className="tw-h-8 tw-w-8 tw-text-black dark:tw-text-white"
+						className="tw-h-8 tw-w-8"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"
@@ -62,7 +62,7 @@ export default function Projects() {
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						className="tw-h-8 tw-w-8 tw-text-black dark:tw-text-white hover:tw-cursor-pointer hover:tw-scale-105 active:tw-scale-95"
+						className="tw-h-8 tw-w-8 hover:tw-cursor-pointer hover:tw-scale-105 active:tw-scale-95"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"

@@ -1,6 +1,6 @@
 const Footer = () => {
 	return (
-		<footer className="tw-p-6 tw-text-center tw-text-white/80 tw-sm:p-12 ">
+		<footer className="tw-p-6 tw-text-center tw-sm:p-12 ">
 			Website made by{' '}
 			<a
 				href="https://pascal-burri.com/"
@@ -11,7 +11,8 @@ const Footer = () => {
 				Pascal Burri
 			</a>
 			, made with NextJS, and Tailwind © {new Date().getFullYear()} All
-			rights reserved.{' '}
+			rights reserved. Illustrations by{' '}
+			<a href="https://www.freepik.com/" rel="noreferrer" target="_blank">freepik</a>.
 		</footer>
 	);
 };

@@ -47,7 +47,7 @@ const Home: FunctionComponent = () => {
 			>
 				{
 					<svg
-						className="tw-w-20 tw-h-20 tw-flex tw-justify-center tw-animate-bounce tw-text-black dark:tw-text-white tw-text-4xl tw-mt-20"
+						className="tw-w-20 tw-h-20 tw-flex tw-justify-center tw-animate-bounce tw-text-4xl tw-mt-20"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"

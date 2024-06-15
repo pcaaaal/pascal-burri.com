@@ -59,7 +59,7 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 	}, [set]);
 
 	return (
-		<div className="tw-w-full tw-h-full dark:tw-bg-[#1D1D1F] tw-bg-[#f2f2f2] tw-overflow-hidden tw-overflow-x-hidden tw-overflow-y-hidden background">
+		<div className="tw-w-full tw-h-full tw-transition tw-duration-100 dark:tw-bg-[#1D1D1F] tw-bg-[#f2f2f2] tw-overflow-hidden tw-overflow-x-hidden tw-overflow-y-hidden background">
 			<animated.div
 				className="tw-hidden blob tw-h-[300px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full md:tw-flex tw-blur-3xl"
 				style={{

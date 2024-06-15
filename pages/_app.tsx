@@ -25,7 +25,7 @@ export default function App({Component, pageProps}: AppProps) {
 						<Modal />
 					</div>
 					<div className="tw-z-20">
-						<Component {...pageProps} />
+						<Component {...pageProps} dark={dark} />
 					</div>
 				</Background>
 			</div>

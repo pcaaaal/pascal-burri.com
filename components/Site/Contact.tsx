@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState, useEffect, FunctionComponent} from 'react';
 import emailjs from '@emailjs/browser';
 
 import Image from 'next/image';
@@ -6,7 +6,14 @@ import Link from 'next/link';
 
 import gitHubIcon from '/public/icons/logo-github.svg';
 import linkedInIcon from '/public/icons/logo-linkedin.svg';
-export default function Contact() {
+
+import gitHubIconDark from '/public/icons/logo-github-dark.svg';
+import linkedInIconDark from '/public/icons/logo-linkedin-dark.svg';
+
+interface DarkProps {
+	dark: boolean;
+}
+const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 	const form = useRef<HTMLFormElement>(null);
 
 	const [loading, setLoading] = useState(false);
@@ -152,6 +159,8 @@ export default function Contact() {
 		}
 	};
 
+	console.log(dark);
+
 	return (
 		<div className="tw-w-full tw-p-8 tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
 			<div className="dark:tw-bg-[rgba(48,48,48,0.5)] tw-bg-[rgba(229,229,229,0.5)] tw-backdrop-blur-lg tw-p-4 tw-rounded-lg tw-shadow-lg md:tw-col-span-2 tw-grid tw-grid-rows-5">
@@ -195,7 +204,11 @@ export default function Contact() {
 									<Image
 										width={48}
 										height={48}
-										src={linkedInIcon}
+										src={
+											dark
+												? linkedInIcon
+												: linkedInIconDark
+										}
 										alt="linkedIn Icon"
 									/>
 								</Link>
@@ -207,7 +220,7 @@ export default function Contact() {
 									<Image
 										width={48}
 										height={48}
-										src={gitHubIcon}
+										src={dark ? gitHubIcon : gitHubIconDark}
 										alt="GitHub Icon"
 									/>
 								</Link>
@@ -217,7 +230,7 @@ export default function Contact() {
 					<div className="md:tw-col-span-1 md:tw-flex tw-hidden lg:tw-hidden xl:tw-flex tw-relative">
 						<Image
 							className=""
-							src={'/illustrations/envelope.png'}
+							src={'/illustrations/email.png'}
 							alt="Envelope"
 							layout="fill"
 							objectFit="contain"
@@ -321,4 +334,6 @@ export default function Contact() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Contact;

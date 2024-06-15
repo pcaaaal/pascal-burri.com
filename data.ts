@@ -40,7 +40,7 @@ const data = {
 			title: 'Dein Projekt?',
 			description:
 				'Eine Website für dein Restaurant, um deine Speisekarte und Öffnungszeiten zu präsentieren? Oder eine Website für dein Unternehmen, um deine Dienstleistungen und Produkte zu präsentieren?',
-			image: '/your-website.png',
+			image: '/illustrations/your-website.png',
 			link: '',
 			languages: [
 				'Alle Sprachen',
@@ -48,7 +48,7 @@ const data = {
 				'Alle Technologien',
 			],
 			tags: ['Dein Projekt', 'Deine Idee', 'Dein Erfolg'],
-			scroll: false,
+			scroll: true,
 		},
 	],
 };
