@@ -21,7 +21,7 @@ export default function ProjectCard({project}: {project: Project}) {
 	}, [imageFrameHeight, imageHeight]);
 
 	return (
-		<div className="tw-p-8 tw-z-20 md:tw-h-[480px] tw-h-[720] lg:tw-w-[1024px] md:tw-w-[720px] tw-w-[512px] tw-transition tw-duration-200 hover:tw-scale-105 hover:tw-cursor-pointer">
+		<div className="tw-p-8 tw-z-20 lg:tw-h-[480px] lg:tw-w-[1024px] md:tw-w-[512px] tw-transition tw-duration-200 hover:tw-scale-105 hover:tw-cursor-pointer">
 			<a
 				href={project.link}
 				target="_blank"

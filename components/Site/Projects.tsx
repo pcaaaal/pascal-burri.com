@@ -5,14 +5,22 @@ import Carousel, {ArrowProps, ButtonGroupProps} from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {Button} from '@react-email/components';
 import {on} from 'events';
+import {use, useEffect, useState} from 'react';
 
 export default function Projects() {
 	const router = useRouter();
+	const [screenSize, setScreenSize] = useState(0);
 
 	// Create an array of cards
 	const cards = data.projects.map((project) => (
 		<ProjectCard key={project.title} project={project} />
 	));
+
+	useEffect(() => {
+		setScreenSize(window ? window.innerWidth : 0);
+	}, []);
+
+	console.log(screenSize);
 
 	const ButtonGroup = ({
 		next,
@@ -82,33 +90,44 @@ export default function Projects() {
 				autoPlaySpeed={3000}
 				autoPlay
 				infinite
-				centerMode
+				centerMode={screenSize > 2048}
+				partialVisbile={screenSize < 2048}
 				itemClass=""
 				keyBoardControl
 				minimumTouchDrag={80}
 				renderArrowsWhenDisabled={false}
 				renderDotsOutside={false}
 				responsive={{
-					desktop: {
+					big: {
 						breakpoint: {
 							max: 3000,
-							min: 1024,
+							min: 2048,
 						},
 						items: 1,
 					},
-					mobile: {
+					desktop: {
 						breakpoint: {
-							max: 464,
-							min: 0,
+							max: 2048,
+							min: 1444,
 						},
 						items: 1,
+						partialVisibilityGutter: 400,
+					},
+					laptop: {
+						breakpoint: {
+							max: 1444,
+							min: 1023,
+						},
+						items: 1,
+						partialVisibilityGutter: 0,
 					},
 					tablet: {
 						breakpoint: {
 							max: 1024,
-							min: 464,
+							min: 767,
 						},
 						items: 1,
+						partialVisibilityGutter: 200,
 					},
 				}}
 				rewind={false}
@@ -122,7 +141,9 @@ export default function Projects() {
 			>
 				{cards}
 			</Carousel>
-			<div className="tw-flex tw-justify-center"></div>
+			<div className="tw-flex tw-flex-col tw-items-center tw-justify-center md:tw-hidden">
+				{cards}
+			</div>
 		</div>
 	);
 }
