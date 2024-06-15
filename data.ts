@@ -18,30 +18,70 @@ const data = {
 
 	projects: [
 		{
-			title: 'Card 1',
-			description: `Portfolio website for a pilot to showcase pictures and videos of his flights.`,
+			title: 'Bildergalerie - markus-burri.ch',
+			description: `Portfolio Website und Bildergalerie für einen Piloten, um Bilder und Videos seiner Flüge zu präsentieren.`,
 			image: '/markus-burri-ch.png',
 			link: 'https://markus-burri-ch-new.vercel.app/',
 			languages: ['NextJS', 'Tailwind CSS', 'TypeScript'],
 			tags: ['Image Gallery', 'Responsive', 'Cloudinary'],
+			scroll: true,
+		},
+		// {
+		// 	title: 'Portfolio Website - pascal-burri.ch',
+		// 	description:
+		// 		'Portfolio Website für einen Softwareentwickler, um seine Projekte und Skills zu präsentieren.',
+		// 	image: '/pascal-burri-ch.png',
+		// 	link: 'https://pascal-burri.ch/',
+		// 	languages: ['NextJS', 'Tailwind CSS', 'TypeScript'],
+		// 	tags: ['Portfolio Website', 'Responsive', 'Mail-Formular'],
+		// 	scroll: true,
+		// },
+		{
+			title: 'Dein Projekt?',
+			description:
+				'Eine Website für dein Restaurant, um deine Speisekarte und Öffnungszeiten zu präsentieren? Oder eine Website für dein Unternehmen, um deine Dienstleistungen und Produkte zu präsentieren?',
+			image: '/your-website.png',
+			link: '',
+			languages: [
+				'Alle Sprachen',
+				'Alle Frameworks',
+				'Alle Technologien',
+			],
+			tags: ['Dein Projekt', 'Deine Idee', 'Dein Erfolg'],
+			scroll: false,
 		},
 		{
-			title: 'Card 2',
-			description:
-				'Portfolio website for a pilot to showcase pictures and videos of his flights.',
+			title: 'Bildergalerie - markus-burri.ch',
+			description: `Portfolio Website und Bildergalerie für einen Piloten, um Bilder und Videos seiner Flüge zu präsentieren.`,
 			image: '/markus-burri-ch.png',
 			link: 'https://markus-burri-ch-new.vercel.app/',
 			languages: ['NextJS', 'Tailwind CSS', 'TypeScript'],
 			tags: ['Image Gallery', 'Responsive', 'Cloudinary'],
+			scroll: true,
 		},
+		// {
+		// 	title: 'Portfolio Website - pascal-burri.ch',
+		// 	description:
+		// 		'Portfolio Website für einen Softwareentwickler, um seine Projekte und Skills zu präsentieren.',
+		// 	image: '/pascal-burri-ch.png',
+		// 	link: 'https://pascal-burri.ch/',
+		// 	languages: ['NextJS', 'Tailwind CSS', 'TypeScript'],
+		// 	tags: ['Portfolio Website', 'Responsive', 'Mail-Formular'],
+		// 	scroll: true,
+		// },
 		{
-			title: 'Card 3',
+			title: 'Dein Projekt?',
 			description:
-				'Portfolio website for a pilot to showcase pictures and videos of his flights.',
-			image: '/markus-burri-ch.png',
-			link: 'https://markus-burri-ch-new.vercel.app/',
-			languages: ['NextJS', 'Tailwind CSS', 'TypeScript'],
-			tags: ['Image Gallery', 'Responsive', 'Cloudinary'],
+				'Eine Website für dein Restaurant, um deine Speisekarte und Öffnungszeiten zu präsentieren? Oder eine Website für dein Unternehmen, um deine Dienstleistungen und Produkte zu präsentieren?',
+			image: '/your-website.png',
+			link: '',
+			languages: [
+				'Alle Sprachen',
+				'Alle Frameworks',
+				'Alle Technologien',
+			],
+			tags: ['Dein Projekt', 'Deine Idee', 'Dein Erfolg'],
+			scroll: false,
 		},
 	],
 };

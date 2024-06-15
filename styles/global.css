@@ -43,3 +43,10 @@ body {
 	overflow-x: hidden;
 	scroll-behavior: smooth;
 }
+
+.item {
+	-webkit-perspective: 2000;
+	-webkit-backface-visibility: hidden;
+	perspective: 2000;
+	backface-visibility: hidden;
+}

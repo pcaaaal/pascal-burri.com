@@ -1,86 +1,30 @@
-import Image from 'next/image';
 import ProjectCard from '../ProjectCard';
 import data from '../../data';
-import {motion, useAnimation} from 'framer-motion';
 import {useRouter} from 'next/navigation';
-import {useEffect, useRef, useState} from 'react';
-import {off} from 'process';
+import Carousel, {ArrowProps, ButtonGroupProps} from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import {Button} from '@react-email/components';
+import {on} from 'events';
 
 export default function Projects() {
 	const router = useRouter();
-	const controls = useAnimation();
-
-	const [offset, setOffset] = useState(1);
-
-	const cardRef = useRef<HTMLDivElement>(null);
-
-	const cardWidth = cardRef.current?.offsetWidth || 0;
-
-	const autoScrollTimeout = 5000;
 
 	// Create an array of cards
 	const cards = data.projects.map((project) => (
 		<ProjectCard key={project.title} project={project} />
 	));
 
-	const handleScroll = (direction: 1 | -1) => {
-		const newOffset = offset + direction;
-		if (newOffset < 0) {
-			setOffset(cards.length - 1);
-		} else if (newOffset >= cards.length) {
-			setOffset(0);
-		} else {
-			setOffset(newOffset);
-		}
-	};
-
-	console.log(offset);
-
-	useEffect(() => {
-		if (window) {
-			const = window.innerWidth;
-		}
-	}, []);
-
-	const startOffset = (cardWidth + 16) * cards.length - viewportWidth / 2;
-
-	const pseudoCards = [cards[cards.length - 1], ...cards, cards[0]];
-
-	useEffect(() => {
-		controls.start({
-			x: -offset * (cardWidth + 16) + startOffset,
-			transition: {duration: 0.5, ease: 'easeInOut'},
-		});
-	}, [offset, controls, cardWidth, startOffset]);
-
-	useEffect(() => {
-		if (offset >= cards.length + 2) {
-			setOffset(1);
-			controls.start({
-				x: -1 * (cardWidth + 16),
-				transition: {duration: 0.5, ease: 'easeInOut'},
-			});
-		}
-	}, [offset, controls, cards.length, cardWidth]);
-
-	return (
-		<div>
-			<div className="tw-w-full">
-				<motion.div
-					className="tw-flex tw-justify-start"
-					animate={controls}
-				>
-					{pseudoCards.map((card, index) => (
-						<div key={index} className="tw-mr-4" ref={cardRef}>
-							{card}
-						</div>
-					))}
-				</motion.div>
-			</div>
-			<div className="tw-flex tw-justify-center tw-gap-8">
+	const ButtonGroup = ({
+		next,
+		previous,
+		goToSlide,
+		...rest
+	}: ButtonGroupProps) => {
+		return (
+			<div className="carousel-button-group tw-flex tw-gap-8 tw-justify-center">
 				<button
 					className="hover:tw-cursor-pointer tw-transition tw-duration-100 hover:tw-scale-110 active:tw-scale-95"
-					onClick={() => handleScroll(-1)}
+					onClick={previous}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +50,7 @@ export default function Projects() {
 				</button>
 				<button
 					className="hover:tw-cursor-pointer tw-transition tw-duration-100 hover:tw-scale-110 active:tw-scale-95"
-					onClick={() => handleScroll(1)}
+					onClick={next}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -125,6 +69,60 @@ export default function Projects() {
 					</svg>
 				</button>
 			</div>
+		);
+	};
+
+	return (
+		<div>
+			<Carousel
+				additionalTransfrom={0}
+				arrows={false}
+				customButtonGroup={<ButtonGroup />}
+				renderButtonGroupOutside
+				autoPlaySpeed={3000}
+				autoPlay
+				infinite
+				centerMode
+				itemClass=""
+				keyBoardControl
+				minimumTouchDrag={80}
+				renderArrowsWhenDisabled={false}
+				renderDotsOutside={false}
+				responsive={{
+					desktop: {
+						breakpoint: {
+							max: 3000,
+							min: 1024,
+						},
+						items: 1,
+					},
+					mobile: {
+						breakpoint: {
+							max: 464,
+							min: 0,
+						},
+						items: 1,
+					},
+					tablet: {
+						breakpoint: {
+							max: 1024,
+							min: 464,
+						},
+						items: 1,
+					},
+				}}
+				rewind={false}
+				rewindWithAnimation={false}
+				rtl={false}
+				shouldResetAutoplay
+				showDots={false}
+				sliderClass=""
+				slidesToSlide={1}
+				swipeable
+			>
+				{cards}
+			</Carousel>
+			<div className="tw-flex tw-justify-center"></div>
 		</div>
 	);
 }

@@ -47,9 +47,11 @@ export default function ProjectCard({project}: {project: Project}) {
 							ref={imageFrameRef}
 						>
 							<motion.div
-								whileHover={{
-									y: -(imageHeight - imageFrameHeight),
-								}}
+								whileHover={
+									project.scroll
+										? {y: -(imageHeight - imageFrameHeight)}
+										: undefined
+								}
 								transition={{type: 'tween', duration: 1}}
 							>
 								<div ref={imageRef}>
@@ -60,7 +62,9 @@ export default function ProjectCard({project}: {project: Project}) {
 										width={500}
 										height={500}
 										objectFit="cover"
-										objectPosition="top"
+										objectPosition={
+											project.scroll ? 'top' : 'bottom'
+										}
 									/>
 								</div>
 							</motion.div>
