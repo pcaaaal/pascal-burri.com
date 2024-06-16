@@ -13,7 +13,7 @@ export default function App({Component, pageProps}: AppProps) {
 	const [dark, setDark] = useState(true);
 	return (
 		<div
-			className={`tw-w-full tw-h-full tw-flex tw-flex-col tw-items-center tw-bg-white ${dark ? 'tw-dark' : ''} tw-overflow-hidden dark:tw-text-white tw-text-black`}
+			className={`tw-w-full tw-h-full tw-flex tw-flex-col tw-items-center tw-bg-white ${dark ? 'tw-dark' : ''} tw-overflow-hidden tw-overflow-y-hidden tw-overflow-x-hidden dark:tw-text-white tw-text-black`}
 		>
 			<div className="tw-w-full tw-h-full tw-overflow-hidden">
 				<div>
