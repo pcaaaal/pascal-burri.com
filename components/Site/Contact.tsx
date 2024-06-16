@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect, FunctionComponent} from 'react';
 import emailjs from '@emailjs/browser';
 
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 
 import gitHubIcon from '/public/icons/logo-github.svg';

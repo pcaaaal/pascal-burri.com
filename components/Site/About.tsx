@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import data from '../../data';
 import {motion} from 'framer-motion';
 import {ChangeEvent, useState} from 'react';

@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import {motion} from 'framer-motion';
 import data from '../data';
 
