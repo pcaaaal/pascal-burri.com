@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect, FunctionComponent} from 'react';
 import emailjs from '@emailjs/browser';
 
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from 'next/link';
 
 import gitHubIcon from '/public/icons/logo-github.svg';
@@ -162,7 +162,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 	console.log(dark);
 
 	return (
-		<div className="tw-w-full tw-p-8 tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
+        <div className="tw-w-full tw-p-8 tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
 			<div className="dark:tw-bg-[rgba(48,48,48,0.5)] tw-bg-[rgba(229,229,229,0.5)] tw-backdrop-blur-lg tw-p-4 tw-rounded-lg tw-shadow-lg md:tw-col-span-2 tw-grid tw-grid-rows-5">
 				<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
 					Kontaktiere mich!
@@ -202,15 +202,18 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 									target="_blank"
 								>
 									<Image
-										width={48}
-										height={48}
-										src={
+                                        width={48}
+                                        height={48}
+                                        src={
 											dark
 												? linkedInIcon
 												: linkedInIconDark
 										}
-										alt="linkedIn Icon"
-									/>
+                                        alt="linkedIn Icon"
+                                        style={{
+                                            maxWidth: "100%",
+                                            height: "auto"
+                                        }} />
 								</Link>
 								<Link
 									href={'https://github.com/pcaaaal'}
@@ -218,23 +221,28 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 									target="_blank"
 								>
 									<Image
-										width={48}
-										height={48}
-										src={dark ? gitHubIcon : gitHubIconDark}
-										alt="GitHub Icon"
-									/>
+                                        width={48}
+                                        height={48}
+                                        src={dark ? gitHubIcon : gitHubIconDark}
+                                        alt="GitHub Icon"
+                                        style={{
+                                            maxWidth: "100%",
+                                            height: "auto"
+                                        }} />
 								</Link>
 							</div>
 						</div>
 					</div>
 					<div className="md:tw-col-span-1 md:tw-flex tw-hidden lg:tw-hidden xl:tw-flex tw-relative">
 						<Image
-							className=""
-							src={'/illustrations/email.png'}
-							alt="Envelope"
-							layout="fill"
-							objectFit="contain"
-						/>
+                            className=""
+                            src={'/illustrations/email.png'}
+                            alt="Envelope"
+                            fill
+                            sizes="100vw"
+                            style={{
+                                objectFit: "contain"
+                            }} />
 					</div>
 				</div>
 			</div>
@@ -333,7 +341,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 				</div>
 			</div>
 		</div>
-	);
+    );
 };
 
 export default Contact;

@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/image';
 import data from '../../data';
 import {motion} from 'framer-motion';
 import {ChangeEvent, useState} from 'react';
@@ -12,11 +12,15 @@ export default function About() {
 						<Image
 							src="/profile.png"
 							alt="Picture of Pascal Burri"
-							layout="responsive"
 							width={500}
 							height={500}
 							className="tw-rounded-lg tw-shadow-lg"
-							objectFit="cover"
+							sizes="100vw"
+							style={{
+								width: '100%',
+								height: 'auto',
+								objectFit: 'cover',
+							}}
 						/>
 					</div>
 					<div className="lg:tw-col-span-2 md:w-col-span-1">

@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from 'next/link';
 import {
 	Dispatch,
@@ -156,7 +156,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	const menuItems = ['Home', 'About', 'Projects', 'Contact'];
 
 	return (
-		<div>
+        <div>
 			<header
 				className={`tw-flex tw-justify-between tw-items-center tw-p-4 tw-w-full md:tw-h-20 tw-font-mono tw-gap-3 tw-fixed tw-z-50 ${useScrollDirection() == 'down' ? 'header-hidden' : 'header-show'}`}
 			>
@@ -190,10 +190,13 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 							}}
 						>
 							<Image
-								src={!dark ? menuDarkIcon : menuLightIcon}
-								alt="menu"
-								className="menu-icon"
-							/>
+                                src={!dark ? menuDarkIcon : menuLightIcon}
+                                alt="menu"
+                                className="menu-icon"
+                                style={{
+                                    maxWidth: "100%",
+                                    height: "auto"
+                                }} />
 						</button>
 					</div>
 					<div className="tw-backdrop-blur-xl tw-flex tw-justify-center tw-items-center tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] tw-rounded-full tw-as tw-aspect-square tw-h-12 md:tw-h-full md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click">
@@ -208,10 +211,13 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 							}}
 						>
 							<Image
-								src={!dark ? moonIcon : sunIcon}
-								alt="toggle darkmode"
-								className={`themeIcon ${iconRotate ? 'icon-rotate' : ''}`}
-							/>
+                                src={!dark ? moonIcon : sunIcon}
+                                alt="toggle darkmode"
+                                className={`themeIcon ${iconRotate ? 'icon-rotate' : ''}`}
+                                style={{
+                                    maxWidth: "100%",
+                                    height: "auto"
+                                }} />
 						</button>
 					</div>
 				</div>
@@ -250,7 +256,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				</div>
 			</animated.div>
 		</div>
-	);
+    );
 };
 
 export default Header;

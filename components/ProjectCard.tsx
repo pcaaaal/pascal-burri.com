@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import {motion} from 'framer-motion';
 import data from '../data';
 
@@ -21,7 +21,7 @@ export default function ProjectCard({project}: {project: Project}) {
 	}, [imageFrameHeight, imageHeight]);
 
 	return (
-		<div className="tw-p-8 tw-z-20 lg:tw-h-[480px] lg:tw-w-[1024px] md:tw-w-[512px] tw-transition tw-duration-200 hover:tw-scale-105 hover:tw-cursor-pointer">
+        <div className="tw-p-8 tw-z-20 lg:tw-h-[480px] lg:tw-w-[1024px] md:tw-w-[512px] tw-transition tw-duration-200 hover:tw-scale-105 hover:tw-cursor-pointer">
 			<a
 				href={project.link}
 				target="_blank"
@@ -70,16 +70,19 @@ export default function ProjectCard({project}: {project: Project}) {
 							>
 								<div ref={imageRef}>
 									<Image
-										src={project.image}
-										alt={project.title}
-										layout="responsive"
-										width={500}
-										height={500}
-										objectFit="cover"
-										objectPosition={
+                                        src={project.image}
+                                        alt={project.title}
+                                        width={500}
+                                        height={500}
+                                        objectPosition={
 											project.scroll ? 'top' : 'bottom'
 										}
-									/>
+                                        sizes="100vw"
+                                        style={{
+                                            width: "100%",
+                                            height: "auto",
+                                            objectFit: "cover"
+                                        }} />
 								</div>
 							</motion.div>
 						</div>
@@ -87,5 +90,5 @@ export default function ProjectCard({project}: {project: Project}) {
 				</div>
 			</a>
 		</div>
-	);
+    );
 }
