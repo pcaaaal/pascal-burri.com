@@ -30,7 +30,7 @@ export default function About() {
 						<div className="lg:tw-col-span-2 md:w-col-span-1">
 							<div className="tw-row-auto">
 								<h1 className="tw-text-4xl tw-font-bold tw-mb-4 tw-mt-4 tw-text-left">
-									Über mich
+									Biografie
 								</h1>
 							</div>
 							<div className="tw-row-auto">

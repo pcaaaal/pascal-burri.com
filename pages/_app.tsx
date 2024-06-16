@@ -7,7 +7,6 @@ import {useState} from 'react';
 import Header from '../components/Site/Header';
 import Modal from '../components/modal';
 import Background from '../components/Background/Background';
-import {Toaster} from 'react-hot-toast';
 
 export default function App({Component, pageProps}: AppProps) {
 	const [dark, setDark] = useState(true);
@@ -16,9 +15,6 @@ export default function App({Component, pageProps}: AppProps) {
 			className={`tw-w-full tw-h-full tw-flex tw-flex-col tw-items-center tw-bg-white ${dark ? 'tw-dark' : ''} tw-overflow-hidden tw-overflow-y-hidden tw-overflow-x-hidden dark:tw-text-white tw-text-black`}
 		>
 			<div className="tw-w-full tw-h-full tw-overflow-hidden">
-				<div>
-					<Toaster position="top-right" />
-				</div>
 				<Background>
 					<Header setDark={setDark} dark={dark} />
 					<div className=" tw-justify-center tw-items-center">

@@ -91,10 +91,10 @@ export default function Projects() {
 				customButtonGroup={<ButtonGroup />}
 				renderButtonGroupOutside
 				autoPlaySpeed={3000}
-				autoPlay
+				// autoPlay
 				infinite
 				centerMode={screenSize > 1900}
-				partialVisbile={screenSize <= 1900}
+				partialVisible={screenSize <= 1900}
 				itemClass=""
 				keyBoardControl
 				minimumTouchDrag={80}

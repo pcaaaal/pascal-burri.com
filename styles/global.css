@@ -50,3 +50,10 @@ body {
 	perspective: 2000;
 	backface-visibility: hidden;
 }
+
+.project-card {
+	transform: translateZ(0);
+	-webkit-font-smoothing: subpixel-antialiased;
+	backface-visibility: hidden;
+}
+

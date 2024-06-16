@@ -1,6 +1,8 @@
 import React, {useRef, useState, useEffect, FunctionComponent} from 'react';
 import emailjs from '@emailjs/browser';
 
+import Cookies from 'js-cookie';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -36,7 +38,45 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 
 	const isTurnedOn = false;
 
-	let emailTries = 0;
+	const handleEmailTries = {
+		get: () => {
+			// Try to get tries count from Local Storage
+			if (typeof window !== 'undefined') {
+				const triesFromLocalStorage =
+					localStorage.getItem('emailTries');
+				if (triesFromLocalStorage) {
+					return parseInt(triesFromLocalStorage, 10);
+				}
+			}
+
+			// Fallback to cookies if Local Storage is not available or empty
+			const triesFromCookies = Cookies.get('emailTries');
+			if (triesFromCookies) {
+				return parseInt(triesFromCookies, 10);
+			} else {
+				// If not found in both, set initial value in both storage options
+				Cookies.set('emailTries', '0');
+				if (typeof window !== 'undefined') {
+					localStorage.setItem('emailTries', '0');
+				}
+				return 0;
+			}
+		},
+		add: () => {
+			const currentTries = handleEmailTries.get();
+			const newTries = String(currentTries + 1);
+
+			// Update both Local Storage and cookies
+			Cookies.set('emailTries', newTries);
+			if (typeof window !== 'undefined') {
+				localStorage.setItem('emailTries', newTries);
+			}
+		},
+	};
+
+	console.log(handleEmailTries.get());
+
+	const emailTries = 0;
 
 	const emptyErrorMessage = 'Feld darf nicht leer sein.';
 	const emailErrorMessage = 'E-Mail Addresse ist nicht gültig.';
@@ -119,6 +159,11 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 							)
 							.then(
 								() => {
+									handleEmailTries.add();
+									console.log(
+										'email tries',
+										handleEmailTries.get(),
+									);
 									setFormState('success');
 									setMessage(
 										'Vielen Dank für deine Nachricht. Ich melde mich so schnell wie möglich!',
@@ -226,7 +271,11 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 										<Image
 											width={48}
 											height={48}
-											src={dark ? gitHubIcon : gitHubIconDark}
+											src={
+												dark
+													? gitHubIcon
+													: gitHubIconDark
+											}
 											alt="GitHub Icon"
 											style={{
 												maxWidth: '100%',
