@@ -20,8 +20,6 @@ export default function Projects() {
 		setScreenSize(window ? window.innerWidth : 0);
 	}, []);
 
-	console.log(screenSize);
-
 	const ButtonGroup = ({
 		next,
 		previous,
@@ -50,12 +48,12 @@ export default function Projects() {
 						/>
 					</svg>
 				</button>
-				<button
+				{/* <button
 					className="tw-text-center tw-text-4xl tw-font-bold dark:tw-bg-neutral-100 tw-bg-neutral-900 tw-px-4 tw-py-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-my-4 tw-transition tw-duration-200 hover:tw-scale-105 active:tw-scale-95"
 					onClick={() => router.push('/projects')}
 				>
 					Alle Projekte
-				</button>
+				</button> */}
 				<button
 					className="hover:tw-cursor-pointer tw-transition tw-duration-100 hover:tw-scale-110 active:tw-scale-95"
 					onClick={next}
@@ -82,6 +80,11 @@ export default function Projects() {
 
 	return (
 		<div>
+			<div className="tw-w-full">
+				<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center">
+					Projekte
+				</h1>
+			</div>
 			<Carousel
 				additionalTransfrom={0}
 				arrows={false}
@@ -90,8 +93,8 @@ export default function Projects() {
 				autoPlaySpeed={3000}
 				autoPlay
 				infinite
-				centerMode={screenSize > 2048}
-				partialVisbile={screenSize < 2048}
+				centerMode={screenSize > 1900}
+				partialVisbile={screenSize <= 1900}
 				itemClass=""
 				keyBoardControl
 				minimumTouchDrag={80}
@@ -116,18 +119,10 @@ export default function Projects() {
 					laptop: {
 						breakpoint: {
 							max: 1444,
-							min: 1023,
-						},
-						items: 1,
-						partialVisibilityGutter: 0,
-					},
-					tablet: {
-						breakpoint: {
-							max: 1024,
 							min: 767,
 						},
 						items: 1,
-						partialVisibilityGutter: 200,
+						partialVisibilityGutter: 0,
 					},
 				}}
 				rewind={false}
@@ -138,6 +133,7 @@ export default function Projects() {
 				sliderClass=""
 				slidesToSlide={1}
 				swipeable
+				className=""
 			>
 				{cards}
 			</Carousel>

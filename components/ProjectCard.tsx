@@ -1,7 +1,8 @@
 import {useEffect, useRef, useState} from 'react';
-import Image from "next/image";
+import Image from 'next/image';
 import {motion} from 'framer-motion';
 import data from '../data';
+import Link from 'next/link';
 
 export default function ProjectCard({project}: {project: Project}) {
 	const imageRef = useRef<HTMLDivElement>(null);
@@ -21,15 +22,13 @@ export default function ProjectCard({project}: {project: Project}) {
 	}, [imageFrameHeight, imageHeight]);
 
 	return (
-        <div className="tw-p-8 tw-z-20 lg:tw-h-[480px] lg:tw-w-[1024px] md:tw-w-[512px] tw-transition tw-duration-200 hover:tw-scale-105 hover:tw-cursor-pointer">
-			<a
+		<div className="tw-p-8 tw-z-20 md:tw-h-[600px] tw-w-full tw-transition tw-duration-200 md:hover:tw-scale-105 md:hover:tw-cursor-pointer">
+			<Link
 				href={project.link}
-				target="_blank"
-				rel="noopener noreferrer"
-				className="tw-h-full tw-w-full"
+				className="tw-w-full tw-h-full tw-pointer-events-none md:tw-pointer-events-auto"
 			>
-				<div className="dark:tw-bg-[rgba(48,48,48,0.5)] tw-bg-[rgba(229,229,229,0.5)] tw-backdrop-blur-lg tw-rounded-lg tw-shadow-lg tw-h-full tw-w-full">
-					<div className="tw-grid lg:tw-grid-cols-3 tw-grid-cols-1 tw-gap-8 tw-p-4 tw-h-full">
+				<div className="dark:tw-bg-[rgba(32,32,32,0.7)] tw-bg-[rgba(232,232,232,0.7)] tw-shadow-neutral-400 dark:tw-shadow-neutral-950 tw-shadow-lg tw-backdrop-blur-lg tw-rounded-lg tw-h-full tw-w-full">
+					<div className="tw-grid sm:tw-grid-cols-3 tw-grid-cols-1 tw-gap-8 tw-p-4 tw-h-full">
 						<div className="tw-col-span-1">
 							<div className="tw-row-auto">
 								<h1 className="tw-text-4xl tw-font-bold tw-mb-4 tw-text-left">
@@ -70,25 +69,26 @@ export default function ProjectCard({project}: {project: Project}) {
 							>
 								<div ref={imageRef}>
 									<Image
-                                        src={project.image}
-                                        alt={project.title}
-                                        width={500}
-                                        height={500}
-                                        objectPosition={
+										src={project.image}
+										alt={project.title}
+										width={500}
+										height={500}
+										objectPosition={
 											project.scroll ? 'top' : 'bottom'
 										}
-                                        sizes="100vw"
-                                        style={{
-                                            width: "100%",
-                                            height: "auto",
-                                            objectFit: "cover"
-                                        }} />
+										sizes="100vw"
+										style={{
+											width: '100%',
+											height: 'auto',
+											objectFit: 'cover',
+										}}
+									/>
 								</div>
 							</motion.div>
 						</div>
 					</div>
 				</div>
-			</a>
+			</Link>
 		</div>
-    );
+	);
 }

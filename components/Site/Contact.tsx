@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect, FunctionComponent} from 'react';
 import emailjs from '@emailjs/browser';
 
-import Image from "next/image";
+import Image from 'next/image';
 import Link from 'next/link';
 
 import gitHubIcon from '/public/icons/logo-github.svg';
@@ -159,189 +159,191 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 		}
 	};
 
-	console.log(dark);
-
 	return (
-        <div className="tw-w-full tw-p-8 tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
-			<div className="dark:tw-bg-[rgba(48,48,48,0.5)] tw-bg-[rgba(229,229,229,0.5)] tw-backdrop-blur-lg tw-p-4 tw-rounded-lg tw-shadow-lg md:tw-col-span-2 tw-grid tw-grid-rows-5">
-				<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
-					Kontaktiere mich!
-				</h1>
-				<div className="md:tw-grid-cols-2 tw-grid tw-row-span-4">
-					<div className=" tw-col-span-1 tw-grid tw-grid-rows-2">
-						<div className="tw-row-span-1">
-							<h1 className="tw-text-4xl tw-font-bold tw-mb-2">
-								Meine Angaben
-							</h1>
-							<h1 className="tw-text-3xl">Pascal Burri</h1>
-							<h1 className="tw-text-3xl">
-								Frontend und Backend Entwickler
-							</h1>
-						</div>
-						<div className="tw-row-span-1 tw-flex tw-flex-col tw-justify-between">
-							<div>
-								<h1 className=" tw-text-4xl tw-font-bold tw-mb-2">
-									Kontaktdaten
-								</h1>
-								<Link
-									href={'mailto:info@pascal-burri.com'}
-									rel="noopener noreferrer"
-									target="_blank"
-								>
-									<h1 className=" tw-text-3xl tw-underline">
-										info@pascal-burri.com
-									</h1>
-								</Link>
-							</div>
-							<div className="tw-flex tw-gap-8">
-								<Link
-									href={
-										'https://www.linkedin.com/in/pascal-burri-72b12329a/'
-									}
-									rel="noopener noreferrer"
-									target="_blank"
-								>
-									<Image
-                                        width={48}
-                                        height={48}
-                                        src={
-											dark
-												? linkedInIcon
-												: linkedInIconDark
-										}
-                                        alt="linkedIn Icon"
-                                        style={{
-                                            maxWidth: "100%",
-                                            height: "auto"
-                                        }} />
-								</Link>
-								<Link
-									href={'https://github.com/pcaaaal'}
-									rel="noopener noreferrer"
-									target="_blank"
-								>
-									<Image
-                                        width={48}
-                                        height={48}
-                                        src={dark ? gitHubIcon : gitHubIconDark}
-                                        alt="GitHub Icon"
-                                        style={{
-                                            maxWidth: "100%",
-                                            height: "auto"
-                                        }} />
-								</Link>
-							</div>
-						</div>
-					</div>
-					<div className="md:tw-col-span-1 md:tw-flex tw-hidden lg:tw-hidden xl:tw-flex tw-relative">
-						<Image
-                            className=""
-                            src={'/illustrations/email.png'}
-                            alt="Envelope"
-                            fill
-                            sizes="100vw"
-                            style={{
-                                objectFit: "contain"
-                            }} />
-					</div>
-				</div>
-			</div>
-
-			<div className="dark:tw-bg-[rgba(48,48,48,0.5)] tw-bg-[rgba(229,229,229,0.5)] tw-backdrop-blur-lg tw-p-4 tw-rounded-lg tw-shadow-lg lg:tw-col-span-1 tw-grid tw-grid-rows-5">
-				<div className="tw-row-span-1">
-					<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-text-left">
-						Formular
+		<div>
+			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center">
+				Kontakt
+			</h1>
+			<div className="tw-w-full tw-p-8 tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
+				<div className=" dark:tw-bg-[rgba(32,32,32,0.7)] tw-bg-[rgba(232,232,232,0.7)] tw-shadow-neutral-400 dark:tw-shadow-neutral-950 tw-shadow-2xl tw-backdrop-blur-lg tw-p-4 tw-rounded-lg md:tw-col-span-2 tw-grid tw-grid-rows-5">
+					<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
+						Kontaktiere mich!
 					</h1>
-				</div>
-				<div className="tw-text-left tw-w-full tw-h-full tw-row-span-4">
-					<form
-						className="tw-flex tw-flex-col tw-gap-2"
-						onSubmit={sendEmail}
-						ref={form}
-					>
-						<label
-							htmlFor="user_name"
-							className="tw-text-lg tw-font-medium"
-						>
-							Dein Name:
-						</label>
-						<input
-							type="text"
-							id="user_name"
-							name="user_name"
-							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-							placeholder={errors.name || 'Max Mustermann'}
-							disabled={
-								loading ||
-								formState === 'success' ||
-								formState === 'userFault'
-							}
-						/>
-
-						<label
-							htmlFor="user_email"
-							className="tw-text-lg tw-font-medium"
-						>
-							Deine E-Mail-Adresse:
-						</label>
-						<input
-							type="text"
-							id="user_email"
-							name="user_email"
-							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-							placeholder={
-								errors.email || 'max-mustermann@mail.com'
-							}
-							disabled={
-								loading ||
-								formState === 'success' ||
-								formState === 'userFault'
-							}
-						/>
-
-						<label
-							htmlFor="message"
-							className="tw-text-lg tw-font-medium"
-						>
-							Deine Nachricht:
-						</label>
-						<textarea
-							id="message"
-							name="message"
-							className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-							placeholder={
-								errors.message ||
-								'Hallo Pascal, ich benötige eine Website für...'
-							}
-							rows={4}
-							disabled={
-								loading ||
-								formState === 'success' ||
-								formState === 'userFault'
-							}
-						></textarea>
-
-						<div className="tw-text-left tw-w-full tw-h-full tw-row-span-1">
-							<div className="tw-px-4 tw-flex tw-flex-col tw-text-center">
-								<button
-									type="submit"
-									className={`tw-text-center tw-text-4xl tw-font-bold ${buttonState} tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${!loading && !(formState === 'success' || formState === 'userFault') ? 'hover:tw-scale-105 active:tw-scale-95' : ''}`}
-									disabled={
-										loading ||
-										formState === 'success' ||
-										formState === 'userFault'
-									}
-								>
-									{buttonText}
-								</button>
-								<span>{message}</span>
+					<div className="md:tw-grid-cols-2 tw-grid tw-row-span-4">
+						<div className=" tw-col-span-1 tw-grid tw-grid-rows-2">
+							<div className="tw-row-span-1">
+								<h1 className="tw-text-4xl tw-font-bold tw-mb-2">
+									Meine Angaben
+								</h1>
+								<h1 className="tw-text-3xl">Pascal Burri</h1>
+								<h1 className="tw-text-3xl">
+									Frontend und Backend Entwickler
+								</h1>
+							</div>
+							<div className="tw-row-span-1 tw-flex tw-flex-col tw-justify-between">
+								<div>
+									<h1 className=" tw-text-4xl tw-font-bold tw-mb-2">
+										Kontaktdaten
+									</h1>
+									<Link
+										href={'mailto:info@pascal-burri.com'}
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										<h1 className=" tw-text-3xl tw-underline">
+											info@pascal-burri.com
+										</h1>
+									</Link>
+								</div>
+								<div className="tw-flex tw-gap-8">
+									<Link
+										href={
+											'https://www.linkedin.com/in/pascal-burri-72b12329a/'
+										}
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										<Image
+											width={48}
+											height={48}
+											src={
+												dark
+													? linkedInIcon
+													: linkedInIconDark
+											}
+											alt="linkedIn Icon"
+											style={{
+												maxWidth: '100%',
+												height: 'auto',
+											}}
+										/>
+									</Link>
+									<Link
+										href={'https://github.com/pcaaaal'}
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										<Image
+											width={48}
+											height={48}
+											src={dark ? gitHubIcon : gitHubIconDark}
+											alt="GitHub Icon"
+											style={{
+												maxWidth: '100%',
+												height: 'auto',
+											}}
+										/>
+									</Link>
+								</div>
 							</div>
 						</div>
-					</form>
+						<div className="md:tw-col-span-1 md:tw-flex tw-hidden lg:tw-hidden xl:tw-flex tw-relative">
+							<Image
+								className=""
+								src={'/illustrations/email.png'}
+								alt="Envelope"
+								fill
+								sizes="100vw"
+								style={{
+									objectFit: 'contain',
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+				<div className="dark:tw-bg-[rgba(32,32,32,0.7)] tw-bg-[rgba(232,232,232,0.7)] tw-shadow-neutral-400 dark:tw-shadow-neutral-950 tw-shadow-2xl tw-backdrop-blur-lg tw-p-4 tw-rounded-lg lg:tw-col-span-1 tw-grid tw-grid-rows-5">
+					<div className="tw-row-span-1">
+						<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-text-left">
+							Formular
+						</h1>
+					</div>
+					<div className="tw-text-left tw-w-full tw-h-full tw-row-span-4">
+						<form
+							className="tw-flex tw-flex-col tw-gap-2"
+							onSubmit={sendEmail}
+							ref={form}
+						>
+							<label
+								htmlFor="user_name"
+								className="tw-text-lg tw-font-medium"
+							>
+								Dein Name:
+							</label>
+							<input
+								type="text"
+								id="user_name"
+								name="user_name"
+								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+								placeholder={errors.name || 'Max Mustermann'}
+								disabled={
+									loading ||
+									formState === 'success' ||
+									formState === 'userFault'
+								}
+							/>
+							<label
+								htmlFor="user_email"
+								className="tw-text-lg tw-font-medium"
+							>
+								Deine E-Mail-Adresse:
+							</label>
+							<input
+								type="text"
+								id="user_email"
+								name="user_email"
+								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+								placeholder={
+									errors.email || 'max-mustermann@mail.com'
+								}
+								disabled={
+									loading ||
+									formState === 'success' ||
+									formState === 'userFault'
+								}
+							/>
+							<label
+								htmlFor="message"
+								className="tw-text-lg tw-font-medium"
+							>
+								Deine Nachricht:
+							</label>
+							<textarea
+								id="message"
+								name="message"
+								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+								placeholder={
+									errors.message ||
+									'Hallo Pascal, ich benötige eine Website für...'
+								}
+								rows={4}
+								disabled={
+									loading ||
+									formState === 'success' ||
+									formState === 'userFault'
+								}
+							></textarea>
+							<div className="tw-text-left tw-w-full tw-h-full tw-row-span-1">
+								<div className="tw-px-4 tw-flex tw-flex-col tw-text-center">
+									<button
+										type="submit"
+										className={`tw-text-center tw-text-4xl tw-font-bold ${buttonState} tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${!loading && !(formState === 'success' || formState === 'userFault') ? 'hover:tw-scale-105 active:tw-scale-95' : ''}`}
+										disabled={
+											loading ||
+											formState === 'success' ||
+											formState === 'userFault'
+										}
+									>
+										{buttonText}
+									</button>
+									<span>{message}</span>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-    );
+	);
 };
 
 export default Contact;
