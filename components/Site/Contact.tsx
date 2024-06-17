@@ -210,7 +210,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 				Kontakt
 			</h1>
 			<div className="tw-w-full tw-p-8 tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
-				<div className=" dark:tw-bg-[rgba(32,32,32,0.7)] tw-bg-[rgba(232,232,232,0.7)] tw-shadow-neutral-400 dark:tw-shadow-neutral-950 tw-shadow-2xl tw-backdrop-blur-lg tw-p-4 tw-rounded-lg md:tw-col-span-2 tw-grid tw-grid-rows-5">
+				<div className="glass-pannel tw-shadow-2xl tw-p-4 tw-rounded-lg md:tw-col-span-2 tw-grid tw-grid-rows-5">
 					<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
 						Kontaktiere mich!
 					</h1>
@@ -300,7 +300,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 						</div>
 					</div>
 				</div>
-				<div className="dark:tw-bg-[rgba(32,32,32,0.7)] tw-bg-[rgba(232,232,232,0.7)] tw-shadow-neutral-400 dark:tw-shadow-neutral-950 tw-shadow-2xl tw-backdrop-blur-lg tw-p-4 tw-rounded-lg lg:tw-col-span-1 tw-grid tw-grid-rows-5">
+				<div className="glass-pannel tw-shadow-2xl tw-p-4 tw-rounded-lg lg:tw-col-span-1 tw-grid tw-grid-rows-5">
 					<div className="tw-row-span-1">
 						<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-text-left">
 							Formular

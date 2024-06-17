@@ -10,7 +10,7 @@ export default function About() {
 				Über mich
 			</h1>
 			<div className="tw-w-full tw-p-8 tw-z-20 lg:tw-grid xl:tw-gap-8">
-				<div className="tw-backdrop-blur-lg tw-rounded-lg tw-shadow-2xl dark:tw-bg-[rgba(32,32,32,0.7)] tw-bg-[rgba(232,232,232,0.7)] tw-shadow-neutral-400 dark:tw-shadow-neutral-950 2xl:tw-col-span-3">
+				<div className="glass-pannel tw-shadow-2xl 2xl:tw-col-span-3">
 					<div className="tw-grid md:tw-grid-cols-3 tw-grid-cols-1 md:tw-gap-8 tw-p-4">
 						<div className="lg:tw-col-span-1 md:tw-col-span-2 tw-flex tw-justify-center tw-w-full tw-h-full">
 							<Image
@@ -18,7 +18,7 @@ export default function About() {
 								alt="Picture of Pascal Burri"
 								width={500}
 								height={500}
-								className="tw-rounded-lg tw-shadow-lg"
+								className="tw-rounded-lg"
 								sizes="100vw"
 								style={{
 									width: '100%',

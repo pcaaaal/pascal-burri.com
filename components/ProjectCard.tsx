@@ -33,7 +33,7 @@ export default function ProjectCard({project}: {project: Project}) {
 
 	return (
 		<div className="tw-p-8 tw-z-20 md:tw-h-[600px] tw-w-full project-card">
-			<div className="dark:tw-bg-[rgba(32,32,32,0.7)] tw-bg-[rgba(232,232,232,0.7)] tw-shadow-neutral-400 dark:tw-shadow-neutral-950 tw-shadow-lg tw-backdrop-blur-lg tw-rounded-lg tw-h-full tw-w-full">
+			<div className="glass-pannel tw-shadow-lg tw-h-full tw-w-full">
 				<div className="tw-grid sm:tw-grid-cols-3 tw-grid-cols-1 tw-gap-8 tw-p-4 tw-h-full">
 					<div className="tw-col-span-1">
 						<div className="tw-row-auto">

@@ -57,3 +57,7 @@ body {
 	backface-visibility: hidden;
 }
 
+.glass-pannel {
+	@apply tw-border-t-2 tw-border-l-2 tw-border-opacity-10 dark:tw-border-opacity-10 dark:tw-border-neutral-300 tw-border-neutral-400 tw-backdrop-blur-lg tw-rounded-lg dark:tw-bg-[rgba(32,32,32,0.7)] tw-bg-[rgba(232,232,232,0.7)] tw-shadow-neutral-400 dark:tw-shadow-neutral-950;
+}
+
