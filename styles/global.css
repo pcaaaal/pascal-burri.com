@@ -61,3 +61,6 @@ body {
 	@apply tw-border-t-2 tw-border-l-2 tw-border-opacity-10 dark:tw-border-opacity-10 dark:tw-border-neutral-300 tw-border-neutral-400 tw-backdrop-blur-lg tw-rounded-lg dark:tw-bg-[rgba(32,32,32,0.7)] tw-bg-[rgba(232,232,232,0.7)] tw-shadow-neutral-400 dark:tw-shadow-neutral-950;
 }
 
+.pannel-size {
+	@apply tw-w-full tw-py-8 tw-px-8 md:tw-px-10 lg:tw-px-16 xl:tw-px-24 2xl:tw-px-32 tw-max-w-[1600px];
+}

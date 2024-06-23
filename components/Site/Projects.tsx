@@ -17,8 +17,20 @@ export default function Projects() {
 	));
 
 	useEffect(() => {
-		setScreenSize(window ? window.innerWidth : 0);
-	}, []);
+		// Function to update screenSize state
+		const handleResize = () => {
+			setScreenSize(window.innerWidth);
+		};
+
+		// Set initial size
+		handleResize();
+
+		// Add event listener for window resize
+		window.addEventListener('resize', handleResize);
+
+		// Clean up function to remove event listener
+		return () => window.removeEventListener('resize', handleResize);
+	}, []); // Empty dependency array ensures this runs once on mount
 
 	const ButtonGroup = ({
 		next,
@@ -85,58 +97,60 @@ export default function Projects() {
 					Projekte
 				</h1>
 			</div>
-			<Carousel
-				additionalTransfrom={0}
-				arrows={false}
-				customButtonGroup={<ButtonGroup />}
-				renderButtonGroupOutside
-				autoPlaySpeed={3000}
-				// autoPlay
-				infinite
-				centerMode={screenSize > 1900}
-				partialVisible={screenSize <= 1900}
-				itemClass=""
-				keyBoardControl
-				minimumTouchDrag={80}
-				renderArrowsWhenDisabled={false}
-				renderDotsOutside={false}
-				responsive={{
-					big: {
-						breakpoint: {
-							max: 3000,
-							min: 2048,
+			<div className="">
+				<Carousel
+					additionalTransfrom={0}
+					arrows={false}
+					customButtonGroup={<ButtonGroup />}
+					renderButtonGroupOutside
+					autoPlaySpeed={3000}
+					// autoPlay
+					infinite
+					centerMode={screenSize > 1900}
+					partialVisible={screenSize <= 1900}
+					itemClass=""
+					keyBoardControl
+					minimumTouchDrag={80}
+					renderArrowsWhenDisabled={false}
+					renderDotsOutside={false}
+					responsive={{
+						big: {
+							breakpoint: {
+								max: 3000,
+								min: 2048,
+							},
+							items: 1,
 						},
-						items: 1,
-					},
-					desktop: {
-						breakpoint: {
-							max: 2048,
-							min: 1444,
+						desktop: {
+							breakpoint: {
+								max: 2048,
+								min: 1444,
+							},
+							items: 1,
+							partialVisibilityGutter: 400,
 						},
-						items: 1,
-						partialVisibilityGutter: 400,
-					},
-					laptop: {
-						breakpoint: {
-							max: 1444,
-							min: 767,
+						laptop: {
+							breakpoint: {
+								max: 1444,
+								min: 767,
+							},
+							items: 1,
+							partialVisibilityGutter: 0,
 						},
-						items: 1,
-						partialVisibilityGutter: 0,
-					},
-				}}
-				rewind={false}
-				rewindWithAnimation={false}
-				rtl={false}
-				shouldResetAutoplay
-				showDots={false}
-				sliderClass=""
-				slidesToSlide={1}
-				swipeable
-				className=""
-			>
-				{cards}
-			</Carousel>
+					}}
+					rewind={false}
+					rewindWithAnimation={false}
+					rtl={false}
+					shouldResetAutoplay
+					showDots={false}
+					sliderClass=""
+					slidesToSlide={1}
+					swipeable
+					className=""
+				>
+					{cards}
+				</Carousel>
+			</div>
 			<div className="tw-flex tw-flex-col tw-items-center tw-justify-center md:tw-hidden">
 				{cards}
 			</div>

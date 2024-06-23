@@ -9,7 +9,7 @@ export default function About() {
 			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center">
 				Über mich
 			</h1>
-			<div className="tw-w-full tw-p-8 tw-z-20 lg:tw-grid xl:tw-gap-8">
+			<div className="pannel-size tw-z-20 lg:tw-grid xl:tw-gap-8">
 				<div className="glass-pannel tw-shadow-2xl 2xl:tw-col-span-3">
 					<div className="tw-grid md:tw-grid-cols-3 tw-grid-cols-1 md:tw-gap-8 tw-p-4">
 						<div className="lg:tw-col-span-1 md:tw-col-span-2 tw-flex tw-justify-center tw-w-full tw-h-full">

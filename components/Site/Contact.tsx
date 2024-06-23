@@ -15,6 +15,7 @@ import linkedInIconDark from '/public/icons/logo-linkedin-dark.svg';
 interface DarkProps {
 	dark: boolean;
 }
+
 const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 	const form = useRef<HTMLFormElement>(null);
 
@@ -38,45 +39,40 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 
 	const isTurnedOn = false;
 
-	const handleEmailTries = {
-		get: () => {
-			// Try to get tries count from Local Storage
-			if (typeof window !== 'undefined') {
-				const triesFromLocalStorage =
-					localStorage.getItem('emailTries');
-				if (triesFromLocalStorage) {
-					return parseInt(triesFromLocalStorage, 10);
-				}
-			}
+	const handleEmailTries = (() => {
+		// Define a base object to hold the methods
+		const base = {
+			get: () => 0, // Default get method returns 0
+			add: () => {}, // Default add method does nothing
+		};
 
-			// Fallback to cookies if Local Storage is not available or empty
-			const triesFromCookies = Cookies.get('emailTries');
-			if (triesFromCookies) {
-				return parseInt(triesFromCookies, 10);
-			} else {
-				// If not found in both, set initial value in both storage options
-				Cookies.set('emailTries', '0');
-				if (typeof window !== 'undefined') {
-					localStorage.setItem('emailTries', '0');
-				}
-				return 0;
-			}
-		},
-		add: () => {
-			const currentTries = handleEmailTries.get();
-			const newTries = String(currentTries + 1);
+		// Check if running in a browser environment
+		if (typeof window !== 'undefined') {
+			return {
+				get: () => {
+					const triesFromLocalStorage =
+						localStorage.getItem('emailTries');
+					return (
+						triesFromLocalStorage
+							? parseInt(triesFromLocalStorage, 10)
+							: localStorage.setItem('emailTries', '0'),
+						0
+					);
+				},
+				add: () => {
+					const currentTries = base.get(); // Use base.get() to access the current implementation of get
+					const newTries = currentTries + 1;
+					localStorage.setItem('emailTries', newTries.toString());
+					return newTries;
+				},
+			};
+		}
 
-			// Update both Local Storage and cookies
-			Cookies.set('emailTries', newTries);
-			if (typeof window !== 'undefined') {
-				localStorage.setItem('emailTries', newTries);
-			}
-		},
-	};
+		return base; // Return the base object if not in a browser environment
+	})();
 
-	console.log(handleEmailTries.get());
-
-	const emailTries = 0;
+	console.log('emailtries get', handleEmailTries.get());
+	console.log('email tries add', handleEmailTries.add());
 
 	const emptyErrorMessage = 'Feld darf nicht leer sein.';
 	const emailErrorMessage = 'E-Mail Addresse ist nicht gültig.';
@@ -147,7 +143,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 			setFormState('loading');
 			setLoading(true);
 
-			if (emailTries < 3) {
+			if (handleEmailTries.get() < 3) {
 				if (isTurnedOn) {
 					if (form.current) {
 						emailjs
@@ -209,7 +205,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center">
 				Kontakt
 			</h1>
-			<div className="tw-w-full tw-p-8 tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
+			<div className="pannel-size tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
 				<div className="glass-pannel tw-shadow-2xl tw-p-4 tw-rounded-lg md:tw-col-span-2 tw-grid tw-grid-rows-5">
 					<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
 						Kontaktiere mich!
