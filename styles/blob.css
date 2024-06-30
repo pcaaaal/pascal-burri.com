@@ -7,6 +7,33 @@
 	);
 }
 
+.blob-blue {
+	background-image: linear-gradient(
+		178deg,
+		#02007b 25%,
+		#1df1f5 54%,
+		#6248ff 78%
+	);
+}
+
+.blob-purple {
+	background-image: linear-gradient(
+		44deg,
+		#00ffc3 25%,
+		#b96eff 54%,
+		#8000ff 78%
+	);
+}
+
+.blob-red {
+	background-image: linear-gradient(
+		308deg,
+		#e00101 25%,
+		#ff4848 54%,
+		#de0bb0 78%
+	);
+}
+
 .background {
 	background-image: url('/noise.png');
 }

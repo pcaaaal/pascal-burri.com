@@ -67,16 +67,12 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 					left: x.to((x) => `${x}px`),
 				}}
 			></animated.div>
-			<animated.div
-				className="blob tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl"
-				style={{
-					top: y.to((MdY) => `${y}px`),
-					left:
-						typeof window !== 'undefined'
-							? window.innerWidth / 2 - 150
-							: 0,
-				}}
-			></animated.div>
+			<div className="blob tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-0 tw-left-0"></div>
+			<div className="blob-blue tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[1300px] tw-right-0"></div>
+			<div className="blob-purple tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[2500px] tw-left-0"></div>
+			<div className="blob-blue tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[3300px] tw-right-0"></div>
+			<div className="blob-red tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[4100px] tw-left-00"></div>
+			<div className="blob-purple tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[5000px] tw-right-0"></div>
 			{children}
 		</div>
 	);
