@@ -133,6 +133,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 		if (handleValidation()) {
 			setFormState('loading');
 			setLoading(true);
+			setMessage('Deine Nachricht wird gesendet...');
 
 			if (emailTries.get() < 3) {
 				if (isTurnedOn) {
@@ -162,11 +163,13 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 								},
 							);
 					}
-				} else setFormState('userFault');
-				setLoading(false);
-				setMessage(
-					'Dieses Formular ist aktuell nicht verfügbar. Bitte kontaktiere mich über meine angegebene E-Mail Addresse.',
-				);
+				} else {
+					setFormState('userFault');
+					setMessage(
+						'Dieses Formular ist aktuell nicht verfügbar. Bitte kontaktiere mich über meine angegebene E-Mail Addresse.',
+					);
+					setLoading(false);
+				}
 			} else {
 				setFormState('userFault');
 				setMessage(
