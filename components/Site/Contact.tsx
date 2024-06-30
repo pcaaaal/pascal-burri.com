@@ -1,8 +1,6 @@
 import React, {useRef, useState, useEffect, FunctionComponent} from 'react';
 import emailjs from '@emailjs/browser';
 
-import Cookies from 'js-cookie';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -34,45 +32,38 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 	);
 	const [buttonText, setButtonText] = useState('Senden');
 	const [message, setMessage] = useState(
-		'Alle deine Daten sind nur für mich um dich zu kontaktieren.',
+		'Deine Daten werden nur für die Kontaktaufnahme verwendet.',
 	);
 
-	const isTurnedOn = false;
+	const isTurnedOn = true;
 
-	const handleEmailTries = (() => {
-		// Define a base object to hold the methods
-		const base = {
-			get: () => 0, // Default get method returns 0
-			add: () => {}, // Default add method does nothing
-		};
+	const handleEmailTries = () => {
+		let tries = 0;
 
-		// Check if running in a browser environment
+		// Check if window is defined
 		if (typeof window !== 'undefined') {
-			return {
-				get: () => {
-					const triesFromLocalStorage =
-						localStorage.getItem('emailTries');
-					return (
-						triesFromLocalStorage
-							? parseInt(triesFromLocalStorage, 10)
-							: localStorage.setItem('emailTries', '0'),
-						0
-					);
-				},
-				add: () => {
-					const currentTries = base.get(); // Use base.get() to access the current implementation of get
-					const newTries = currentTries + 1;
-					localStorage.setItem('emailTries', newTries.toString());
-					return newTries;
-				},
-			};
+			tries = parseInt(
+				window.localStorage.getItem('emailTries') || '0',
+				10,
+			);
+			if (tries < 0) {
+				tries = 0;
+				window.localStorage.setItem('emailTries', tries.toString());
+			}
 		}
 
-		return base; // Return the base object if not in a browser environment
-	})();
+		return {
+			get: () => (typeof window !== 'undefined' ? tries : 0),
+			add: () => {
+				if (typeof window !== 'undefined') {
+					tries += 1;
+					window.localStorage.setItem('emailTries', tries.toString());
+				}
+			},
+		};
+	};
 
-	console.log('emailtries get', handleEmailTries.get());
-	console.log('email tries add', handleEmailTries.add());
+	const emailTries = handleEmailTries();
 
 	const emptyErrorMessage = 'Feld darf nicht leer sein.';
 	const emailErrorMessage = 'E-Mail Addresse ist nicht gültig.';
@@ -143,7 +134,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 			setFormState('loading');
 			setLoading(true);
 
-			if (handleEmailTries.get() < 3) {
+			if (emailTries.get() < 3) {
 				if (isTurnedOn) {
 					if (form.current) {
 						emailjs
@@ -151,15 +142,11 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 								'service_vi6jk3q',
 								'template_5uc28rk',
 								form.current,
-								'LpydiekDkIkldJ7eB',
+								'khkfAe68qv-R8MBhU',
 							)
 							.then(
 								() => {
-									handleEmailTries.add();
-									console.log(
-										'email tries',
-										handleEmailTries.get(),
-									);
+									emailTries.add();
 									setFormState('success');
 									setMessage(
 										'Vielen Dank für deine Nachricht. Ich melde mich so schnell wie möglich!',
@@ -201,13 +188,13 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 	};
 
 	return (
-		<div>
+		<div className="tw-w-full tw-flex tw-flex-col tw-items-center">
 			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center">
 				Kontakt
 			</h1>
-			<div className="pannel-size tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
-				<div className="glass-pannel tw-shadow-2xl tw-p-4 tw-rounded-lg md:tw-col-span-2 tw-grid tw-grid-rows-5">
-					<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
+			<div className="pannel-size tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8 tw-justify-center">
+				<div className="glass-pannel tw-shadow-2xl tw-p-4 tw-rounded-lg lg:tw-col-span-2 tw-grid tw-grid-rows-5">
+					<h1 className="xl:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
 						Kontaktiere mich!
 					</h1>
 					<div className="md:tw-grid-cols-2 tw-grid tw-row-span-4">
@@ -236,7 +223,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 										</h1>
 									</Link>
 								</div>
-								<div className="tw-flex tw-gap-8">
+								<div className="tw-flex tw-gap-8 tw-pt-4">
 									<Link
 										href={
 											'https://www.linkedin.com/in/pascal-burri-72b12329a/'
@@ -296,9 +283,9 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 						</div>
 					</div>
 				</div>
-				<div className="glass-pannel tw-shadow-2xl tw-p-4 tw-rounded-lg lg:tw-col-span-1 tw-grid tw-grid-rows-5">
+				<div className="glass-pannel tw-shadow-2xl tw-p-4 tw-rounded-lg lg:tw-col-span-1 tw-self-center tw-grid tw-grid-rows-5">
 					<div className="tw-row-span-1">
-						<h1 className="md:tw-text-6xl tw-text-5xl tw-font-bold tw-text-left">
+						<h1 className="xl:tw-text-6xl tw-text-5xl tw-font-bold tw-text-left">
 							Formular
 						</h1>
 					</div>

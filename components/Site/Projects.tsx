@@ -103,8 +103,8 @@ export default function Projects() {
 					arrows={false}
 					customButtonGroup={<ButtonGroup />}
 					renderButtonGroupOutside
-					autoPlaySpeed={3000}
-					// autoPlay
+					autoPlaySpeed={2000}
+					autoPlay
 					infinite
 					centerMode={screenSize > 1900}
 					partialVisible={screenSize <= 1900}

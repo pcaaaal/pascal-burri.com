@@ -5,13 +5,14 @@ import '@/styles/contact.css';
 import type {AppProps} from 'next/app';
 import {useEffect, useState} from 'react';
 import Header from '../components/Site/Header';
-import Modal from '../components/modal';
 import Background from '../components/Background/Background';
-
 export default function App({Component, pageProps}: AppProps) {
 	const [dark, setDark] = useState(true);
 
 	useEffect(() => {
+		if (window.localStorage.getItem('theme') === null) {
+			window.localStorage.setItem('theme', 'dark');
+		}
 		window.localStorage.getItem('theme') === 'dark'
 			? setDark(true)
 			: setDark(false);
@@ -25,7 +26,7 @@ export default function App({Component, pageProps}: AppProps) {
 				<Background>
 					<Header setDark={setDark} dark={dark} />
 					<div className=" tw-justify-center tw-items-center">
-						<Modal />
+						{/* <Modal /> */}
 					</div>
 					<div className="tw-z-20">
 						<Component {...pageProps} dark={dark} />
