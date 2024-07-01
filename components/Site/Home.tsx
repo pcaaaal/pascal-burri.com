@@ -23,7 +23,7 @@ const Home: FunctionComponent = () => {
 
 	return (
 		<div className="tw-h-[100vh] tw-grid tw-text-center" id="home">
-			<div className="tw-align-center tw-justify-center tw-self-end">
+			<div className="tw-align-center tw-justify-center tw-self-end tw-z-10">
 				<h1 className="md:tw-text-9xl tw-text-8xl tw-font-bold">
 					Pascal Burri
 				</h1>

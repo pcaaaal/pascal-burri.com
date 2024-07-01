@@ -1,6 +1,6 @@
 const Footer = () => {
 	return (
-		<footer className="tw-p-6 tw-text-center tw-sm:p-12 ">
+		<footer className="tw-p-6 tw-text-center tw-sm:p-12 tw-z-10 tw-relative">
 			Website made by{' '}
 			<a
 				href="https://pascal-burri.com/"

@@ -1,7 +1,7 @@
 import {title} from 'process';
 
 const data = {
-	bio: `Ich bin ein Softwareentwickler aus der Schweiz, mit schon mehreren Jahren Erfahrung in der Webentwicklung. Ich habe ein breites Wissen in verschiedenen Technologien und bin immer bereit, Neues zu lernen. Ich bin aktuell im ${new Date().getFullYear() - 2023 + (new Date().getMonth() >= 7 ? 1 : 0)}. Lernjahr als Informatiker EFZ Fachrichtung Applikationsentwicklung.`,
+	bio: `Hallo, ich bin ein Softwareentwickler aus der Schweiz mit einigen Jahren Erfahrung in der Webentwicklung. Ich habe ein breites Wissen in verschiedenen Technologien und bin immer bereit, neue Dinge zu lernen. Momentan bin ich im ${new Date().getFullYear() - 2023 + (new Date().getMonth() >= 7 ? 1 : 0)}. Lehrjahr als Informatiker Applikationsentwicklung.`,
 
 	skills: [
 		'HTML5',
@@ -43,9 +43,11 @@ const data = {
 			image: '/illustrations/your-website.png',
 			link: '',
 			languages: [
-				'Alle Sprachen',
-				'Alle Frameworks',
-				'Alle Technologien',
+				'React',
+				'NextJS',
+				'Tailwind CSS',
+				'Node.js',
+				'Deine Sprache',
 			],
 			tags: ['Dein Projekt', 'Deine Idee', 'Dein Erfolg'],
 			scroll: true,

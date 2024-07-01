@@ -91,12 +91,10 @@ export default function Projects() {
 	};
 
 	return (
-		<div>
-			<div className="tw-w-full">
-				<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center">
-					Projekte
-				</h1>
-			</div>
+		<div className="tw-flex tw-flex-col">
+			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center tw-z-10">
+				Projekte
+			</h1>
 			<div className="">
 				<Carousel
 					additionalTransfrom={0}

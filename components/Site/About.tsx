@@ -6,7 +6,7 @@ import {ChangeEvent, useState} from 'react';
 export default function About() {
 	return (
 		<div className='tw-w-full tw-flex tw-flex-col tw-items-center'>
-			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center">
+			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center tw-z-10">
 				Über mich
 			</h1>
 			<div className="pannel-size tw-z-20 lg:tw-grid xl:tw-gap-8">

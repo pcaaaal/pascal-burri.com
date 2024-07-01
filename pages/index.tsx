@@ -19,16 +19,21 @@ type darkProps = {
 const Site: FunctionComponent<darkProps> = ({dark}) => {
 	return (
 		<div className="tw-relative">
+			<div className="blob tw-flex tw-absolute tw-h-[340px] tw-aspect-square tw-z-0 tw-rounded-full lg:tw-hidden tw-blur-3xl tw-top-0 tw-left-0"></div>
 			<Home />
 			<div className="" id="about">
+				<div className="blob tw-flex tw-absolute tw-h-[340px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-right-3"></div>
 				<About />
 			</div>
 			<div className="" id="projects">
+				<div className="blob tw-flex tw-absolute tw-h-[200px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-left-1"></div>
 				<Projects />
 			</div>
 			<div className="" id="contact">
+				<div className="blob tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-left-9"></div>
 				<Contact dark={dark} />
 			</div>
+			<div className="blob tw-flex tw-absolute tw-h-[250px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-right-0"></div>
 			<Footer />
 		</div>
 	);

@@ -17,7 +17,7 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 	}));
 
 	useEffect(() => {
-		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+		const isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
 
 		if (!isMobile) {
 			const handleMouseMove = (e: MouseEvent) => {
@@ -43,7 +43,7 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 	}, [lastScrollY, lastY, set]);
 
 	useEffect(() => {
-		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+		const isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
 
 		if (isMobile) {
 			const handleTouchScroll = () => {
@@ -61,18 +61,12 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 	return (
 		<div className="tw-w-full tw-h-full tw-transition tw-duration-100 dark:tw-bg-neutral-900 tw-bg-neutral-100 tw-overflow-hidden tw-overflow-x-hidden tw-overflow-y-hidden background">
 			<animated.div
-				className="tw-hidden blob tw-h-[300px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full md:tw-flex tw-blur-3xl"
+				className="tw-hidden blob tw-h-[300px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full lg:tw-flex tw-blur-3xl"
 				style={{
 					top: y.to((y) => `${y}px`),
 					left: x.to((x) => `${x}px`),
 				}}
 			></animated.div>
-			<div className="blob tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-0 tw-left-0"></div>
-			<div className="blob-blue tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[1300px] tw-right-0"></div>
-			<div className="blob-purple tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[2500px] tw-left-0"></div>
-			<div className="blob-blue tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[3300px] tw-right-0"></div>
-			<div className="blob-red tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[4100px] tw-left-00"></div>
-			<div className="blob-purple tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-top-[5000px] tw-right-0"></div>
 			{children}
 		</div>
 	);
