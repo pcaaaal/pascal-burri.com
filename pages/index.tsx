@@ -19,7 +19,6 @@ type darkProps = {
 const Site: FunctionComponent<darkProps> = ({dark}) => {
 	return (
 		<div className="tw-relative">
-			<div className="blob tw-flex tw-absolute tw-h-[340px] tw-aspect-square tw-z-0 tw-rounded-full lg:tw-hidden tw-blur-3xl tw-top-0 tw-left-0"></div>
 			<Home />
 			<div className="" id="about">
 				<div className="blob tw-flex tw-absolute tw-h-[340px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-right-3"></div>

@@ -1,43 +1,37 @@
 import ProjectCard from '../ProjectCard';
 import data from '../../data';
 import {useRouter} from 'next/navigation';
-import Carousel, {ArrowProps, ButtonGroupProps} from 'react-multi-carousel';
+import Carousel, {ButtonGroupProps} from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import {Button} from '@react-email/components';
-import {on} from 'events';
-import {use, useEffect, useState} from 'react';
+import {useEffect, useLayoutEffect, useState} from 'react';
 
 export default function Projects() {
 	const router = useRouter();
-	const [screenSize, setScreenSize] = useState(0);
+	const [screenSize, setScreenSize] = useState<number>(0);
 
-	// Create an array of cards
+	const updateScreenSize = () => {
+		setScreenSize(window.innerWidth);
+	};
+
+	useLayoutEffect(() => {
+		updateScreenSize();
+
+		const handleResize = () => {
+			updateScreenSize();
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
+
 	const cards = data.projects.map((project) => (
 		<ProjectCard key={project.title} project={project} />
 	));
 
-	useEffect(() => {
-		// Function to update screenSize state
-		const handleResize = () => {
-			setScreenSize(window.innerWidth);
-		};
-
-		// Set initial size
-		handleResize();
-
-		// Add event listener for window resize
-		window.addEventListener('resize', handleResize);
-
-		// Clean up function to remove event listener
-		return () => window.removeEventListener('resize', handleResize);
-	}, []); // Empty dependency array ensures this runs once on mount
-
-	const ButtonGroup = ({
-		next,
-		previous,
-		goToSlide,
-		...rest
-	}: ButtonGroupProps) => {
+	const ButtonGroup = ({next, previous}: ButtonGroupProps) => {
 		return (
 			<div className="carousel-button-group tw-flex tw-gap-8 tw-justify-center">
 				<button
@@ -60,12 +54,6 @@ export default function Projects() {
 						/>
 					</svg>
 				</button>
-				{/* <button
-					className="tw-text-center tw-text-4xl tw-font-bold dark:tw-bg-neutral-100 tw-bg-neutral-900 tw-px-4 tw-py-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-black tw-text-white tw-my-4 tw-transition tw-duration-200 hover:tw-scale-105 active:tw-scale-95"
-					onClick={() => router.push('/projects')}
-				>
-					Alle Projekte
-				</button> */}
 				<button
 					className="hover:tw-cursor-pointer tw-transition tw-duration-100 hover:tw-scale-110 active:tw-scale-95"
 					onClick={next}
@@ -90,64 +78,63 @@ export default function Projects() {
 		);
 	};
 
+	const carouselSettings = {
+		additionalTransfrom: 0,
+		arrows: false,
+		customButtonGroup: <ButtonGroup />,
+		renderButtonGroupOutside: true,
+		autoPlaySpeed: 2000,
+		autoPlay: true,
+		infinite: true,
+		centerMode: screenSize > 1900,
+		partialVisible: screenSize <= 1900,
+		itemClass: '',
+		keyBoardControl: true,
+		minimumTouchDrag: 80,
+		renderArrowsWhenDisabled: false,
+		renderDotsOutside: false,
+		responsive: {
+			big: {
+				breakpoint: {
+					max: 3000,
+					min: 2048,
+				},
+				items: 1,
+			},
+			desktop: {
+				breakpoint: {
+					max: 2048,
+					min: 1444,
+				},
+				items: 1,
+				partialVisibilityGutter: 400,
+			},
+			laptop: {
+				breakpoint: {
+					max: 1444,
+					min: 767,
+				},
+				items: 1,
+				partialVisibilityGutter: 0,
+			},
+		},
+		rewind: false,
+		rewindWithAnimation: false,
+		rtl: false,
+		shouldResetAutoplay: true,
+		showDots: false,
+		sliderClass: '',
+		slidesToSlide: 1,
+		swipeable: true,
+	};
+
 	return (
 		<div className="tw-flex tw-flex-col">
 			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center tw-z-10">
 				Projekte
 			</h1>
-			<div className="">
-				<Carousel
-					additionalTransfrom={0}
-					arrows={false}
-					customButtonGroup={<ButtonGroup />}
-					renderButtonGroupOutside
-					autoPlaySpeed={2000}
-					autoPlay
-					infinite
-					centerMode={screenSize > 1900}
-					partialVisible={screenSize <= 1900}
-					itemClass=""
-					keyBoardControl
-					minimumTouchDrag={80}
-					renderArrowsWhenDisabled={false}
-					renderDotsOutside={false}
-					responsive={{
-						big: {
-							breakpoint: {
-								max: 3000,
-								min: 2048,
-							},
-							items: 1,
-						},
-						desktop: {
-							breakpoint: {
-								max: 2048,
-								min: 1444,
-							},
-							items: 1,
-							partialVisibilityGutter: 400,
-						},
-						laptop: {
-							breakpoint: {
-								max: 1444,
-								min: 767,
-							},
-							items: 1,
-							partialVisibilityGutter: 0,
-						},
-					}}
-					rewind={false}
-					rewindWithAnimation={false}
-					rtl={false}
-					shouldResetAutoplay
-					showDots={false}
-					sliderClass=""
-					slidesToSlide={1}
-					swipeable
-					className=""
-				>
-					{cards}
-				</Carousel>
+			<div className="tw-hidden md:tw-flex md:tw-flex-col">
+				<Carousel {...carouselSettings}>{cards}</Carousel>
 			</div>
 			<div className="tw-flex tw-flex-col tw-items-center tw-justify-center md:tw-hidden">
 				{cards}
