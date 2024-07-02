@@ -10,7 +10,7 @@ import {animated, useSpring} from 'react-spring';
 const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 	const [lastY, setLastY] = useState(0);
 	const [lastScrollY, setLastScrollY] = useState(0);
-	const [isMobile, setIsMobile] = useState(false);
+	const [isTouchDevice, setIsTouchDevice] = useState(false);
 
 	const [{x, y}, set] = useSpring(() => ({
 		x: 0,
@@ -18,17 +18,24 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 		config: {tension: 200, friction: 100},
 	}));
 
-	// Detect mobile devices
+	// Detect touch devices
 	useLayoutEffect(() => {
-		const checkMobile = /iPhone|iPad|iPod|Android/i.test(
-			navigator.userAgent,
-		);
-		setIsMobile(checkMobile);
+		const checkTouchDevice = () => {
+			setIsTouchDevice(window.matchMedia('(pointer: coarse)').matches);
+		};
+
+		checkTouchDevice();
+
+		// Add resize event listener
+		window.addEventListener('resize', checkTouchDevice);
+
+		// Clean up resize event listener
+		return () => window.removeEventListener('resize', checkTouchDevice);
 	}, []);
 
-	// Handle mouse movement and scroll for non-mobile devices
+	// Handle mouse movement and scroll for non-touch devices
 	useEffect(() => {
-		if (!isMobile) {
+		if (!isTouchDevice) {
 			const handleMouseMove = (e: MouseEvent) => {
 				setLastY(e.pageY - 150);
 				set({x: e.pageX - 150, y: e.pageY - 150});
@@ -59,11 +66,11 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 				window.removeEventListener('scroll', handleTouchScroll);
 			};
 		}
-	}, [isMobile, lastScrollY, lastY, set]);
+	}, [isTouchDevice, lastScrollY, lastY, set]);
 
 	return (
 		<div className="tw-w-full tw-h-full tw-transition tw-duration-100 dark:tw-bg-neutral-900 tw-bg-neutral-100 tw-overflow-hidden tw-overflow-x-hidden tw-overflow-y-hidden background">
-			{!isMobile && (
+			{!isTouchDevice && (
 				<animated.div
 					className="tw-hidden blob tw-h-[300px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full lg:tw-flex tw-blur-3xl"
 					style={{
@@ -72,7 +79,7 @@ const Background: FunctionComponent<PropsWithChildren> = ({children}) => {
 					}}
 				></animated.div>
 			)}
-			{isMobile && (
+			{isTouchDevice && (
 				<div className="blob tw-h-[300px] tw-aspect-square tw-absolute tw-z-0 tw-rounded-full lg:tw-flex tw-blur-3xl"></div>
 			)}
 			{children}
