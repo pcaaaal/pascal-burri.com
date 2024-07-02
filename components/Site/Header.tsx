@@ -14,6 +14,7 @@ import menuLightIcon from '/public/icons/menu-light.svg';
 import moonIcon from '/public/icons/moon.svg';
 import sunIcon from '/public/icons/sun.svg';
 import {animated} from 'react-spring';
+import {link} from 'fs';
 
 interface HeaderProps {
 	setDark: Dispatch<SetStateAction<boolean>>;
@@ -153,7 +154,12 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 		return scrollDirection;
 	}
 
-	const menuItems = ['Home', 'Über', 'Projekte', 'Kontakt'];
+	const menuItems = [
+		{name: 'Home', link: 'home'},
+		{name: 'Über', link: 'about'},
+		{name: 'Projekte', link: 'projects'},
+		{name: 'Kontakt', link: 'contact'},
+	];
 
 	return (
 		<div>
@@ -167,13 +173,13 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				>
 					{menuItems.map((item, index) => (
 						<Link
-							key={item}
-							href={`/#${item.toLowerCase()}`}
+							key={item.link}
+							href={`/#${item.link}`}
 							onClick={menu ? () => setShowMenu(false) : () => {}}
 							className={`tw-rounded-[20px] tw-py-2 tw-px-3 md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click`}
 						>
 							<p className={`glitch-word md:tw-text-2xl`}>
-								{item.split('').map((char, i) => (
+								{item.name.split('').map((char, i) => (
 									<span key={i}>{char}</span>
 								))}
 							</p>
