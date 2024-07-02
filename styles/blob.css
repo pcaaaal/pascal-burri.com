@@ -5,6 +5,7 @@
 		#ff4848 54%,
 		#6248ff 78%
 	);
+	will-change: filter;
 }
 
 .blob-blue {
