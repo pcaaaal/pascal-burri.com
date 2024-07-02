@@ -57,7 +57,8 @@ const Home: FunctionComponent = () => {
 							strokeLinecap="round"
 							strokeLinejoin="round"
 							strokeWidth={2}
-							d="M2 16 H22"
+							d="M2 10 L12 16 22 10"
+							//d="M2 16 H22" This is normal line
 						/>
 					</svg>
 				}
