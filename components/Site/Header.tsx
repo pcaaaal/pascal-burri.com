@@ -244,7 +244,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				}
 				onClick={scrollTop}
 			>
-				<div className="tw-p-2 tw-rounded-full dark:tw-bg-neutral-800 tw-bg-neutral-200 hover:tw-bg-neutral-300 tw-shadow-lg hover:dark:tw-bg-neutral-600 hover:tw-cursor-pointer">
+				<div className="tw-p-2 tw-rounded-full tw-backdrop-blur-xl tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] hover:tw-bg-[rgba(50,50,50,0.1)] dark:hover:tw-bg-[hsla(0,0%,78%,0)]  hover:tw-cursor-pointer">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						className="tw-h-8 tw-w-8"
