@@ -196,14 +196,11 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 				Kontakt
 			</h1>
 			<div className="pannel-size tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8 tw-justify-center">
-				<div className="glass-pannel tw-shadow-2xl tw-p-4 tw-rounded-lg lg:tw-col-span-2 tw-grid tw-grid-rows-5">
-					<h1 className="xl:tw-text-6xl tw-text-5xl tw-font-bold tw-row-span-1 tw-mb-2">
-						Kontaktiere mich!
-					</h1>
-					<div className="md:tw-grid-cols-2 tw-grid tw-row-span-4">
-						<div className=" tw-col-span-1 tw-grid tw-grid-rows-2">
-							<div className="tw-row-span-1">
-								<h1 className="tw-text-4xl tw-font-bold tw-mb-2">
+				<div className="glass-pannel tw-shadow-2xl lg:tw-col-span-2 tw-grid">
+					<div className="md:tw-grid-cols-2 lg:tw-grid-cols-1 xl:tw-grid-cols-2 tw-grid">
+						<div className=" tw-col-span-1 tw-flex tw-flex-col tw-gap-4">
+							<div className="">
+								<h1 className="tw-text-4xl lg:tw-text-5xl tw-font-bold tw-mb-2">
 									Meine Angaben
 								</h1>
 								<h1 className="tw-text-3xl">Pascal Burri</h1>
@@ -211,9 +208,9 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 									Frontend und Backend Entwickler
 								</h1>
 							</div>
-							<div className="tw-row-span-1 tw-flex tw-flex-col tw-justify-between">
+							<div className=" tw-justify-between tw-h-full tw-flex tw-flex-col tw-gap-4">
 								<div>
-									<h1 className=" tw-text-4xl tw-font-bold tw-mb-2">
+									<h1 className=" tw-text-4xl lg:tw-text-5xl tw-font-bold tw-mb-2">
 										Kontaktdaten
 									</h1>
 									<Link
@@ -226,7 +223,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 										</h1>
 									</Link>
 								</div>
-								<div className="tw-flex tw-gap-8 tw-pt-4">
+								<div className="tw-flex tw-gap-8">
 									<Link
 										href={
 											'https://www.linkedin.com/in/pascal-burri-72b12329a/'
@@ -286,7 +283,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 						</div>
 					</div>
 				</div>
-				<div className="glass-pannel tw-shadow-2xl tw-p-4 tw-rounded-lg lg:tw-col-span-1 tw-self-center tw-grid tw-grid-rows-5">
+				<div className="glass-pannel tw-shadow-2xl lg:tw-col-span-1 tw-self-center tw-grid tw-grid-rows-5">
 					<div className="tw-row-span-1">
 						<h1 className="xl:tw-text-6xl tw-text-5xl tw-font-bold tw-text-left">
 							Formular
