@@ -3,38 +3,39 @@ import {motion} from 'framer-motion';
 import Link from 'next/link';
 
 export default function ProjectCard({project}: {project: Project}) {
-	// const imageRef = useRef<HTMLDivElement>(null);
-	// const imageFrameRef = useRef<HTMLDivElement>(null);
-
-	// const [imageHeight, setImageHeight] = useState(0);
-	// const [imageFrameHeight, setImageFrameHeight] = useState(0);
-
-	// useEffect(() => {
-	// 	const updateHeights = () => {
-	// 		if (imageRef.current) {
-	// 			const rect = imageRef.current.getBoundingClientRect();
-	// 			const height = rect.height;
-	// 			const width = rect.width;
-	// 			setImageHeight(height);
-	// 			console.log('Image height:', height);
-	// 			console.log('Image width:', width);
-	// 		}
-	// 	};
-
-	// 	// Call it initially and on window resize
-	// 	updateHeights();
-	// 	const debouncedUpdateHeights = debounce(updateHeights, 100); // Debounce for performance
-	// 	window.addEventListener('resize', debouncedUpdateHeights);
-
-	// 	// Cleanup on component unmount
-	// 	return () =>
-	// 		window.removeEventListener('resize', debouncedUpdateHeights);
-	// }, []);
-
 	return (
-		<div className="tw-p-8 tw-z-20 md:tw-h-[600px] tw-w-full project-card">
+		<div className="tw-p-8 tw-pt-10 tw-z-20 md:tw-h-[600px] tw-w-full project-card">
 			<div className="glass-pannel tw-shadow-lg tw-h-full tw-w-full">
 				<div className="tw-grid sm:tw-grid-cols-3 tw-grid-cols-1 tw-gap-8 tw-p-4 tw-h-full">
+
+					<div
+						className="tw-col-span-2 tw-overflow-hidden tw-relative tw-h-full tw-rounded-lg"
+					>
+						<Link
+							href={project.link}
+							className={`tw-w-full tw-h-full tw-pointer-events-none ${project.link === '' ? '' : 'tw-pointer-events-auto'}`}
+						>
+							<motion.div
+								whileHover={
+									project.scroll ? {y: -100} : undefined
+								}
+								transition={{type: 'tween', duration: 1}}
+							>
+								<Image
+									src={project.image}
+									alt={project.title}
+									width={500}
+									height={500}
+									sizes="100vw"
+									style={{
+										width: '100%',
+										height: 'auto',
+										objectFit: 'cover',
+									}}
+								/>
+							</motion.div>
+						</Link>
+					</div>
 					<div className="tw-col-span-1">
 						<div className="tw-row-auto">
 							<h1 className="tw-text-4xl tw-font-bold tw-mb-4 tw-text-left">
@@ -58,36 +59,6 @@ export default function ProjectCard({project}: {project: Project}) {
 								))}
 							</div>
 						</div>
-					</div>
-					<div
-						className="tw-col-span-2 tw-overflow-hidden tw-relative tw-h-full tw-rounded-lg tw-shadow-lg"
-						// ref={imageFrameRef}
-					>
-						<Link
-							href={project.link}
-							className={`tw-w-full tw-h-full tw-pointer-events-none ${project.link === '' ? '' : 'tw-pointer-events-auto'}`}
-						>
-							<motion.div
-								// ref={imageRef}
-								whileHover={
-									project.scroll ? {y: -100} : undefined
-								}
-								transition={{type: 'tween', duration: 1}}
-							>
-								<Image
-									src={project.image}
-									alt={project.title}
-									width={500}
-									height={500}
-									sizes="100vw"
-									style={{
-										width: '100%',
-										height: 'auto',
-										objectFit: 'cover',
-									}}
-								/>
-							</motion.div>
-						</Link>
 					</div>
 				</div>
 			</div>
