@@ -5,8 +5,9 @@ import type {Metadata} from 'next';
 import About from '../components/Site/About';
 import Projects from '../components/Site/Projects';
 import Contact from '../components/Site/Contact';
+import Head from 'next/head';
 
-export const metadata: Metadata = {
+export const metadata = {
 	title: 'Pascal Burri - Portfolio Website',
 	description:
 		'Hello, I am Pascal, a developer from Switzerland. This is my portfoliowebsite. This website is built with Next.js and TailwindCSS.',
@@ -19,6 +20,28 @@ type darkProps = {
 const Site: FunctionComponent<darkProps> = ({dark}) => {
 	return (
 		<div className="tw-relative">
+			<Head>
+				<title>{metadata.title}</title>
+				<meta name="description" content={metadata.description} />
+				<link
+					rel="apple-touch-icon"
+					sizes="180x180"
+					href="/public/icons/apple-touch-icon.png"
+				/>
+				<link
+					rel="icon"
+					type="image/png"
+					sizes="32x32"
+					href="/public/icons/favicon-32x32.png"
+				/>
+				<link
+					rel="icon"
+					type="image/png"
+					sizes="16x16"
+					href="/public/icons/favicon-16x16.png"
+				/>
+				<link rel="manifest" href="/public/site.webmanifest" />
+			</Head>
 			<Home />
 			<div className="" id="about">
 				<div className="blob tw-flex tw-absolute tw-h-[340px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-right-3"></div>
