@@ -18,7 +18,7 @@ export default function About() {
 					<div className="tw-grid md:tw-grid-cols-3 tw-grid-cols-1 md:tw-gap-8 tw-p-4">
 						<div className="lg:tw-col-span-1 md:tw-col-span-2 tw-flex tw-justify-center tw-w-full tw-h-full">
 							<Image
-								src="/profile.png"
+								src="/profile.jpg"
 								alt="Picture of Pascal Burri"
 								width={500}
 								height={500}
