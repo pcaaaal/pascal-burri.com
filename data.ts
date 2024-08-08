@@ -20,7 +20,7 @@ const data = {
 		{
 			title: 'Bildergalerie - markus-burri.ch',
 			description: `Portfolio Website und Bildergalerie für einen Piloten, um Bilder und Videos seiner Flüge zu präsentieren.`,
-			image: '/markus-burri-ch.png',
+			image: '/markus-burri-ch.webp',
 			link: 'https://markus-burri-ch-new.vercel.app/',
 			languages: ['NextJS', 'Tailwind CSS', 'TypeScript'],
 			tags: ['Image Gallery', 'Responsive', 'Cloudinary'],

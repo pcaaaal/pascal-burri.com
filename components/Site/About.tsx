@@ -1,7 +1,5 @@
 import Image from 'next/image';
 import data from '../../data';
-import {motion} from 'framer-motion';
-import {ChangeEvent, useState} from 'react';
 
 export default function About() {
 	const timelineData = [

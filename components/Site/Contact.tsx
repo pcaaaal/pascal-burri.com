@@ -192,7 +192,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 
 	return (
 		<div className="tw-w-full tw-flex tw-flex-col tw-items-center">
-			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center tw-z-10">
+			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-6 tw-text-center tw-z-10">
 				Kontakt
 			</h1>
 			<div className="pannel-size tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8 tw-justify-center">
