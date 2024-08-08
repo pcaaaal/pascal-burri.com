@@ -20,7 +20,7 @@ export default function About() {
 					<div className="tw-grid md:tw-grid-cols-3 tw-grid-cols-1 md:tw-gap-8 tw-p-4">
 						<div className="lg:tw-col-span-1 md:tw-col-span-2 tw-flex tw-justify-center tw-w-full tw-h-full">
 							<Image
-								src="/profile.png"
+								src="/profile.jpg"
 								alt="Picture of Pascal Burri"
 								width={500}
 								height={500}
@@ -83,12 +83,12 @@ export default function About() {
 				</div>
 			</div>
 			<div className="tw-flex tw-flex-col tw-items-center tw-py-8">
-			<div className="tw-bg-black dark:tw-bg-white tw-h-6 tw-aspect-square tw-rounded-full tw-translate-y-1"></div>
-					{/* Vertical line */}
-					<div className="tw-bg-black dark:tw-bg-white tw-h-48 tw-w-1 tw-rounded-full"></div>
-					{/* Dot */}
-					<div className="tw-bg-black dark:tw-bg-white tw-h-6 tw-aspect-square tw-rounded-full -tw-translate-y-1"></div>
-				</div>
+				<div className="tw-bg-black dark:tw-bg-white tw-h-6 tw-aspect-square tw-rounded-full tw-translate-y-1"></div>
+				{/* Vertical line */}
+				<div className="tw-bg-black dark:tw-bg-white tw-h-48 tw-w-1 tw-rounded-full"></div>
+				{/* Dot */}
+				<div className="tw-bg-black dark:tw-bg-white tw-h-6 tw-aspect-square tw-rounded-full -tw-translate-y-1"></div>
 			</div>
+		</div>
 	);
 }

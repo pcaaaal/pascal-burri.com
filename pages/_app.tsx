@@ -33,9 +33,7 @@ export default function App({Component, pageProps}: AppProps) {
 			<div className="tw-w-full tw-h-full tw-overflow-hidden">
 				<Background>
 					<Header setDark={setDark} dark={dark} />
-					<div className="tw-justify-center tw-items-center">
-						{/* <Modal /> */}
-					</div>
+					<div className="tw-justify-center tw-items-center">					</div>
 					<div className="tw-z-20">
 						<Component {...pageProps} dark={dark} />
 					</div>
