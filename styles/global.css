@@ -62,5 +62,5 @@ body {
 }
 
 .pannel-size {
-	@apply tw-w-full tw-py-10 tw-px-8 md:tw-px-10 lg:tw-px-12 xl:tw-px-24 2xl:tw-px-32 tw-max-w-[2200px];
+	@apply tw-w-full tw-py-10 tw-px-8 md:tw-px-16 lg:tw-px-12 xl:tw-px-24 2xl:tw-px-48 tw-max-w-[2000px];
 }

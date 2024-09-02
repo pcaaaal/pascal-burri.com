@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function ProjectCard({project}: {project: Project}) {
 	return (
-		<div className="tw-p-8 tw-pt-10 tw-z-20 md:tw-h-[600px] tw-w-full project-card">
+		<div className="md:tw-p-8 tw-pt-10 tw-z-20 md:tw-h-[600px] tw-w-full project-card">
 			<div className="glass-pannel tw-shadow-lg tw-h-full tw-w-full">
 				<div className="tw-grid sm:tw-grid-cols-3 tw-grid-cols-1 tw-gap-8 tw-p-4 tw-h-full">
 

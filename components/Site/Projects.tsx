@@ -136,7 +136,7 @@ export default function Projects() {
 			<div className="tw-hidden md:tw-flex md:tw-flex-col">
 				<Carousel {...carouselSettings}>{cards}</Carousel>
 			</div>
-			<div className="tw-flex tw-flex-col tw-items-center tw-justify-center md:tw-hidden">
+			<div className="tw-flex tw-flex-col tw-items-center tw-justify-center md:tw-hidden pannel-size">
 				{cards}
 			</div>
 		</div>

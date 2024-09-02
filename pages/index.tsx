@@ -19,7 +19,7 @@ type darkProps = {
 
 const Site: FunctionComponent<darkProps> = ({dark}) => {
 	return (
-		<div className="tw-relative">
+		<div className="tw-overflow-hidden">
 			<Head>
 				<title>{metadata.title}</title>
 				<meta name="description" content={metadata.description} />
@@ -52,10 +52,9 @@ const Site: FunctionComponent<darkProps> = ({dark}) => {
 				<Projects />
 			</div>
 			<div className="" id="contact">
-				<div className="blob tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-left-9"></div>
+				<div className="blob tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-right-9"></div>
 				<Contact dark={dark} />
-			</div>
-			<div className="blob tw-flex tw-absolute tw-h-[250px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-right-0"></div>
+			</div>{' '}
 			<Footer />
 		</div>
 	);

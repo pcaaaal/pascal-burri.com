@@ -18,7 +18,7 @@ const data = {
 
 	projects: [
 		{
-			title: 'Bildergalerie - markus-burri.ch',
+			title: 'Bildergalerie',
 			description: `Portfolio Website und Bildergalerie für einen Piloten, um Bilder und Videos seiner Flüge zu präsentieren.`,
 			image: '/markus-burri-ch.webp',
 			link: 'https://markus-burri-ch-new.vercel.app/',
@@ -45,9 +45,7 @@ const data = {
 			languages: [
 				'React',
 				'NextJS',
-				'Tailwind CSS',
-				'Node.js',
-				'Deine Sprache',
+				'HTML'
 			],
 			tags: ['Dein Projekt', 'Deine Idee', 'Dein Erfolg'],
 			scroll: true,

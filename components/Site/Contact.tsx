@@ -103,11 +103,11 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 					setButtonText('Lädt...');
 					break;
 				case 'success':
-					setButtonState('dark:tw-bg-green-600 tw-bg-green-500');
+					setButtonState('dark:tw-bg-green-500 tw-bg-green-500');
 					setButtonText('Gesendet!');
 					break;
 				case 'error':
-					setButtonState('dark:tw-bg-yellow-600 tw-bg-yellow-500');
+					setButtonState('dark:tw-bg-amber-400 tw-bg-amber-400');
 					setButtonText('Fehler!');
 					break;
 				case 'userFault':
@@ -115,7 +115,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 					setButtonText('Error!');
 					break;
 				case 'formError':
-					setButtonState('dark:tw-bg-orange-700 tw-bg-orange-500');
+					setButtonState('dark:tw-bg-orange-600 tw-bg-orange-500');
 					setButtonText('Senden');
 					break;
 				default:
@@ -140,7 +140,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 					if (form.current) {
 						emailjs
 							.sendForm(
-								'service_vi6jk3q',
+								'service_vgyofbi',
 								'template_5uc28rk',
 								form.current,
 								'khkfAe68qv-R8MBhU',
