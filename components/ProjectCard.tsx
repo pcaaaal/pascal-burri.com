@@ -2,6 +2,15 @@ import Image from 'next/image';
 import {motion} from 'framer-motion';
 import Link from 'next/link';
 
+type Project = {
+	title: string;
+	description: string;
+	image: string;
+	link: string;
+	languages: string[];
+	tags: string[];
+	scroll: boolean;
+};
 export default function ProjectCard({project}: {project: Project}) {
 	return (
 		<div className="md:tw-p-8 tw-py-10 tw-px-8 md:tw-px-16 lg:tw-px-12 xl:tw-px-24 2xl:tw-px-48 tw-z-20 tw-max-w-[2000px] md:tw-h-[500px] lg:tw-h-[600px] xl:tw-h-[800px] project-card">
