@@ -40,7 +40,6 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 	const handleEmailTries = () => {
 		let tries = 8;
 
-		// Check if window is defined
 		if (typeof window !== 'undefined') {
 			tries = parseInt(
 				window.localStorage.getItem('emailTries') || '0',
@@ -85,14 +84,24 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 		const isEmailNotEmpty = validateEmpty(email);
 		const isMessageNotEmpty = validateEmpty(message);
 
-		setErrors({
+		const validationErrors = {
 			name: isNameNotEmpty ? '' : emptyErrorMessage,
 			email: isEmailNotEmpty ? '' : emptyErrorMessage,
 			emailRegex: isEmailValid ? '' : emailErrorMessage,
 			message: isMessageNotEmpty ? '' : emptyErrorMessage,
-		});
+		};
+
+		setErrors(validationErrors);
 
 		return isNameNotEmpty && isEmailValid && isMessageNotEmpty;
+	};
+
+	const handleChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+	) => {
+		if (formState === 'formError') {
+			handleValidation();
+		}
 	};
 
 	useEffect(() => {
@@ -107,7 +116,9 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 					setButtonText('Gesendet!');
 					break;
 				case 'error':
-					setButtonState('dark:tw-bg-neutral-100 tw-bg-neutral-900 tw-text-red-600');
+					setButtonState(
+						'dark:tw-bg-neutral-100 tw-bg-neutral-900 tw-text-red-600',
+					);
 					setButtonText('Fehler!');
 					break;
 				case 'userFault':
@@ -130,6 +141,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 
 	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
 		if (handleValidation()) {
 			setFormState('loading');
 			setLoading(true);
@@ -226,7 +238,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 								<div className="tw-flex tw-gap-8">
 									<Link
 										href={
-											'https://www.linkedin.com/in/pascal-burri-72b12329a/'
+											'https://www.linkedin.com/in/pascal-burri-10212429a/'
 										}
 										rel="noopener noreferrer"
 										target="_blank"
@@ -295,80 +307,65 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 							onSubmit={sendEmail}
 							ref={form}
 						>
-							<label
-								htmlFor="user_name"
-								className="text-small tw-font-medium"
-							>
-								Dein Name:
-							</label>
 							<input
 								type="text"
-								id="user_name"
 								name="user_name"
-								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 ${errors.name ? 'tw-placeholder-red-600 focus:tw-ring-red-600' : 'focus:tw-ring-violet-600'} focus:tw-outline-none focus:tw-ring-2  tw-text-neutral-900 ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-								placeholder={errors.name || 'Max Mustermann'}
-								disabled={
-									loading ||
-									formState === 'success' ||
-									formState === 'userFault'
-								}
+								placeholder="Dein Name"
+								className={`tw-placeholder-gray-400  focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 tw-rounded-xl tw-py-2 tw-px-3 ${
+									errors.name
+										? 'tw-ring-red-600 dark:tw-ring-red-500 tw-ring-1'
+										: 'focus:tw-ring-violet-600 dark:focus:tw-ring-violet-500'
+								}`}
+								onChange={handleChange}
 							/>
-							<label
-								htmlFor="user_email"
-								className="text-small tw-font-medium"
-							>
-								Deine E-Mail-Adresse:
-							</label>
+							{errors.name && (
+								<p className="tw-text-red-600 dark:tw-text-red-500 tw-text-sm -tw-mt-1">{errors.name}</p>
+							)}
 							<input
 								type="text"
-								id="user_email"
 								name="user_email"
-								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 ${errors.email ? 'tw-placeholder-red-700 focus:tw-ring-red-600' : 'focus:tw-ring-violet-600'} focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-								placeholder={
-									errors.email || 'max-mustermann@mail.com'
-								}
-								disabled={
-									loading ||
-									formState === 'success' ||
-									formState === 'userFault'
-								}
+								placeholder="Deine E-Mail"
+								className={`tw-placeholder-gray-400  focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 tw-rounded-xl tw-py-2 tw-px-3 ${
+									errors.email || errors.emailRegex
+										? 'tw-ring-red-600 dark:tw-ring-red-500 tw-ring-1'
+										: 'focus:tw-ring-violet-600 dark:focus:tw-ring-violet-500'
+								}`}
+								onChange={handleChange}
 							/>
-							<label
-								htmlFor="message"
-								className="text-small tw-font-medium"
-							>
-								Deine Nachricht:
-							</label>
+							{errors.email && (
+								<p className="tw-text-red-600 dark:tw-text-red-500 tw-text-sm -tw-mt-1">
+									{errors.email}
+								</p>
+							)}
+							{errors.emailRegex && (
+								<p className="tw-text-red-600 dark:tw-text-red-500 tw-text-sm -tw-mt-1">
+									{errors.emailRegex}
+								</p>
+							)}
 							<textarea
-								id="message"
 								name="message"
-								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 ${errors.message ? 'tw-placeholder-red-700 focus:tw-ring-red-600' : 'focus:tw-ring-violet-600'} focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
-								placeholder={
-									errors.message ||
-									'Hallo Pascal, ich benötige eine Website für...'
-								}
-								rows={4}
-								disabled={
-									loading ||
-									formState === 'success' ||
-									formState === 'userFault'
-								}
-							></textarea>
-							<div className="tw-text-left tw-w-full tw-h-full tw-row-span-1">
-								<div className="tw-px-4 tw-flex tw-flex-col tw-text-center">
-									<button
-										type="submit"
-										className={`tw-text-center text-medium tw-font-bold ${buttonState} tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-neutral-900 tw-text-neutral-100 tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${!loading && !(formState === 'success' || formState === 'userFault') ? 'hover:tw-scale-105 active:tw-scale-95' : ''}`}
-										disabled={
-											loading ||
-											formState === 'success' ||
-											formState === 'userFault'
-										}
-									>
-										{buttonText}
-									</button>
-									<span>{message}</span>
-								</div>
+								placeholder="Deine Nachricht"
+								className={`tw-placeholder-gray-400  focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 tw-rounded-xl tw-py-2 tw-px-3 ${
+									errors.message
+										? 'tw-ring-red-600 dark:tw-ring-red-500 tw-ring-1'
+										: 'focus:tw-ring-violet-600 dark:focus:tw-ring-violet-500'
+								}`}
+								onChange={handleChange}
+							/>
+							{errors.message && (
+								<span className="tw-text-red-600 dark:tw-text-red-500 tw-text-sm -tw-mt-1">
+									{errors.message}
+								</span>
+							)}
+							<div className="tw-px-4 tw-flex tw-flex-col tw-text-center">
+								<button
+									type="submit"
+									className={`${buttonState} tw-text-center text-medium tw-font-bold tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-neutral-900 tw-text-neutral-100 tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${!loading && !(formState === 'success' || formState === 'userFault') ? 'hover:tw-scale-105 active:tw-scale-95' : ''}`}
+									disabled={loading}
+								>
+									{buttonText}
+								</button>
+								<span>{message}</span>
 							</div>
 						</form>
 					</div>
