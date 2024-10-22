@@ -4,30 +4,10 @@ import {useRouter} from 'next/navigation';
 import Carousel, {ButtonGroupProps} from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {useLayoutEffect, useState} from 'react';
-import {partial} from 'lodash';
 
 export default function Projects() {
 	const router = useRouter();
-	const [screenSize, setScreenSize] = useState<number>(0);
-
-	const updateScreenSize = () => {
-		setScreenSize(window.innerWidth);
-	};
-
-	useLayoutEffect(() => {
-		updateScreenSize();
-
-		const handleResize = () => {
-			updateScreenSize();
-		};
-
-		window.addEventListener('resize', handleResize);
-
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, []);
-
+	
 	const cards = data.projects.map((project) => (
 		<ProjectCard key={project.title} project={project} />
 	));
@@ -96,7 +76,7 @@ export default function Projects() {
 		responsive: {
 			big: {
 				breakpoint: {
-					max: screenSize,
+					max: 6000,
 					min: 767,
 				},
 				items: 1,

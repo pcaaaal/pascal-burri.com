@@ -38,7 +38,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 	const isTurnedOn = true;
 
 	const handleEmailTries = () => {
-		let tries = 0;
+		let tries = 8;
 
 		// Check if window is defined
 		if (typeof window !== 'undefined') {
@@ -100,18 +100,18 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 			switch (formState) {
 				case 'loading':
 					setButtonState('dark:tw-bg-neutral-300 tw-bg-neutral-800');
-					setButtonText('Lädt...');
+					setButtonText('Sendet...');
 					break;
 				case 'success':
-					setButtonState('dark:tw-bg-green-500 tw-bg-green-500');
+					setButtonState('tw-bg-green-600');
 					setButtonText('Gesendet!');
 					break;
 				case 'error':
-					setButtonState('dark:tw-bg-amber-400 tw-bg-amber-400');
+					setButtonState('dark:tw-bg-neutral-100 tw-bg-neutral-900 tw-text-red-600');
 					setButtonText('Fehler!');
 					break;
 				case 'userFault':
-					setButtonState('tw-bg-red-700');
+					setButtonState('tw-bg-red-600');
 					setButtonText('Fehler!');
 					break;
 				case 'formError':
@@ -305,7 +305,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 								type="text"
 								id="user_name"
 								name="user_name"
-								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 ${errors.name ? 'tw-placeholder-red-700' : ''} focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-neutral-900 ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 ${errors.name ? 'tw-placeholder-red-600 focus:tw-ring-red-600' : 'focus:tw-ring-violet-600'} focus:tw-outline-none focus:tw-ring-2  tw-text-neutral-900 ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
 								placeholder={errors.name || 'Max Mustermann'}
 								disabled={
 									loading ||
@@ -323,7 +323,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 								type="text"
 								id="user_email"
 								name="user_email"
-								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 ${errors.email ? 'tw-placeholder-red-700' : ''} focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-neutral-900 ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 ${errors.email ? 'tw-placeholder-red-700 focus:tw-ring-red-600' : 'focus:tw-ring-violet-600'} focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
 								placeholder={
 									errors.email || 'max-mustermann@mail.com'
 								}
@@ -342,7 +342,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 							<textarea
 								id="message"
 								name="message"
-								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 ${errors.message ? 'tw-placeholder-red-700' : ''} focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-violet-600 tw-text-black ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
+								className={`tw-rounded-xl tw-py-2 tw-px-3 tw-placeholder-gray-400 ${errors.message ? 'tw-placeholder-red-700 focus:tw-ring-red-600' : 'focus:tw-ring-violet-600'} focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 ${loading || formState === 'success' || formState === 'userFault' ? 'tw-bg-neutral-300 dark:tw-bg-neutral-600' : ''}`}
 								placeholder={
 									errors.message ||
 									'Hallo Pascal, ich benötige eine Website für...'
