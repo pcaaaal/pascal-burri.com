@@ -7,7 +7,7 @@ const Footer = () => {
 					<a
 						href="https://pascal-burri.com/"
 						target="_blank"
-						className="font-semibold hover:text-white"
+						className="font-semibold hover:tw-underline"
 						rel="noreferrer"
 					>
 						Pascal Burri
@@ -19,6 +19,7 @@ const Footer = () => {
 						href="https://www.freepik.com/"
 						rel="noreferrer"
 						target="_blank"
+						className="hover:tw-underline"
 					>
 						freepik
 					</a>

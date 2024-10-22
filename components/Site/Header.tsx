@@ -169,7 +169,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 				<div className="md:tw-flex tw-aspect-square tw-h-12 tw-hidden tw-pointer-events-none"></div>
 				<div
 					ref={menuRef}
-					className={`tw-backdrop-blur-xl md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] tw-grid tw-px-0 tw-py-1 tw-rounded-[20px] ${menu ? 'show-menu' : ''} ${menuIsHidden ? 'tw-hidden' : ''} menu tw-text-3xl tw-w-full md:tw-w-auto md:tw-mr-auto md:tw-ml-auto`}
+					className={`tw-backdrop-blur-xl md:tw-flex md:tw-h-full md:tw-justify-center md:tw-items-center tw-align-top tw-bg-[rgba(100,100,100,0.1)] dark:tw-bg-[rgba(150,150,150,0.1)] tw-grid tw-px-0 tw-py-1 tw-rounded-[20px] ${menu ? 'show-menu' : ''} ${menuIsHidden ? 'tw-hidden' : ''} menu text-medium tw-w-full md:tw-w-auto md:tw-mr-auto md:tw-ml-auto`}
 				>
 					{menuItems.map((item, index) => (
 						<Link

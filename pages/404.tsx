@@ -4,15 +4,15 @@ const Custom404 = () => {
   return (
     <div className="tw-min-h-screen tw-flex tw-justify-center tw-items-center tw-flex-col">
       <div className=" tw-flex tw-justify-center tw-items-center tw-z-20 tw-relative tw-flex-col">
-        <h1 className="xl:tw-text-8xl md:tw-text-5xl tw-text-4xl tw-font-bold">
+        <h1 className="text-xlarge tw-font-bold">
           404
         </h1>
-        <p className="md:tw-text-3xl tw-text-lg tw-text-center">
+        <p className="text-medium tw-text-center">
           Oops! Die Seite die du suchst scheint nicht zu existieren!
         </p>
         <Link
           href="/"
-          className="tw-mt-4 md:tw-text-2xl tw-text-lg tw-underline"
+          className="tw-mt-4 text-medium tw-underline"
         >
           Zurück zur Startseite
         </Link>

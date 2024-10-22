@@ -26,9 +26,9 @@ export default function App({Component, pageProps}: AppProps) {
 
 	return (
 		<div
-			className={`tw-w-full tw-h-full tw-flex tw-flex-col tw-items-center tw-bg-white ${
+			className={`tw-w-full tw-h-full tw-flex tw-flex-col tw-items-center tw-bg-neutral-100 ${
 				dark ? 'tw-dark' : ''
-			} tw-overflow-hidden dark:tw-text-white tw-text-black`}
+			} tw-overflow-hidden dark:tw-text-neutral-100 tw-text-neutral-900`}
 		>
 			<div className="tw-w-full tw-h-full tw-overflow-hidden">
 				<Background>

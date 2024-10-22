@@ -24,10 +24,10 @@ const Home: FunctionComponent = () => {
 	return (
 		<div className="tw-min-h-screen tw-grid tw-text-center" id="home">
 			<div className="tw-align-center tw-justify-center tw-self-end tw-z-10">
-				<h1 className="md:tw-text-9xl tw-text-8xl tw-font-bold">
+				<h1 className="text-xlarge tw-font-bold">
 					Pascal Burri
 				</h1>
-				<h2 className="md:tw-text-5xl tw-text-4xl tw-font-light">
+				<h2 className="text-large tw-font-light">
 					Developer
 				</h2>
 			</div>
@@ -47,7 +47,7 @@ const Home: FunctionComponent = () => {
 			>
 				{
 					<svg
-						className="tw-w-20 tw-h-20 tw-flex tw-justify-center tw-animate-bounce tw-text-4xl tw-mt-20"
+						className="tw-w-20 tw-h-20 tw-flex tw-justify-center tw-animate-bounce text-medium tw-mt-20"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"

@@ -10,7 +10,7 @@ export default function About() {
 
 	return (
 		<div className="tw-w-full tw-flex tw-flex-col tw-items-center">
-			<h1 className="tw-text-6xl tw-font-bold tw-mb-0 tw-mt-4 tw-text-center tw-z-10">
+			<h1 className="text-large tw-font-bold tw-mb-0 tw-mt-4 tw-text-center tw-z-10">
 				Über mich
 			</h1>
 			<div className="pannel-size tw-z-20 lg:tw-grid xl:tw-gap-8">
@@ -33,18 +33,18 @@ export default function About() {
 						</div>
 						<div className="lg:tw-col-span-2 md:w-col-span-1">
 							<div className="tw-row-auto">
-								<h1 className="tw-text-4xl tw-font-bold tw-mb-4 tw-mt-4 tw-text-left">
+								<h1 className="text-medium tw-font-bold tw-mb-4 tw-mt-4 tw-text-left">
 									Biografie
 								</h1>
 							</div>
 							<div className="tw-row-auto">
-								<p className="tw-text-lg tw-font-light tw-text-left tw-mb-4">
+								<p className="text-small tw-font-light tw-text-left tw-mb-4">
 									{data.bio}
 								</p>
 							</div>
 							<div className="tw-row-auto md:tw-hidden lg:tw-grid">
 								<div className="tw-row-auto tw-justify-items-start">
-									<h1 className="tw-text-3xl tw-font-bold tw-mb-4 tw-text-left">
+									<h1 className="text-medium tw-font-bold tw-mb-4 tw-text-left">
 										Meine Skills
 									</h1>
 								</div>
@@ -52,7 +52,7 @@ export default function About() {
 									{data.skills.map((skill, index) => (
 										<div
 											key={index}
-											className="tw-inline-block dark:tw-bg-[#333] tw-bg-neutral-100 tw-shadow-lg tw-p-2 xl:tw-text-xl tw-rounded-lg"
+											className="tw-inline-block dark:tw-bg-[#333] tw-bg-neutral-100 tw-shadow-lg tw-p-2 text-small tw-rounded-lg"
 										>
 											{skill}
 										</div>
@@ -63,7 +63,7 @@ export default function About() {
 					</div>
 					<div className="tw-hidden md:tw-grid tw-p-4 lg:tw-hidden">
 						<div className="tw-row-span-3 tw-justify-items-start">
-							<h1 className="tw-text-3xl tw-font-bold tw-mb-4 tw-text-left">
+							<h1 className="text-medium tw-font-bold tw-mb-4 tw-text-left">
 								Meine Skills
 							</h1>
 						</div>
@@ -81,11 +81,11 @@ export default function About() {
 				</div>
 			</div>
 			<div className="tw-flex tw-flex-col tw-items-center tw-py-8 tw-z-20">
-				<div className="tw-bg-black dark:tw-bg-white tw-h-6 tw-aspect-square tw-rounded-full tw-translate-y-1"></div>
+				<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-h-6 tw-aspect-square tw-rounded-full tw-translate-y-1"></div>
 				{/* Vertical line */}
-				<div className="tw-bg-black dark:tw-bg-white tw-h-48 tw-w-1 tw-rounded-full"></div>
+				<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-h-48 tw-w-1 tw-rounded-full"></div>
 				{/* Dot */}
-				<div className="tw-bg-black dark:tw-bg-white tw-h-6 tw-aspect-square tw-rounded-full -tw-translate-y-1"></div>
+				<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-h-6 tw-aspect-square tw-rounded-full -tw-translate-y-1"></div>
 			</div>
 		</div>
 	);

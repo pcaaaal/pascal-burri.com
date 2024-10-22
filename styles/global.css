@@ -32,9 +32,20 @@ body {
 	}
 }
 
-.noise {
-	/* ... */
-	background: url(https://grainy-gradients.vercel.app/noise.svg);
+.text-small {
+	@apply tw-text-lg;
+}
+
+.text-medium {
+	@apply lg:tw-text-4xl md:tw-text-3xl tw-text-2xl;
+}
+
+.text-large {
+	@apply lg:tw-text-6xl tw-text-5xl;
+}
+
+.text-xlarge {
+	@apply lg:tw-text-9xl tw-text-8xl;
 }
 
 html,
