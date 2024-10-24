@@ -208,7 +208,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 				Kontakt
 			</h1>
 			<div className="pannel-size tw-z-20 tw-grid lg:tw-grid-cols-3 tw-gap-8">
-				<div className="glass-pannel tw-shadow-2xl lg:tw-col-span-2 tw-grid">
+				<div className="glass-pannel tw-shadow-xl lg:tw-col-span-2 tw-grid">
 					<div className="md:tw-grid-cols-2 lg:tw-grid-cols-1 xl:tw-grid-cols-2 tw-grid">
 						<div className=" tw-col-span-1 tw-flex tw-flex-col tw-gap-4">
 							<div className="">
@@ -295,7 +295,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 						</div>
 					</div>
 				</div>
-				<div className="glass-pannel tw-shadow-2xl lg:tw-col-span-1 tw-self-center tw-grid tw-grid-rows-5">
+				<div className="glass-pannel tw-shadow-xl lg:tw-col-span-1 tw-self-center tw-grid tw-grid-rows-5">
 					<div className="tw-row-span-1">
 						<h1 className="text-large tw-font-bold tw-text-left">
 							Formular
@@ -319,7 +319,9 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 								onChange={handleChange}
 							/>
 							{errors.name && (
-								<p className="tw-text-red-600 dark:tw-text-red-500 tw-text-sm -tw-mt-1">{errors.name}</p>
+								<p className="tw-text-red-600 dark:tw-text-red-500 tw-text-sm -tw-mt-1">
+									{errors.name}
+								</p>
 							)}
 							<input
 								type="text"

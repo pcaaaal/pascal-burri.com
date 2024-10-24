@@ -6,6 +6,7 @@ import type {AppProps} from 'next/app';
 import {useEffect, useState} from 'react';
 import Header from '../components/Site/Header';
 import Background from '../components/Background/Background';
+import Footer from '../components/Site/Footer';
 
 export default function App({Component, pageProps}: AppProps) {
 	const [dark, setDark] = useState(true);
@@ -30,15 +31,16 @@ export default function App({Component, pageProps}: AppProps) {
 				dark ? 'tw-dark' : ''
 			} tw-overflow-hidden dark:tw-text-neutral-100 tw-text-neutral-900`}
 		>
-			<div className="tw-w-full tw-h-full tw-overflow-hidden">
+			<div className="tw-w-full tw-overflow-hidden">
 				<Background>
 					<Header setDark={setDark} dark={dark} />
 					<div className="tw-justify-center tw-items-center">
 						{/* <Modal /> */}
 					</div>
 					<div className="tw-z-20">
-						<Component {...pageProps} dark={dark} />
+						<Component {...pageProps} dark={dark} className='tw-overflow-hidden'/>
 					</div>
+					<Footer />
 				</Background>
 			</div>
 		</div>

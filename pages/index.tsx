@@ -48,14 +48,13 @@ const Site: FunctionComponent<darkProps> = ({dark}) => {
 				<About />
 			</div>
 			<div className="" id="projects">
-				<div className="blob tw-flex tw-absolute tw-h-[200px] tw-aspect-square tw-z-0 tw-rounded-full md:tw-hidden tw-blur-3xl tw-left-1"></div>
+				<div className="blob tw-flex tw-absolute tw-h-[200px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-left-1"></div>
 				<Projects />
 			</div>
 			<div className="" id="contact">
 				<div className="blob tw-flex tw-absolute tw-h-[300px] tw-aspect-square tw-z-0 tw-rounded-full tw-blur-3xl tw-right-9"></div>
 				<Contact dark={dark} />
-			</div>{' '}
-			<Footer />
+			</div>
 		</div>
 	);
 };

@@ -14,7 +14,7 @@ export default function About() {
 				Über mich
 			</h1>
 			<div className="pannel-size tw-z-20 lg:tw-grid xl:tw-gap-8">
-				<div className="glass-pannel tw-shadow-2xl 2xl:tw-col-span-3">
+				<div className="glass-pannel tw-shadow-xl 2xl:tw-col-span-3">
 					<div className="tw-grid md:tw-grid-cols-3 tw-grid-cols-1 md:tw-gap-8 tw-p-4">
 						<div className="lg:tw-col-span-1 md:tw-col-span-2 tw-flex tw-justify-center tw-w-full tw-h-full">
 							<Image
