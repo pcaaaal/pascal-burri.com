@@ -5,6 +5,12 @@ export const metadata = {
 	description: 'This is a page about me.',
 };
 
+const timelineData = [
+	{id: 1, title: 'Step 1', description: 'Description of step 1.'},
+	{id: 2, title: 'Step 2', description: 'Description of step 2.'},
+	// Add more steps as needed
+];
+
 export default function Home() {
 	return (
 		<div className="tw-overflow-hidden">
@@ -35,6 +41,13 @@ export default function Home() {
 					<h1 className="text-large tw-font-bold tw-mb-0 tw-mt-20 tw-text-center tw-z-10">
 						About
 					</h1>
+					<div className="tw-flex tw-flex-col tw-items-center tw-py-8 tw-z-20">
+						<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-h-6 tw-aspect-square tw-rounded-full tw-translate-y-1"></div>
+						{/* Vertical line */}
+						<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-h-48 tw-w-1 tw-rounded-full"></div>
+						{/* Dot */}
+						<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-h-6 tw-aspect-square tw-rounded-full -tw-translate-y-1"></div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -7,7 +7,7 @@ import {useLayoutEffect, useState} from 'react';
 
 export default function Projects() {
 	const router = useRouter();
-	
+
 	const cards = data.projects.map((project) => (
 		<ProjectCard key={project.title} project={project} />
 	));
@@ -111,6 +111,11 @@ export default function Projects() {
 				>
 					Alle Projekte
 				</button>
+				<div className="tw-flex tw-flex-col tw-items-center tw-py-8 tw-z-20">
+					<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-h-6 tw-aspect-square tw-rounded-full tw-translate-y-1"></div>
+					<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-h-48 tw-w-1 tw-rounded-full"></div>
+					<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-h-6 tw-aspect-square tw-rounded-full -tw-translate-y-1"></div>
+				</div>
 			</div>
 		</div>
 	);
