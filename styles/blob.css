@@ -8,6 +8,16 @@
 	will-change: filter;
 }
 
+.tw-dark .blob {
+	background-image: linear-gradient(
+		44deg,
+		#00ffc3 25%,
+		#b96eff 54%,
+		#8000ff 78%
+	);
+	will-change: filter;
+}
+
 .blob-blue {
 	background-image: linear-gradient(
 		178deg,
@@ -32,6 +42,15 @@
 		#e00101 25%,
 		#ff4848 54%,
 		#de0bb0 78%
+	);
+}
+
+.blob-green {
+	background-image: linear-gradient(
+		178deg,
+		#8fbbb6 25%,
+		#b16e4c 54%,
+		#3b5b53 78%
 	);
 }
 

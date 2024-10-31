@@ -26,24 +26,41 @@ export default function About() {
 					</div>
 					<div className="tw-col-span-1 lg:tw-col-span-2 tw-flex tw-flex-col tw-gap-2">
 						<h1 className="text-medium tw-font-bold">Biografie</h1>
-						<p className="text-small">{data.bio}</p>
-					</div>
-					<div className="tw-col-span-1 md:tw-col-span-2 tw-gap-2 tw-flex tw-flex-wrap">
-						{data.skills.map((skill, index) => (
-							<div
-								key={index}
-								className="tw-h-10 tw-inline-block dark:tw-bg-[#333] tw-bg-neutral-100 tw-shadow-lg tw-py-1 tw-px-2 text-small tw-rounded-lg"
+						<div className="tw-flex tw-h-full tw-flex-col tw-gap-2 tw-justify-between">
+							<p className="text-small">{data.bio}</p>
+							<button
+								className="button-large tw-w-full"
+								onClick={() => router.push('/about')}
 							>
-								{skill}
-							</div>
-						))}
+								Mehr über mich
+							</button>
+						</div>
 					</div>
-					<div className="tw-col-span-1 tw-flex tw-justify-center tw-items-center">
+					<ul className="tw-col-span-1 md:tw-col-span-2 tw-gap-2 tw-flex tw-flex-wrap">
+						{[
+							...data.skills.slice(0, 10),
+							{
+								title: '...',
+								description: '',
+								link: '',
+								type: '',
+								keywords: [],
+							},
+						].map((skill, index) => (
+							<li
+								key={index}
+								className=" tw-flex tw-justify-center tw-items-center dark:tw-bg-[#333] tw-bg-neutral-100 tw-shadow-lg tw-h-12 tw-py-2 tw-px-4 text-small tw-rounded-lg"
+							>
+								{skill.title}
+							</li>
+						))}
+					</ul>
+					<div className="tw-col-span-1 tw-flex tw-flex-col tw-gap-4 tw-justify-center tw-items-center">
 						<button
-							className="tw-text-center text-medium tw-font-bold tw-w-full tw-p-2 tw-px-4 tw-rounded-2xl tw-shadow-lg dark:tw-text-neutral-900 tw-text-neutral-100 tw-transition dark:tw-bg-neutral-100 tw-bg-neutral-900 tw-duration-200 hover:tw-scale-105 active:tw-scale-95"
-							onClick={() => router.push('/about')}
+							className="button-large tw-h-full tw-w-full"
+							onClick={() => router.push('/about/skills')}
 						>
-							Mehr über mich
+							Skills
 						</button>
 					</div>
 				</div>

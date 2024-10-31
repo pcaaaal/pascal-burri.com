@@ -31,18 +31,20 @@ export default function App({Component, pageProps}: AppProps) {
 				dark ? 'tw-dark' : ''
 			} tw-overflow-hidden dark:tw-text-neutral-100 tw-text-neutral-900`}
 		>
-			<div className="tw-w-full tw-overflow-hidden">
-				<Background>
-					<Header setDark={setDark} dark={dark} />
-					<div className="tw-justify-center tw-items-center">
-						{/* <Modal /> */}
-					</div>
-					<div className="tw-z-20">
-						<Component {...pageProps} dark={dark} className='tw-overflow-hidden'/>
-					</div>
-					<Footer />
-				</Background>
-			</div>
+			<Background>
+				<Header setDark={setDark} dark={dark} />
+				<div className="tw-justify-center tw-items-center">
+					{/* <Modal /> */}
+				</div>
+				<div className="tw-z-20">
+					<Component
+						{...pageProps}
+						dark={dark}
+						className="tw-overflow-hidden"
+					/>
+				</div>
+				<Footer />
+			</Background>
 		</div>
 	);
 }

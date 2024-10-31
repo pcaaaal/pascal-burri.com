@@ -128,31 +128,31 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 		glitchEffect();
 	}, []);
 
-	function useScrollDirection() {
-		const [scrollDirection, setScrollDirection] = useState<
-			'down' | 'up' | null
-		>(null);
-		useEffect(() => {
-			let lastScrollY = window.scrollY;
+	// function useScrollDirection() {
+	// 	const [scrollDirection, setScrollDirection] = useState<
+	// 		'down' | 'up' | null
+	// 	>(null);
+	// 	useEffect(() => {
+	// 		let lastScrollY = window.scrollY;
 
-			const updateScrollDirection = () => {
-				const scrollY = window.scrollY;
-				const direction = scrollY > lastScrollY ? 'down' : 'up';
-				if (
-					direction !== scrollDirection &&
-					(scrollY - lastScrollY > 3 || scrollY - lastScrollY < -3)
-				) {
-					setScrollDirection(direction);
-				}
-				lastScrollY = scrollY > 0 ? scrollY : 0;
-			};
-			window.addEventListener('scroll', updateScrollDirection);
-			return () => {
-				window.removeEventListener('scroll', updateScrollDirection);
-			};
-		}, [scrollDirection]);
-		return scrollDirection;
-	}
+	// 		const updateScrollDirection = () => {
+	// 			const scrollY = window.scrollY;
+	// 			const direction = scrollY > lastScrollY ? 'down' : 'up';
+	// 			if (
+	// 				direction !== scrollDirection &&
+	// 				(scrollY - lastScrollY > 3 || scrollY - lastScrollY < -3)
+	// 			) {
+	// 				setScrollDirection(direction);
+	// 			}
+	// 			lastScrollY = scrollY > 0 ? scrollY : 0;
+	// 		};
+	// 		window.addEventListener('scroll', updateScrollDirection);
+	// 		return () => {
+	// 			window.removeEventListener('scroll', updateScrollDirection);
+	// 		};
+	// 	}, [scrollDirection]);
+	// 	return scrollDirection;
+	// }
 
 	const menuItems = [
 		{name: 'Home', link: 'home'},
@@ -164,7 +164,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	return (
 		<div>
 			<header
-				className={`tw-flex tw-items-center tw-p-4 tw-w-full md:tw-h-20 tw-font-mono tw-gap-3 tw-fixed tw-z-50 ${useScrollDirection() == 'down' ? 'header-hidden' : 'header-show'}`}
+				className={`tw-flex tw-items-center tw-p-4 tw-w-full md:tw-h-20 tw-font-mono tw-gap-3 tw-fixed tw-z-50 header-show`}
 			>
 				<div className="md:tw-flex tw-aspect-square tw-h-12 tw-hidden tw-pointer-events-none"></div>
 				<div

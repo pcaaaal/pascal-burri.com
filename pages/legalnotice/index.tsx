@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function Home() {
 	return (
-		<div className="tw-overflow-hidden">
+		<div>
 			<Head>
 				<title>{metadata.title}</title>
 				<meta name="description" content={metadata.description} />

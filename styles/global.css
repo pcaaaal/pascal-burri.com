@@ -76,3 +76,7 @@ body {
 .pannel-size {
 	@apply tw-w-full tw-py-10 tw-px-8 md:tw-px-16 lg:tw-px-12 xl:tw-px-24 2xl:tw-px-48 tw-max-w-[2000px];
 }
+
+.button-large {
+	@apply tw-text-center text-medium tw-font-bold tw-p-2 tw-px-4 tw-rounded-2xl tw-shadow-lg dark:tw-text-neutral-900 tw-text-neutral-100 tw-transition dark:tw-bg-neutral-100 tw-bg-neutral-900 tw-duration-100 hover:tw-scale-[1.02] hover:tw-bg-neutral-800 hover:dark:tw-bg-white active:tw-scale-95
+}

@@ -9,6 +9,7 @@ import linkedInIcon from '/public/icons/logo-linkedin.svg';
 
 import gitHubIconDark from '/public/icons/logo-github-dark.svg';
 import linkedInIconDark from '/public/icons/logo-linkedin-dark.svg';
+import {disableInstantTransitions} from 'framer-motion';
 
 interface DarkProps {
 	dark: boolean;
@@ -35,10 +36,10 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 		'Deine Daten werden nur für die Kontaktaufnahme verwendet.',
 	);
 
-	const isTurnedOn = true;
+	const isTurnedOn = false;
 
 	const handleEmailTries = () => {
-		let tries = 8;
+		let tries = 0;
 
 		if (typeof window !== 'undefined') {
 			tries = parseInt(
@@ -108,11 +109,15 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 		const updateButtonState = () => {
 			switch (formState) {
 				case 'loading':
-					setButtonState('dark:tw-bg-neutral-300 tw-bg-neutral-800');
+					setButtonState(
+						'dark:tw-bg-neutral-300 tw-bg-neutral-800 dark:tw-text-neutral-900 tw-text-neutral-100',
+					);
 					setButtonText('Sendet...');
 					break;
 				case 'success':
-					setButtonState('tw-bg-green-600');
+					setButtonState(
+						'tw-bg-green-600 dark:tw-text-neutral-900 tw-text-neutral-100',
+					);
 					setButtonText('Gesendet!');
 					break;
 				case 'error':
@@ -122,15 +127,21 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 					setButtonText('Fehler!');
 					break;
 				case 'userFault':
-					setButtonState('tw-bg-red-600');
+					setButtonState(
+						'tw-bg-red-600 dark:tw-text-neutral-900 tw-text-neutral-100',
+					);
 					setButtonText('Fehler!');
 					break;
 				case 'formError':
-					setButtonState('dark:tw-bg-neutral-100 tw-bg-neutral-900');
+					setButtonState(
+						'dark:tw-bg-neutral-100 tw-bg-neutral-900 dark:tw-text-neutral-900 tw-text-neutral-100',
+					);
 					setButtonText('Senden');
 					break;
 				default:
-					setButtonState('dark:tw-bg-neutral-100 tw-bg-neutral-900');
+					setButtonState(
+						'dark:tw-bg-neutral-100 tw-bg-neutral-900 dark:tw-text-neutral-900 tw-text-neutral-100',
+					);
 					setButtonText('Senden');
 					break;
 			}
@@ -201,6 +212,9 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 			}
 		}
 	};
+
+	const disabled =
+		loading || formState === 'success' || formState === 'userFault';
 
 	return (
 		<div className="tw-w-full tw-flex tw-flex-col tw-items-center">
@@ -311,7 +325,8 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 								type="text"
 								name="user_name"
 								placeholder="Dein Name"
-								className={`tw-placeholder-gray-400  focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 tw-rounded-xl tw-py-2 tw-px-3 ${
+								disabled={disabled}
+								className={`tw-placeholder-gray-400  focus:tw-outline-none focus:tw-ring-2 tw-bg-neutral-100 ${disabled ? 'tw-bg-neutral-300 dark:tw-bg-neutral-500 tw-cursor-not-allowed' : ''} tw-text-neutral-900 tw-rounded-xl tw-py-2 tw-px-3 ${
 									errors.name
 										? 'tw-ring-red-600 dark:tw-ring-red-500 tw-ring-1'
 										: 'focus:tw-ring-violet-600 dark:focus:tw-ring-violet-500'
@@ -327,7 +342,8 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 								type="text"
 								name="user_email"
 								placeholder="Deine E-Mail"
-								className={`tw-placeholder-gray-400  focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 tw-rounded-xl tw-py-2 tw-px-3 ${
+								disabled={disabled}
+								className={`tw-placeholder-gray-400  focus:tw-outline-none focus:tw-ring-2 tw-bg-neutral-100 ${disabled ? 'tw-bg-neutral-300 dark:tw-bg-neutral-500 tw-cursor-not-allowed' : ''} tw-text-neutral-900 tw-rounded-xl tw-py-2 tw-px-3 ${
 									errors.email || errors.emailRegex
 										? 'tw-ring-red-600 dark:tw-ring-red-500 tw-ring-1'
 										: 'focus:tw-ring-violet-600 dark:focus:tw-ring-violet-500'
@@ -347,7 +363,8 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 							<textarea
 								name="message"
 								placeholder="Deine Nachricht"
-								className={`tw-placeholder-gray-400  focus:tw-outline-none focus:tw-ring-2 tw-text-neutral-900 tw-rounded-xl tw-py-2 tw-px-3 ${
+								disabled={disabled}
+								className={`tw-placeholder-gray-400  focus:tw-outline-none focus:tw-ring-2 tw-bg-neutral-100 ${disabled ? 'tw-bg-neutral-300 dark:tw-bg-neutral-500 tw-cursor-not-allowed' : ''} tw-text-neutral-900 tw-rounded-xl tw-py-2 tw-px-3 ${
 									errors.message
 										? 'tw-ring-red-600 dark:tw-ring-red-500 tw-ring-1'
 										: 'focus:tw-ring-violet-600 dark:focus:tw-ring-violet-500'
@@ -362,8 +379,8 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 							<div className="tw-px-4 tw-flex tw-flex-col tw-text-center">
 								<button
 									type="submit"
-									className={`${buttonState} tw-text-center text-medium tw-font-bold tw-p-2 tw-rounded-2xl tw-shadow-lg dark:tw-text-neutral-900 tw-text-neutral-100 tw-w-full tw-h-full tw-mt-4 tw-mb-4 tw-transition tw-duration-200 ${!loading && !(formState === 'success' || formState === 'userFault') ? 'hover:tw-scale-105 active:tw-scale-95' : ''}`}
-									disabled={loading}
+									className={`${buttonState} tw-text-center text-medium tw-font-bold tw-p-2 tw-rounded-2xl tw-shadow-lg tw-w-full tw-h-full tw-my-4 tw-transition tw-duration-200 ${!loading && !(formState === 'success' || formState === 'userFault') ? 'hover:tw-scale-[1.02] active:tw-scale-95 hover:tw-bg-neutral-800 hover:dark:tw-bg-white' : 'tw-cursor-not-allowed'}`}
+									disabled={disabled}
 								>
 									{buttonText}
 								</button>

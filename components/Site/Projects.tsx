@@ -104,9 +104,9 @@ export default function Projects() {
 			<div className="tw-flex tw-flex-col tw-items-center tw-justify-center md:tw-hidden">
 				{cards}
 			</div>
-			<div className="tw-text-center tw-z-20">
+			<div className="tw-text-center tw-z-20 tw-mt-4">
 				<button
-					className="tw-text-center text-medium tw-font-bold tw-p-2 tw-mt-4 tw-mb-2 tw-px-4 tw-rounded-2xl tw-shadow-lg dark:tw-text-neutral-900 tw-text-neutral-100 tw-transition dark:tw-bg-neutral-100 tw-bg-neutral-900 tw-duration-200 hover:tw-scale-105 active:tw-scale-95"
+					className="button-large"
 					onClick={() => router.push('/projects')}
 				>
 					Alle Projekte
