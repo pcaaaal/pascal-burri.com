@@ -26,7 +26,38 @@ export default function Home() {
 						<p className="text-small">
 							Pascal Burri
 							<br />
-							info@pascal-burri.com
+							Lorainestrasse 1
+							<br />
+							Bern 3000
+							<br />
+							Schweiz
+							<br />
+							<a
+								href="mailto:info@pascal-burri.com"
+								className="tw-underline"
+							>
+								info@pascal-burri.com
+							</a>
+						</p>
+						<p className="text-medium tw-font-bold">
+							Haftungsausschluss
+						</p>
+						<p className="text-small">
+							Der Autor übernimmt keine Gewähr für die
+							Richtigkeit, Genauigkeit, Aktualität,
+							Zuverlässigkeit und Vollständigkeit der
+							Informationen. Haftungsansprüche gegen den Autor
+							wegen Schäden materieller oder immaterieller Art,
+							die aus dem Zugriff oder der Nutzung bzw.
+							Nichtnutzung der veröffentlichten Informationen,
+							durch Missbrauch der Verbindung oder durch
+							technische Störungen entstanden sind, werden
+							ausgeschlossen. Alle Angebote sind freibleibend. Der
+							Autor behält es sich ausdrücklich vor, Teile der
+							Seiten oder das gesamte Angebot ohne gesonderte
+							Ankündigung zu verändern, zu ergänzen, zu löschen
+							oder die Veröffentlichung zeitweise oder endgültig
+							einzustellen.
 						</p>
 					</div>
 				</div>

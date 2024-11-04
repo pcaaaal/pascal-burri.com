@@ -22,10 +22,11 @@ export default function ProjectCard({project}: {project: Project}) {
 							className={`tw-w-full tw-h-full tw-pointer-events-none ${project.link === '' ? '' : 'tw-pointer-events-auto'}`}
 						>
 							<motion.div
-								whileHover={
-									project.scroll ? {y: -100} : undefined
-								}
-								transition={{type: 'tween', duration: 1}}
+							// TODO: fix this later
+							// whileHover={
+							// 	project.scroll ? {y: -100} : undefined
+							// }
+							// transition={{type: 'tween', duration: 1}}
 							>
 								<Image
 									src={project.image}

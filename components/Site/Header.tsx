@@ -154,11 +154,19 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 	// 	return scrollDirection;
 	// }
 
+	// const menuItems = [
+	// 	{name: 'Home', link: 'home'},
+	// 	{name: 'Über', link: 'about'},
+	// 	{name: 'Projekte', link: 'projects'},
+	// 	{name: 'Kontakt', link: 'contact'},
+	// ];
+
 	const menuItems = [
-		{name: 'Home', link: 'home'},
+		{name: 'Home', link: ''},
 		{name: 'Über', link: 'about'},
+		{name: 'Skills', link: 'about/skills'},
 		{name: 'Projekte', link: 'projects'},
-		{name: 'Kontakt', link: 'contact'},
+		{name: 'Kontakt', link: '#contact'},
 	];
 
 	return (
@@ -174,7 +182,7 @@ const Header: FunctionComponent<HeaderProps> = ({setDark, dark}) => {
 					{menuItems.map((item, index) => (
 						<Link
 							key={item.link}
-							href={`/#${item.link}`}
+							href={`/${item.link}`}
 							onClick={menu ? () => setShowMenu(false) : () => {}}
 							className={`tw-rounded-[20px] tw-py-2 tw-px-3 md:hover:tw-bg-[rgba(50,50,50,0.1)] dark:md:hover:tw-bg-[rgba(200,200,200,0.1)] icon-click`}
 						>

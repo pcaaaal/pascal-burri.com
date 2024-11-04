@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import data from '../../data';
 import router from 'next/router';
+import {a} from 'react-spring';
 
 export default function About() {
 	return (
@@ -46,10 +47,17 @@ export default function About() {
 								type: '',
 								keywords: [],
 							},
-						].map((skill, index) => (
+						].map((skill, index, arr) => (
 							<li
 								key={index}
 								className=" tw-flex tw-justify-center tw-items-center dark:tw-bg-[#333] tw-bg-neutral-100 tw-shadow-lg tw-h-12 tw-py-2 tw-px-4 text-small tw-rounded-lg"
+								{...(index === arr.length - 1
+									? {
+											onClick: () =>
+												router.push('/about/skills'),
+											style: {cursor: 'pointer'},
+										}
+									: {})}
 							>
 								{skill.title}
 							</li>

@@ -114,7 +114,7 @@ export default function Home() {
 								{timelineData.map((data, index) => (
 									<div
 										key={index}
-										className="tw-flex -tw-translate-x-[46px] tw-gap-8"
+										className="tw-flex -tw-translate-x-[46px] tw-gap-8 tw-z-20"
 									>
 										<div className="tw-bg-neutral-900 dark:tw-bg-neutral-100 tw-aspect-square tw-h-6 tw-rounded-full"></div>
 										<div className="glass-pannel">

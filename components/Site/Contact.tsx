@@ -36,7 +36,7 @@ const Contact: FunctionComponent<DarkProps> = ({dark}) => {
 		'Deine Daten werden nur für die Kontaktaufnahme verwendet.',
 	);
 
-	const isTurnedOn = false;
+	const isTurnedOn = true;
 
 	const handleEmailTries = () => {
 		let tries = 0;

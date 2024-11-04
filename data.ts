@@ -168,22 +168,28 @@ const data = {
 		{
 			title: 'Bildergalerie',
 			description: `Portfolio Website und Bildergalerie für einen Piloten, um Bilder und Videos seiner Flüge zu präsentieren.`,
+			descriptionLong:
+				'Dies war mein erstes Projekt, welches ich von einem Privatkunden erhalten habe. Es handelt sich um eine einfache Gallerie für die Flugbilder meines Vaters. Für diese Seite habe ich ein Template von Vercel für die Gallerie verwendet, es auf meine Bedürfnisse angepasst und den Rest der Website designed und entwickelt. Die Seite wurde mit Next.js und TailwindCSS erstellt, und wird auf Vercel gehostet.',
 			image: '/markus-burri-ch.webp',
 			link: 'https://markus-burri-ch-new.vercel.app/',
 			languages: ['NextJS', 'Tailwind CSS', 'TypeScript'],
 			tags: ['Image Gallery', 'Responsive', 'Cloudinary'],
 			scroll: true,
+			date: '2024',
 		},
-		// {
-		// 	title: 'Portfolio Website - pascal-burri.ch',
-		// 	description:
-		// 		'Portfolio Website für einen Softwareentwickler, um seine Projekte und Skills zu präsentieren.',
-		// 	image: '/pascal-burri-ch.png',
-		// 	link: 'https://pascal-burri.ch/',
-		// 	languages: ['NextJS', 'Tailwind CSS', 'TypeScript'],
-		// 	tags: ['Portfolio Website', 'Responsive', 'Mail-Formular'],
-		// 	scroll: true,
-		// },
+		{
+			title: 'Portfolio',
+			description:
+				'Portfolio Website für einen Softwareentwickler, um seine Projekte und Skills zu präsentieren.',
+			descriptionLong:
+				'Dies ist meine Portfolio Website, die ich entwickelt habe, um meine Projekte und Fähigkeiten zu präsentieren. Ich habe viel Wert auf ein modernes und ansprechendes Design gelegt, da dies meine Visitenkarte im Internet ist.',
+			image: '/pascal-burri-com.webp',
+			link: 'https://pascal-burri.com/',
+			languages: ['NextJS', 'Tailwind CSS', 'TypeScript'],
+			tags: ['Portfolio Website', 'Responsive', 'Mail-Formular'],
+			scroll: true,
+			date: '2024',
+		},
 		{
 			title: 'Dein Projekt?',
 			description:
@@ -193,6 +199,7 @@ const data = {
 			languages: ['React', 'NextJS', 'HTML'],
 			tags: ['Dein Projekt', 'Deine Idee', 'Dein Erfolg'],
 			scroll: true,
+			date: 'Jetzt?',
 		},
 	],
 };
