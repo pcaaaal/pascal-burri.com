@@ -1,37 +1,40 @@
-# Stage 1: Build your Next.js app and export static files
-FROM node:18-alpine AS builder
+# Use a build argument to decide if we build from source or pull a prebuilt image
+ARG USE_PREBUILT=true
+# BUILDER_IMAGE defaults to node:18-alpine for building from source
+ARG BUILDER_IMAGE=ghcr.io/pcaaaal/pascal-burri.com:latest
+
+# Stage 1: Builder stage – either build from source or use a prebuilt image.
+FROM ${BUILDER_IMAGE} AS builder
+
 WORKDIR /app
 
-# Install dependencies and build
+# Only run the build steps if we are not using a prebuilt image.
+# (If USE_PREBUILT=true, we expect that /app/out already exists in the builder image.)
 COPY package*.json ./
 RUN npm install
-
-# Copy source files and build the static export (placed into "out")
 COPY . .
-RUN npm run build
+RUN if [ "$USE_PREBUILT" = "false" ]; then \
+      npm run build && npm run export; \
+    fi
 
-# Stage 2: Setup Nginx with SSL support
+# Stage 2: Production image with Nginx and self-signed SSL support.
 FROM nginx:alpine
 
-# Install OpenSSL for certificate generation
-RUN apk add --no-cache openssl
+# Install OpenSSL for generating a self-signed certificate
+RUN apk add --no-cache openssl && \
+    mkdir -p /etc/ssl/private /etc/ssl/certs
 
-# Create directories for SSL certificates (if they don't exist)
-RUN mkdir -p /etc/ssl/private /etc/ssl/certs
-
-# Copy our custom Nginx configuration
-# This config file will enable HTTPS on port 443 and (optionally) redirect HTTP to HTTPS.
+# Copy custom Nginx configuration that enables HTTPS (and HTTP→HTTPS redirect)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy the static export into the directory Nginx serves
+# Copy the built static site from the builder stage.
+# We assume the Next.js export is output to /app/out.
 COPY --from=builder /app/out /usr/share/nginx/html
 
-# Copy our entrypoint script that generates the self-signed certificate on container start
+# Copy the entrypoint script that generates the self‑signed certificate (if needed) and starts Nginx.
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-# Expose HTTPS port (and optionally port 80 if you want to redirect)
-EXPOSE 443 80
+EXPOSE 80 443
 
-# Start the entrypoint script, which generates the cert if needed and then launches Nginx
 CMD ["/docker-entrypoint.sh"]
