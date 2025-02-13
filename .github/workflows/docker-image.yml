@@ -1,0 +1,44 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 1: Build the image that actually builds your Next.js static export.
+      - name: Build static site (build image)
+        run: |
+          docker build \
+            --build-arg USE_PREBUILT=false \
+            --build-arg BUILDER_IMAGE=node:18-alpine \
+            -t ghcr.io/${{ github.repository_owner }}/pascal-burri.com:build \
+            -f Dockerfile .
+
+      - name: Push build image to registry
+        run: docker push ghcr.io/${{ github.repository_owner }}/pascal-burri.com:build
+
+      # Step 2: Build the production image that reuses the prebuilt static site from the registry.
+      - name: Build production image
+        run: |
+          docker build \
+            --build-arg USE_PREBUILT=true \
+            --build-arg BUILDER_IMAGE=ghcr.io/${{ github.repository_owner }}/pascal-burri.com \
+            -t ghcr.io/${{ github.repository_owner }}/pascal-burri.com:latest \
+            -f Dockerfile .
+
+      - name: Push production image to registry
+        run: docker push ghcr.io/${{ github.repository_owner }}/pascal-burri.com:latest
