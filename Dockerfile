@@ -1,29 +1,37 @@
-# BUILDER_IMAGE defaults to your prebuilt image in the repository.
-ARG IMAGE=pcaaaal/pascal-burri.com
-
-# Stage 1: Builder stage – pull the prebuilt image.
-FROM ${IMAGE} AS builder
-
+# Stage 1: Build your Next.js app and export static files
+FROM node:20-alpine AS builder
 WORKDIR /app
 
+# Install dependencies and build
+COPY package*.json ./
+RUN npm install
 
-# Stage 2: Production image with Nginx and self‑signed SSL support.
+# Copy source files and build the static export (placed into "out")
+COPY . .
+RUN npm run build
+
+# Stage 2: Setup Nginx with SSL support
 FROM nginx:alpine
 
-# Install OpenSSL for generating a self‑signed certificate and prepare directories.
-RUN apk add --no-cache openssl && \
-    mkdir -p /etc/ssl/private /etc/ssl/certs
+# Install OpenSSL for certificate generation
+RUN apk add --no-cache openssl
 
-# Copy custom Nginx configuration that enables HTTPS (and HTTP→HTTPS redirect).
+# Create directories for SSL certificates (if they don't exist)
+RUN mkdir -p /etc/ssl/private /etc/ssl/certs
+
+# Copy our custom Nginx configuration
+# This config file will enable HTTPS on port 443 and (optionally) redirect HTTP to HTTPS.
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy the built static site from the builder stage (assumed to be in /app/out).
+# Copy the static export into the directory Nginx serves
 COPY --from=builder /app/out /usr/share/nginx/html
 
-# Copy the entrypoint script that generates the self‑signed certificate (if needed) and starts Nginx.
+# Copy our entrypoint script that generates the self-signed certificate on container start
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-EXPOSE 80 443
+# Expose HTTPS port (and optionally port 80 if you want to redirect)
+EXPOSE 443 80
 
+# Start the entrypoint script, which generates the cert if needed and then launches Nginx
 CMD ["/docker-entrypoint.sh"]
