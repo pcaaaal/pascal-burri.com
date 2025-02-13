@@ -6,6 +6,7 @@ FROM ${IMAGE} AS builder
 
 WORKDIR /app
 
+
 # Stage 2: Production image with Nginx and self‑signed SSL support.
 FROM nginx:alpine
 
